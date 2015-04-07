@@ -1,0 +1,46 @@
+HC\HCBundle\Entity\Referencia:
+    type: entity
+    table: referencia
+    indexes:
+        idNotaCita:
+            columns:
+                - idNotaCita
+    id:
+        idreferencia:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            column: idReferencia
+            generator:
+                strategy: IDENTITY
+    fields:
+        nombredoctor:
+            type: string
+            nullable: false
+            length: 150
+            fixed: false
+            comment: ''
+            column: nombreDoctor
+        descripcion:
+            type: text
+            nullable: false
+            length: null
+            fixed: false
+            comment: ''
+        fecha:
+            type: date
+            nullable: false
+            comment: ''
+    manyToOne:
+        idnotacita:
+            targetEntity: Notacita
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idNotaCita:
+                    referencedColumnName: idNotaCita
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

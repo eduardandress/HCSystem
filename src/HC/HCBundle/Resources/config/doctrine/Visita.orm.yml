@@ -1,0 +1,20 @@
+HC\HCBundle\Entity\Visita:
+    type: entity
+    table: visita
+    id:
+        idvisita:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            column: idVisita
+            generator:
+                strategy: IDENTITY
+    fields:
+        fecha:
+            type: datetime
+            nullable: false
+            comment: ''
+            default: CURRENT_TIMESTAMP
+    lifecycleCallbacks: {  }

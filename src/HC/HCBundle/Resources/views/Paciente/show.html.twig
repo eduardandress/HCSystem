@@ -1,0 +1,377 @@
+{% extends 'HCHCBundle::layout.html.twig' %}
+
+{% block stylesheets %}
+{{ parent() }}
+        {% stylesheets
+        'bundles/hchc/Admin/plugins/daterangepicker/daterangepicker-bs3.css'
+        'bundles/hchc/Admin/plugins/timepicker/bootstrap-timepicker.min.css'
+        
+        output='css/*.css' filter='cssrewrite' %}
+        <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}" />
+    {% endstylesheets %}
+{% endblock %}
+
+{% block content_header %}
+  <section class="content-header">
+    <h1>
+      Detalle del Paciente
+      <small>Informacón Básica y de contacto del Paciente</small>
+    </h1>
+    <ol class="breadcrumb">
+      <li><a href="#"><i class="fa fa-dashboard"></i> Pacientes</a></li>
+      <li class="active">Detalle del paciente</li>
+    </ol>
+  </section>
+
+{% endblock %}
+
+
+
+
+
+{% block content -%}
+ <div class="col-md-6 ">
+        <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">Información Básica del Paciente <a class="btn btn-success btn-xs " href="{{ path('paciente_edit', { 'id': entity.idpaciente }) }}">Editar</a></h3>
+          </div><!-- /.box-header -->
+          <div class="box-body">
+              <table class="table table-bordered">
+                <tbody>
+
+                    <tr>
+                        <th>Cédula</th>
+                        <td>{{ entity.cedula }}</td>
+                    </tr>
+                    <tr>
+                        <th>Nombre</th>
+                        <td>{{ entity.nombre }}</td>
+                    </tr>
+                    <tr>
+                        <th>Apellido</th>
+                        <td>{{ entity.apellido }}</td>
+                    </tr>
+                    <tr>
+                        <th>Dirección</th>
+                        <td>{{ entity.direccion }}</td>
+                    </tr>
+                    <tr>
+                        <th>Fecha de Nacimiento</th>
+                        <td>{{ entity.fechanac }}</td>
+                    </tr>
+                    <tr>
+                        <th>Número de seguro social</th>
+                        <td>{{ entity.numss }}</td>
+                    </tr>
+                    <tr>
+                        <th>Médico Preferido</th>
+                        <td>{{ entity.medicopref }}</td>
+                    </tr>
+                    <tr>
+                        <th>Número de contacto</th>
+                        <td>{{ entity.telfmedico }}</td>
+                    </tr>
+
+
+                </tbody>
+            </table>
+        </div><!-- /.box-body -->
+    
+</div>
+        
+        
+        <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">Teléfonos Personales <a class="nuevoTP btn btn-success btn-xs"  href="">Nuevo</a></h3>
+          </div><!-- /.box-header -->
+          <div class="box-body">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+
+                        <th>
+                            Tipo de teléfono
+
+                        </th>
+                        <th>
+                         Número
+                     </th>
+                     <th>
+                         Acciones
+                     </th>
+                 </tr>
+             </thead>
+             <tbody>
+                {% for telefonoPersonal in entity.telefonosPersonales %}
+                <tr class="rowTelfP" id="tp_{{telefonoPersonal.idpactelf}}">
+
+                    <td>{{telefonoPersonal.idTipotel}}</td>
+                    <td>{{telefonoPersonal.numero}}</td>
+                    <td> 
+                        <button class="modificarTP btn btn-default btn-xs">
+                            Modificar
+                        </button>
+                        <button class="eliminarTP btn btn-danger btn-xs">
+                            Eliminar
+                        </button>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        </div>
+        </div>
+
+        <div class="nuevosTPForm box box-success " style="display:none">
+                  <div class="box-header">
+                    <h4 class="box-title">Nuevo Teléfono Personal </h4>
+                </div>
+                <div class="box-body">
+                {{form_start(FormNuevoTelPersonal)}}
+                {{form_row(FormNuevoTelPersonal._token)}}
+                    <div class="telfP">
+                              <div style="display:block; margin-right:15px; margin-top:30px;">
+                                  {{ form_row( FormNuevoTelPersonal.idtipotel,{'attr':{'class':'form-control'}} ) }}
+                                  <div class="form-group">
+                                      {{form_label(FormNuevoTelPersonal.numero)}}
+                                      <div class="input-group">
+                                        <div class="input-group-addon">
+                                          <i class="fa fa-phone"></i>
+                                      </div>
+                                      {{ form_widget( FormNuevoTelPersonal.numero,{'attr':{'class':'form-control','data-inputmask':"'mask':'(9999)-9999999' ",'data-mask':''}} ) }}
+                                      </div>
+                                  </div>
+                             </div>  
+                      </div>
+                    </br>
+                          {{ form( FormNuevoTelPersonal ) }}
+                 <!--    <button type="submit" class="btn btn-block btn-success" href="#">Agregar nuevo teléfono</button> -->
+                </div>
+        </div>
+
+
+   
+    <div class="box">
+        <div class="box-header">
+          <h3 class="box-title">Teléfonos en caso de emergencia <a class="nuevoTE btn btn-success btn-xs" href="">Nuevo</a></h3>
+      </div><!-- /.box-header -->
+      <div class="box-body">
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>
+                   Nombre 
+                </th>
+                <th>
+                    Apellido 
+                </th>
+                <th>
+                   Número
+                </th>
+                <th>
+                    Parentesco
+                </th>
+                 <th>
+                       Acciones
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for telefonoEmergencia in entity.telefonosEmergencia %}
+            <tr class="rowTelfE" id="te_{{telefonoEmergencia.idpacnumcontacto}}">
+                <td>{{telefonoEmergencia.nombrecontacto}}</td>
+                <td>{{telefonoEmergencia.apellidocontacto}}</td>
+                <td>{{telefonoEmergencia.numero}}</td>
+                <td>{{telefonoEmergencia.relacion}}</td>
+                 <td> 
+                    <button class="modificarTE btn btn-default btn-xs">
+                        Modificar
+                    </button>
+                    <button class="eliminarTE btn btn-danger btn-xs">
+                        Eliminar
+                    </button>
+                 </td>
+                
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+</div>
+
+  
+
+<div class="nuevosTEForm box box-success " style="display:none">
+                  <div class="box-header">
+                    <h4 class="box-title">Nuevo Teléfono de Emergencia </h4>
+                </div>
+                <div class="box-body">
+                {{form_start(FormNuevoTelEmergencia)}}
+                {{form_row(FormNuevoTelEmergencia._token)}}
+                    <div class="telfE">
+                              <div style="display:block; margin-right:15px; margin-top:30px;">
+                      {{ form_row( FormNuevoTelEmergencia.nombrecontacto,{'attr':{'class':'form-control'}} ) }}
+                     {{ form_row( FormNuevoTelEmergencia.apellidocontacto ,{'attr':{'class':'form-control'}}) }}
+                                 
+                                  <div class="form-group">
+                                      {{form_label(FormNuevoTelEmergencia.numero)}}
+                                      <div class="input-group">
+                                        <div class="input-group-addon">
+                                          <i class="fa fa-phone"></i>
+                                      </div>
+                                      {{ form_widget( FormNuevoTelEmergencia.numero,{'attr':{'class':'form-control','data-inputmask':"'mask':'(9999)-9999999' ",'data-mask':''}} ) }}
+                                      </div>
+                                  </div>
+                         {{ form_row( FormNuevoTelEmergencia.relacion ,{'attr':{'class':'form-control'}}) }}
+                             </div>  
+                      </div>
+
+                    </br>
+                          {{ form( FormNuevoTelEmergencia ) }}
+                 <!--    <button type="submit" class="btn btn-block btn-success" href="#">Agregar nuevo teléfono</button> -->
+                </div>
+        </div>
+
+
+
+ <center>
+      <div class="btn-group">
+
+        <a href="{{ path('paciente') }}" class="btn btn-default">
+            Regresar
+        </a>
+        {{ form(delete_form) }}
+
+    </div>
+</center>  
+</div>
+
+{% endblock %}
+{% block javascripts -%}
+    {{ parent() }}
+            {% javascripts
+            'bundles/hchc/Admin/plugins/input-mask/jquery.inputmask.js'
+            'bundles/hchc/Admin/plugins/input-mask/jquery.inputmask.date.extensions.js'
+            'bundles/hchc/Admin/plugins/input-mask/jquery.inputmask.extensions.js'
+            
+
+            %}
+            <script type="text/javascript" src="{{ asset_url }}"></script>
+
+            <script type="text/javascript">
+
+             
+             $(function () {
+                 $("[data-mask]").inputmask();
+
+           });
+         </script>
+
+
+
+         {% endjavascripts %}
+    <script>
+    var FormEliminarTelPersonal= '{{ form(FormEliminarTelPersonal) }}';
+    var FormEliminarTelEmergencia= '{{ form(FormEliminarTelEmergencia) }}';
+
+
+    var EditarTelPersonalRuta="{{ path('pactelf_edit', {id:'texto'} ) }}";
+    var EditarTelEmergenciaRuta="{{ path('pacnumcontacto_edit', {id:'texto'} ) }}";
+
+    
+
+    function ModificarTelefonoPersonal(id){
+        var ruta= EditarTelPersonalRuta;
+        ruta=ruta.replace("texto", id);
+        window.location=ruta;
+    }
+    function ModificarTelefonoEmergencia(id){
+      var ruta= EditarTelEmergenciaRuta;
+      ruta=ruta.replace("texto", id);
+      window.location=ruta;
+    }
+    function EliminarTelefonoPersonal(id){
+
+       FormEliminarTelPersonal=FormEliminarTelPersonal.replace("texto", id);
+       var deleteForm= FormEliminarTelPersonal;
+       $("body").append("<div id='dTelf'>"+deleteForm+"</div>");
+       $("#dTelf").find("form").submit();
+
+    }
+    function EliminarTelefonoEmergencia(id){
+
+       FormEliminarTelEmergencia=FormEliminarTelEmergencia.replace("texto", id);
+       var deleteForm= FormEliminarTelEmergencia;
+       $("body").append("<div id='dTelf'>"+deleteForm+"</div>");
+       $("#dTelf").find("form").submit();
+        
+    }
+        $(document).ready(function(){
+
+            
+           
+            $(".nuevoTP").on('click', function(e) {
+                e.preventDefault();
+                if($(this).text()=="Nuevo"){
+                    $(this).text("Cancelar");
+                }else{
+                    $(this).text("Nuevo");
+                }
+                $(".nuevosTPForm").fadeToggle();
+            })
+
+            $(".nuevoTE").on('click', function(e) {
+                e.preventDefault();
+                 if($(this).text()=="Nuevo"){
+                    $(this).text("Cancelar");     
+                }else{
+                    $(this).text("Nuevo");
+                }
+                $(".nuevosTEForm").fadeToggle();
+
+              
+            })
+            $(".eliminarTP").on("click", function(e){
+                e.preventDefault();
+
+                var idtel= $(this).parents(".rowTelfP").attr("id");
+                idtel= idtel.replace("tp_","");
+               
+                EliminarTelefonoPersonal(idtel);
+
+            })
+            $(".eliminarTE").on("click", function(e){
+
+                e.preventDefault();
+
+                var idtel= $(this).parents(".rowTelfE").attr("id");
+                idtel= idtel.replace("te_","");
+
+                EliminarTelefonoEmergencia(idtel);
+
+            })
+
+            $(".modificarTP").on("click", function(e){
+                e.preventDefault();
+
+                var idtel= $(this).parents(".rowTelfP").attr("id");
+                idtel= idtel.replace("tp_","");
+               
+                ModificarTelefonoPersonal(idtel);
+
+            })
+            $(".modificarTE").on("click", function(e){
+                e.preventDefault();
+
+                var idtel= $(this).parents(".rowTelfE").attr("id");
+                idtel= idtel.replace("te_","");
+               
+                ModificarTelefonoEmergencia(idtel);
+
+            })
+
+
+        });
+    </script>
+{% endblock %}
+

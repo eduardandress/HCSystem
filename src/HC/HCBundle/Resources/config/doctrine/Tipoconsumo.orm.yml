@@ -1,0 +1,21 @@
+HC\HCBundle\Entity\Tipoconsumo:
+    type: entity
+    table: tipoConsumo
+    id:
+        idtipoconsumo:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            column: idTipoConsumo
+            generator:
+                strategy: IDENTITY
+    fields:
+        nombre:
+            type: string
+            nullable: false
+            length: 50
+            fixed: false
+            comment: ''
+    lifecycleCallbacks: {  }

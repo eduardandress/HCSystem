@@ -1,0 +1,91 @@
+{% extends 'HCHCBundle::layout.html.twig' %}
+
+
+{% block content_header %}
+  <section class="content-header">
+    <h1>
+      Pacientes
+      <small>Últimos 10 Pacientes</small>
+    </h1>
+    <ol class="breadcrumb">
+      <li><a href="#"><i class="fa fa-dashboard"></i> Últimos pacientes</a></li>
+      <li class="active">aqui</li>
+    </ol>
+  </section>
+
+{% endblock %}
+
+
+
+{% block content %}
+<style >
+    .small-btn{
+        width:40px;
+        height:40px;
+        padding:0px;
+    }
+</style>
+        <div class="box">
+                    <div class="box-header">
+                      <h3 class="box-title">Citas</h3>
+                    </div><!-- /.box-header -->
+                    <div class="box-body">
+                      <table class="table table-bordered">
+                        <tbody>
+                                 <thead>
+                                        <tr>
+                                          
+                                            <th>Cedula</th>
+                                            <th>Nombre</th>
+                                            <th>Apellido</th>
+                                            <th>Dirección</th>
+                                            <th>Fecha de Nacimiento</th>
+                                            <th>Número seguro social</th>
+                                            <!-- <th>Medicopref</th>
+                                            <th>Telfmedico</th> -->
+                                            <th style="width:200px">Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    {% for entity in entities %}
+                                    <tr>
+                                       
+                                        <td>{{ entity.cedula }}</td>
+                                        <td>{{ entity.nombre }}</td>
+                                        <td>{{ entity.apellido }}</td>
+                                        <td>{{ entity.direccion }}</td>
+                                        <td>{{ entity.fechanac }}</td>
+                                        <td>{{ entity.numss }}</td>
+                                        <!-- <td>{{ entity.medicopref }}</td>
+                                        <td>{{ entity.telfmedico }}</td> -->
+                      
+                                        <td>
+                                            
+                                                    <a href="{{ path('paciente_show', { 'id': entity.idpaciente }) }}" class="btn btn-app small-btn"><i class="fa fa-eye"></i>Ver</a>
+                                              
+                                                    <a href="{{ path('paciente_edit', { 'id': entity.idpaciente }) }}" class="btn btn-app small-btn"> <i class="fa fa-edit"></i>Editar</a>
+                                              
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                        </tbody>
+                    </table>
+                    </div><!-- /.box-body -->
+                    <div class="box-footer clearfix">
+                      <ul class="pagination pagination-sm no-margin pull-right">
+                        <li><a href="#">«</a></li>
+                        <li><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">»</a></li>
+                      </ul>
+                    </div>
+        </div>
+  
+
+       
+       <a href="{{ path('paciente_new') }}" class="btn btn-block btn-primary btn-lg">
+               Nuevo Paciente
+            </a>
+           
+     
+    {% endblock %}

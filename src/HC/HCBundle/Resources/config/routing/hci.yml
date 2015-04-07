@@ -1,0 +1,30 @@
+hci:
+    path:     /
+    defaults: { _controller: "HCHCBundle:Hci:index" }
+
+hci_show:
+    path:     /{id}/show
+    defaults: { _controller: "HCHCBundle:Hci:show" }
+
+hci_new:
+    path:     /new
+    defaults: { _controller: "HCHCBundle:Hci:new" }
+
+hci_create:
+    path:     /create
+    defaults: { _controller: "HCHCBundle:Hci:create" }
+    requirements: { _method: post }
+
+hci_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "HCHCBundle:Hci:edit" }
+
+hci_update:
+    path:     /{id}/update
+    defaults: { _controller: "HCHCBundle:Hci:update" }
+    requirements: { _method: post|put }
+
+hci_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "HCHCBundle:Hci:delete" }
+    requirements: { _method: post|delete }

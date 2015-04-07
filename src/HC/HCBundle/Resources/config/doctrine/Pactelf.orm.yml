@@ -1,0 +1,47 @@
+HC\HCBundle\Entity\Pactelf:
+    type: entity
+    table: pacTelf
+    indexes:
+        cedulaPaciente:
+            columns:
+                - idPaciente
+        idTipoTel:
+            columns:
+                - idTipoTel
+    id:
+        idpactelf:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            column: idPacTelf
+            generator:
+                strategy: IDENTITY
+    fields:
+        numero:
+            type: string
+            nullable: false
+            length: 50
+            fixed: false
+            comment: ''
+    manyToOne:
+        idpaciente:
+            targetEntity: Paciente
+            cascade: {  }
+            mappedBy: null
+            inversedBy: telefonosPersonales
+            joinColumns:
+                idPaciente:
+                    referencedColumnName: idPaciente
+            orphanRemoval: false
+        idtipotel:
+            targetEntity: Tipotel
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idTipoTel:
+                    referencedColumnName: idTipoTel
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

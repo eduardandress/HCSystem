@@ -1,0 +1,35 @@
+HC\HCBundle\Entity\Notascitagenerada:
+    type: entity
+    table: notasCitaGenerada
+    indexes:
+        idCita:
+            columns:
+                - idCita
+    id:
+        idnotacitagen:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            column: idNotaCitaGen
+            generator:
+                strategy: IDENTITY
+    fields:
+        idnotacita:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            column: idNotaCita
+    manyToOne:
+        idcita:
+            targetEntity: Cita
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idCita:
+                    referencedColumnName: idCita
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

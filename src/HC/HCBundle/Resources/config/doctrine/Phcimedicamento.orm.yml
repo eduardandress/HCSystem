@@ -1,0 +1,40 @@
+HC\HCBundle\Entity\Phcimedicamento:
+    type: entity
+    table: phciMedicamento
+    indexes:
+        idHci:
+            columns:
+                - idHci
+    id:
+        idphcimedicamento:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            column: idPhciMedicamento
+            generator:
+                strategy: IDENTITY
+    fields:
+        descripcion:
+            type: text
+            nullable: false
+            length: null
+            fixed: false
+            comment: ''
+        fechaactualizacion:
+            type: date
+            nullable: false
+            comment: ''
+            column: fechaActualizacion
+    manyToOne:
+        idhci:
+            targetEntity: Hci
+            cascade: {  }
+            mappedBy: null
+            inversedBy: medicamentos
+            joinColumns:
+                idHci:
+                    referencedColumnName: idHci
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

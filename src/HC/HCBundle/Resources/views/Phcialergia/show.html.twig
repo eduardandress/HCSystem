@@ -1,0 +1,36 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Phcialergia</h1>
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Idphcialergia</th>
+                <td>{{ entity.idphcialergia }}</td>
+            </tr>
+            <tr>
+                <th>Descripcion</th>
+                <td>{{ entity.descripcion }}</td>
+            </tr>
+            <tr>
+                <th>Fechaactualizacion</th>
+                <td>{{ entity.fechaactualizacion|date('Y-m-d H:i:s') }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('phcialergia') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('phcialergia_edit', { 'id': entity.idphcialergia }) }}">
+            Edit
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}

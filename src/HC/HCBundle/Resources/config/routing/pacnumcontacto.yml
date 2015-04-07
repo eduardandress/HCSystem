@@ -1,0 +1,30 @@
+pacnumcontacto:
+    path:     /
+    defaults: { _controller: "HCHCBundle:Pacnumcontacto:index" }
+
+pacnumcontacto_show:
+    path:     /{id}/show
+    defaults: { _controller: "HCHCBundle:Pacnumcontacto:show" }
+
+pacnumcontacto_new:
+    path:     /new
+    defaults: { _controller: "HCHCBundle:Pacnumcontacto:new" }
+
+pacnumcontacto_create:
+    path:     /create
+    defaults: { _controller: "HCHCBundle:Pacnumcontacto:create" }
+    methods:  POST
+
+pacnumcontacto_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "HCHCBundle:Pacnumcontacto:edit" }
+
+pacnumcontacto_update:
+    path:     /{id}/update
+    defaults: { _controller: "HCHCBundle:Pacnumcontacto:update" }
+    methods:  [POST, PUT]
+
+pacnumcontacto_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "HCHCBundle:Pacnumcontacto:delete" }
+    methods:  [POST, DELETE]

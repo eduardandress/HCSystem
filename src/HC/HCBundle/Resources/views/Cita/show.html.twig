@@ -1,0 +1,84 @@
+{% extends 'HCHCBundle::layout.html.twig' %}
+
+
+{% block content_header %}
+  <section class="content-header">
+    <h1>
+      Gestionar Citas
+      <small>Detalle de la cita</small>
+    </h1>
+    <ol class="breadcrumb">
+      <li><a href="#"><i class="fa fa-dashboard"></i> Todas las  citas</a></li>
+      <li class="active">Detalle</li>
+    </ol>
+  </section>
+
+{% endblock %}
+
+
+
+{% block content %}
+<div class="col-md-6">
+
+            <div class="box">
+                <div class="box-header">
+                  <h3 class="box-title">Detalle de la cita</h3>
+                </div><!-- /.box-header -->
+                    <div class="box-body no-padding">
+                      <table class="table table-condensed">
+                        <tbody>
+                        <tr>
+                          
+                          <th>Paciente</th>
+                          <td>{{ entity.idpaciente }}</td>
+                         
+                        </tr>
+                         <tr>
+                          <th>Usuario</th>
+                            <td>{{ entity.idusuario }}</td>
+                        </tr>
+                         <tr>
+                          
+                          <th>Fecha Programada</th>
+                          <td>{{ entity.fechaprogramada|date('Y-m-d') }}</td>
+                         
+                        </tr>
+                         <tr>
+                          <th>Hora Programada</th>
+                         <td>{{ entity.horaprogramada|date('H:i:s')  }}</td>
+                          
+                         
+                        </tr>
+                        <tr>
+                            <th>Fecha de Creación</th>
+                             <td>{{ entity.fechacreacion|date('Y-m-d') }}</td>
+                          
+                         
+                        </tr>
+                        <tr>
+                           <th>Motivo</th>
+                           <td>{{ entity.motivo }}</td>
+                          
+                         
+                        </tr>
+                        
+                      </tbody>
+                      </table>
+                    </div><!-- /.box-body -->
+            </div>
+<center>
+    <div class="btn-group">
+             <a href="{{ path('gestionarcitas') }}" class="btn btn-default">
+                    Regresar
+                </a>
+                 <a href="{{ path('gestionarcitas_edit', { 'id': entity.idcita }) }}" class="btn btn-default">
+                    Editar
+                </a>
+                {{ form(delete_form) }}
+            
+    </div>
+</center>    
+</div>
+{% endblock %}
+
+

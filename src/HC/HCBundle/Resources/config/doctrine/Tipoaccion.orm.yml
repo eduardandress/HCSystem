@@ -1,0 +1,21 @@
+HC\HCBundle\Entity\Tipoaccion:
+    type: entity
+    table: tipoAccion
+    id:
+        idtipoaccion:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            column: idTipoAccion
+            generator:
+                strategy: IDENTITY
+    fields:
+        nombre:
+            type: string
+            nullable: false
+            length: 50
+            fixed: false
+            comment: ''
+    lifecycleCallbacks: {  }

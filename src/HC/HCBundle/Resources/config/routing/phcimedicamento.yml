@@ -1,0 +1,30 @@
+phcimedicamento:
+    path:     /
+    defaults: { _controller: "HCHCBundle:Phcimedicamento:index" }
+
+phcimedicamento_show:
+    path:     /{id}/show
+    defaults: { _controller: "HCHCBundle:Phcimedicamento:show" }
+
+phcimedicamento_new:
+    path:     /new
+    defaults: { _controller: "HCHCBundle:Phcimedicamento:new" }
+
+phcimedicamento_create:
+    path:     /create
+    defaults: { _controller: "HCHCBundle:Phcimedicamento:create" }
+    requirements: { _method: post }
+
+phcimedicamento_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "HCHCBundle:Phcimedicamento:edit" }
+
+phcimedicamento_update:
+    path:     /{id}/update
+    defaults: { _controller: "HCHCBundle:Phcimedicamento:update" }
+    requirements: { _method: post|put }
+
+phcimedicamento_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "HCHCBundle:Phcimedicamento:delete" }
+    requirements: { _method: post|delete }

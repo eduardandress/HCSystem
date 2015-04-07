@@ -1,0 +1,58 @@
+HC\HCBundle\Entity\Phciconsumo:
+    type: entity
+    table: phciConsumo
+    indexes:
+        idHci:
+            columns:
+                - idHci
+        idTipoConsumo:
+            columns:
+                - idTipoConsumo
+        idTipoEstado:
+            columns:
+                - idTipoEstado
+    id:
+        idphciconsumo:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            column: idPhciConsumo
+            generator:
+                strategy: IDENTITY
+    fields:
+        fechaactualizacion:
+            type: date
+            nullable: false
+            comment: ''
+            column: fechaActualizacion
+    manyToOne:
+        idhci:
+            targetEntity: Hci
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idHci:
+                    referencedColumnName: idHci
+            orphanRemoval: false
+        idtipoconsumo:
+            targetEntity: Tipoconsumo
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idTipoConsumo:
+                    referencedColumnName: idTipoConsumo
+            orphanRemoval: false
+        idtipoestado:
+            targetEntity: Tipoestado
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idTipoEstado:
+                    referencedColumnName: idTipoEstado
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

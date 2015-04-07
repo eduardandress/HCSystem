@@ -1,0 +1,35 @@
+HC\HCBundle\Entity\Diagnosticomedico:
+    type: entity
+    table: diagnosticoMedico
+    indexes:
+        idMedico:
+            columns:
+                - idMedico
+    id:
+        iddiagnosticomed:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            column: idDiagnosticoMed
+            generator:
+                strategy: IDENTITY
+    fields:
+        iddiagnostico:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            column: idDiagnostico
+    manyToOne:
+        idmedico:
+            targetEntity: Usuario
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idMedico:
+                    referencedColumnName: idUsuario
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

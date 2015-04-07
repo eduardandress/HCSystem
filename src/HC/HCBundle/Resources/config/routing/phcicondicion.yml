@@ -1,0 +1,30 @@
+phcicondicion:
+    path:     /
+    defaults: { _controller: "HCHCBundle:Phcicondicion:index" }
+
+phcicondicion_show:
+    path:     /{id}/show
+    defaults: { _controller: "HCHCBundle:Phcicondicion:show" }
+
+phcicondicion_new:
+    path:     /new
+    defaults: { _controller: "HCHCBundle:Phcicondicion:new" }
+
+phcicondicion_create:
+    path:     /create
+    defaults: { _controller: "HCHCBundle:Phcicondicion:create" }
+    requirements: { _method: post }
+
+phcicondicion_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "HCHCBundle:Phcicondicion:edit" }
+
+phcicondicion_update:
+    path:     /{id}/update
+    defaults: { _controller: "HCHCBundle:Phcicondicion:update" }
+    requirements: { _method: post|put }
+
+phcicondicion_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "HCHCBundle:Phcicondicion:delete" }
+    requirements: { _method: post|delete }

@@ -1,0 +1,80 @@
+
+
+{% extends 'HCHCBundle::layout.html.twig' %}
+
+
+{% block content_header %}
+  <section class="content-header">
+    <h1>
+      Gestionar Citas
+      <small>Últimas 10 citas</small>
+    </h1>
+    <ol class="breadcrumb">
+      <li><a href="#"><i class="fa fa-dashboard"></i> Todas las citas</a></li>
+      <li class="active">Here</li>
+    </ol>
+  </section>
+
+{% endblock %}
+
+{% block content %}
+<style >
+    .small-btn{
+        width:40px;
+        height:40px;
+        padding:0px;
+    }
+</style>
+            <div class="box">
+                    <div class="box-header">
+                      <h3 class="box-title">Citas</h3>
+                    </div><!-- /.box-header -->
+                    <div class="box-body">
+                      <table class="table table-bordered">
+                        <tbody>
+                            <thead>
+                              <tr>
+                               
+                                <th>Fecha Creacion</th>
+                                <th>Fecha Programada</th>
+                                <th>Hora Programada</th>
+                                <th style="width: 60px">Motivo</th>
+                                <th style="width:200px">Acciones</th>
+                              </tr>
+                              </thead>
+                            {% for entity in entities %}
+                                <tr>
+                                   
+                                    <td>{% if entity.fechacreacion %}{{ entity.fechacreacion|date('Y-m-d H:i:s') }}{% endif %}</td>
+                                    <td>{% if entity.fechaprogramada %}{{ entity.fechaprogramada|date('Y-m-d H:i:s') }}{% endif %}</td>
+                                    <td>{{ entity.horaprogramada|date('Y-m-d H:i:s') }}</td>
+                                    <td>{{ entity.motivo }}</td>
+                                    <td>
+                                    
+                                            <a href="{{ path('gestionarcitas_show', { 'id': entity.idcita }) }}"class="btn btn-app small-btn"><i class="fa fa-eye"></i>Ver</a>
+                                        
+                                            <a href="{{ path('gestionarcitas_edit', { 'id': entity.idcita }) }}" class="btn btn-app small-btn"><i class="fa fa-edit"></i>Editar</a>
+                                       
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                      </tbody>
+                    </table>
+                    </div><!-- /.box-body -->
+                    <div class="box-footer clearfix">
+                      <ul class="pagination pagination-sm no-margin pull-right">
+                        <li><a href="#">«</a></li>
+                        <li><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">»</a></li>
+                      </ul>
+                    </div>
+             </div>
+
+            <a href="{{ path('gestionarcitas_new') }}" class="btn btn-block btn-primary btn-lg">
+                Nueva cita
+            </a>
+
+          
+{% endblock %}

@@ -1,0 +1,28 @@
+HC\HCBundle\Entity\Referenciamedico:
+    type: entity
+    table: referenciaMedico
+    indexes:
+        idMedico:
+            columns:
+                - idMedico
+    id:
+        idrefmedico:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            column: idRefMedico
+            generator:
+                strategy: IDENTITY
+    manyToOne:
+        idmedico:
+            targetEntity: Usuario
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idMedico:
+                    referencedColumnName: idUsuario
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

@@ -1,0 +1,227 @@
+{% extends 'HCHCBundle::layout.html.twig' %}
+
+{% block stylesheets %}
+{{ parent() }}
+        {% stylesheets
+        'bundles/hchc/Admin/plugins/daterangepicker/daterangepicker-bs3.css'
+        'bundles/hchc/Admin/plugins/timepicker/bootstrap-timepicker.min.css'
+        
+        output='css/*.css' filter='cssrewrite' %}
+        <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}" />
+    {% endstylesheets %}
+{% endblock %}
+
+{% block content_header %}
+  <section class="content-header">
+    <h1>
+      Nuevo Paciente
+      <small>Registar un nuevo paciente al sistema</small>
+    </h1>
+    <ol class="breadcrumb">
+      <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
+      <li class="active">Here</li>
+    </ol>
+  </section>
+
+{% endblock %}
+
+
+
+{% block content %}
+
+
+{% macro telefono_personal(telefonoP) %}
+
+ <div style="display:block; margin-right:15px; margin-top:30px;">
+  {{ form_row( telefonoP.idtipotel,{'attr':{'class':'form-control'}} ) }}
+        <div class="form-group">
+          {{form_label(telefonoP.numero)}}
+          <div class="input-group">
+            <div class="input-group-addon">
+              <i class="fa fa-phone"></i>
+            </div>
+            {{ form_widget( telefonoP.numero,{'attr':{'class':'form-control','data-inputmask':"'mask':'(9999)-9999999' ",'data-mask':''}} ) }}
+          </div>
+        </div>
+  </div>  
+{%endmacro%}
+
+{% macro telefono_emergencia(telefonoE) %}
+
+ <div style="display:block; margin-right:15px;margin-top:30px;">
+  {{ form_row( telefonoE.nombrecontacto,{'attr':{'class':'form-control'}} ) }}
+  {{ form_row( telefonoE.apellidocontacto ,{'attr':{'class':'form-control'}}) }}
+
+
+  <div class="form-group">
+          {{form_label(telefonoE.numero)}}
+          <div class="input-group">
+            <div class="input-group-addon">
+              <i class="fa fa-phone"></i>
+            </div>
+            {{ form_widget( telefonoE.numero,{'attr':{'class':'form-control','data-inputmask':"'mask':'(9999)-9999999' ",'data-mask':''}} ) }}
+          </div>
+        </div>
+  {{ form_row( telefonoE.relacion ,{'attr':{'class':'form-control'}}) }}
+ </div> 
+{%endmacro%}
+<div class="col-md-6 ">
+          {{ form_start(form) }}
+      		{{ form_row(form._token) }}
+      			{{ form_row(form.cedula,{'attr':{'class':'form-control'}}) }}
+      			{{ form_row(form.nombre,{'attr':{'class':'form-control'}}) }}
+      			{{ form_row(form.apellido,{'attr':{'class':'form-control'}}) }}
+      			{{ form_row(form.direccion,{'attr':{'class':'form-control'}}) }}
+
+
+            <div class="form-group">
+             {{form_label(form.fechanac)}}
+             <div class="input-group">
+
+              <div class="input-group-addon">
+                <i class="fa fa-calendar"></i>
+              </div>
+              {{ form_widget(form.fechanac,{'attr': {'class': 'form-control','data-inputmask':"'alias': 'yyyy-mm-dd' ",'data-mask':''}}) }}
+            </div><!-- /.input group -->
+          </div>
+  
+      			{{ form_row(form.numss,{'attr':{'class':'form-control'}}) }}
+      			{{ form_row(form.medicopref,{'attr':{'class':'form-control'}}) }}
+            <div class="form-group">
+              {{form_label(form.telfmedico)}}
+              <div class="input-group">
+                <div class="input-group-addon">
+                  <i class="fa fa-phone"></i>
+                </div>
+                {{ form_widget( form.telfmedico,{'attr':{'class':'form-control','data-inputmask':"'mask':'(9999)-9999999' ",'data-mask':''}} ) }}
+              </div>
+            </div>
+      		
+
+             </br>
+            <div class="box box-success">
+              <div class="box-header">
+                <h4 class="box-title">Teléfonos Personales </h4>
+              </div>
+              <div class="box-body">
+                <div class="telfP" data-prototype="{{ _self.telefono_personal(form.telefonosPersonales.vars.prototype)|e }}">
+                  {% for telefonoP in form.telefonosPersonales %}
+                  {{  _self.telefono_personal(telefonoP) }} 
+                  {% endfor %}
+                </div>
+                </br>
+                <a id="addTelfpBtn" class="btn btn-block btn-success" href="#">Agregar nuevo teléfono</a>
+              </div>
+            </div>
+        
+
+          <div class="box box-success">
+            <div class="box-header">
+              <h4 class="box-title">Teléfonos de Emergencia </h4>
+            </div>
+            <div class="box-body">
+
+              <div class="telfE"  data-prototype="{{ _self.telefono_emergencia(form.telefonosEmergencia.vars.prototype)|e }}">
+
+                {% for telefonoE in form.telefonosEmergencia %}
+                    {{  _self.telefono_emergencia(telefonoE) }} 
+                {% endfor %}
+
+              </div>
+               </br>
+              <a id="addTelfeBtn" class="btn btn-block btn-success"  href="#">Agregar nuevo contacto</a>
+            </div>
+          </div>
+
+
+
+
+
+      <center>
+          <div class="btn-group">
+            <button type="submit" class="btn btn-default">Crear</button>
+              <a href="{{ path('paciente') }}" class="btn btn-default">
+                    Regresar
+                </a>
+           
+        </div>
+      </center>  
+</div>
+       
+		        
+
+{% endblock %}
+{% block javascripts -%}
+	{{ parent() }}
+
+
+    {% javascripts
+    'bundles/hchc/Admin/plugins/input-mask/jquery.inputmask.js'
+    'bundles/hchc/Admin/plugins/input-mask/jquery.inputmask.date.extensions.js'
+    'bundles/hchc/Admin/plugins/input-mask/jquery.inputmask.extensions.js'
+    
+  
+    %}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+
+     <script type="text/javascript">
+     function evento_crearTelefono(){
+       $("[data-mask]").inputmask();
+     }
+      $(function () {
+
+         $("#datemask").inputmask("yyyy-mm-dd", {"placeholder": "yyyy-mm-dd"});
+        evento_crearTelefono();
+        
+      });
+    </script>
+    
+
+
+    {% endjavascripts %}
+
+	<script>
+		
+		function addTel($collectionHolder) {
+
+		    var prototype = $collectionHolder.data('prototype');
+		    var index = $collectionHolder.data('index');
+		    var newForm = prototype.replace(/__name__/g, index);
+		    $collectionHolder.data('index', index + 1);
+		    $collectionHolder.append("<div> <div class='delete btn btn-default btn-xs pull-right'>Eliminar </div> "+newForm+"</div>");
+		    $(".delete").on("click", function(){
+		 		$(this).parent().remove();
+			})
+
+		   evento_crearTelefono();
+		}
+
+	 	$(document).ready(function(){
+
+			 $ListaTelfPersonales = $('.telfP');
+    		 $ListaTelfPersonales.data(
+    		 	'index', $ListaTelfPersonales.find(':input').length
+    		 					  );
+
+    		 $ListaTelfEmergencia = $('.telfE');
+    		 $ListaTelfEmergencia.data(
+    		 	'index', $ListaTelfEmergencia.find(':input').length
+    		 					  );
+
+
+
+	    	$("#addTelfpBtn").on('click', function(e) {
+		        e.preventDefault();
+		        addTel($ListaTelfPersonales);
+		 	})
+
+	    	$("#addTelfeBtn").on('click', function(e) {
+		        e.preventDefault();
+		        addTel($ListaTelfEmergencia);
+		 	})
+          
+
+	  	});
+	</script>
+{% endblock %}
+

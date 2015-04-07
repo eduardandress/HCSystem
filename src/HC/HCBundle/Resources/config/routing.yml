@@ -1,0 +1,27 @@
+hchc_hci:
+    resource: "@HCHCBundle/Resources/config/routing/hci.yml"
+    prefix:   /hci
+
+hchc_gestionarcitas:
+    resource: "@HCHCBundle/Resources/config/routing/cita.yml"
+    prefix:   /gestionarcitas
+
+hchc_gestionarusuarios:
+    resource: "@HCHCBundle/Resources/config/routing/usuario.yml"
+    prefix:   /gestionarusuarios
+
+hchc_homepage:
+    path:     /
+    defaults: { _controller: HCHCBundle:Default:index }
+nuevopaciente:
+    path:     /nuevopaciente
+    defaults: { _controller: HCHCBundle:Paciente:new }
+hchc_pacnumcontacto:
+    resource: "@HCHCBundle/Resources/config/routing/pacnumcontacto.yml"
+    prefix:   /pacnumcontacto
+HCHCBundle_paciente:
+    resource: "@HCHCBundle/Resources/config/routing/paciente.yml"
+    prefix:   /paciente
+HCHCBundle_pactelf:
+    resource: "@HCHCBundle/Resources/config/routing/pactelf.yml"
+    prefix:   /telefonosPersonales

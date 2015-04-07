@@ -1,0 +1,62 @@
+HC\HCBundle\Entity\Bitacora:
+    type: entity
+    table: bitacora
+    indexes:
+        idUsuario:
+            columns:
+                - idUsuario
+        idTipoAccion:
+            columns:
+                - idTipoAccion
+    id:
+        idbitacora:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            column: idBitacora
+            generator:
+                strategy: IDENTITY
+    fields:
+        tabla:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+        idtupla:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            column: idTupla
+        descripcion:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+        fecha:
+            type: datetime
+            nullable: false
+            comment: ''
+            default: CURRENT_TIMESTAMP
+    manyToOne:
+        idusuario:
+            targetEntity: Usuario
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idUsuario:
+                    referencedColumnName: idUsuario
+            orphanRemoval: false
+        idtipoaccion:
+            targetEntity: Tipoaccion
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idTipoAccion:
+                    referencedColumnName: idTipoAccion
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

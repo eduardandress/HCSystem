@@ -1,0 +1,40 @@
+{% extends 'HCHCBundle::layout.html.twig' %}
+
+
+{% block content_header %}
+  <section class="content-header">
+    <h1>
+      Page Header
+      <small>Optional description</small>
+    </h1>
+    <ol class="breadcrumb">
+      <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
+      <li class="active">Here</li>
+    </ol>
+  </section>
+
+{% endblock %}
+
+
+
+
+
+{% block content -%}
+    <h1>Hci</h1>
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Idhci</th>
+                <td>{{ entity.idhci }}</td>
+            </tr>
+            <tr>
+                <th>Fechacreacion</th>
+                <td>{{ entity.fechacreacion|date('Y-m-d H:i:s') }}</td>
+            </tr>
+
+        </tbody>
+    </table>
+    
+    
+{% endblock %}

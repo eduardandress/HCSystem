@@ -1,0 +1,39 @@
+HC\HCBundle\Entity\Diagnostico:
+    type: entity
+    table: diagnostico
+    indexes:
+        idNotaCita:
+            columns:
+                - idNotaCita
+    id:
+        iddiagnostico:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            column: idDiagnostico
+            generator:
+                strategy: IDENTITY
+    fields:
+        fecha:
+            type: date
+            nullable: false
+            comment: ''
+        descripcion:
+            type: text
+            nullable: false
+            length: null
+            fixed: false
+            comment: ''
+    manyToOne:
+        idnotacita:
+            targetEntity: Notacita
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idNotaCita:
+                    referencedColumnName: idNotaCita
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

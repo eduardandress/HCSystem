@@ -1,0 +1,43 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Phcialergia list</h1>
+
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>Idphcialergia</th>
+                <th>Descripcion</th>
+                <th>Fechaactualizacion</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('phcialergia_show', { 'id': entity.idphcialergia }) }}">{{ entity.idphcialergia }}</a></td>
+                <td>{{ entity.descripcion }}</td>
+                <td>{% if entity.fechaactualizacion %}{{ entity.fechaactualizacion|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('phcialergia_show', { 'id': entity.idphcialergia }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('phcialergia_edit', { 'id': entity.idphcialergia }) }}">edit</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <ul>
+        <li>
+            <a href="{{ path('phcialergia_new') }}">
+                Create a new entry
+            </a>
+        </li>
+    </ul>
+    {% endblock %}

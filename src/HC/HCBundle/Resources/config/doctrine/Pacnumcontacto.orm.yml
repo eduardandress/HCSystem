@@ -1,0 +1,61 @@
+HC\HCBundle\Entity\Pacnumcontacto:
+    type: entity
+    table: pacNumContacto
+    indexes:
+        idPaciente:
+            columns:
+                - idPaciente
+    id:
+        idpacnumcontacto:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            column: idPacNumContacto
+            generator:
+                strategy: IDENTITY
+    fields:
+        nombrecontacto:
+            type: string
+            nullable: false
+            length: 100
+            fixed: false
+            comment: ''
+            column: nombreContacto
+        apellidocontacto:
+            type: string
+            nullable: false
+            length: 100
+            fixed: false
+            comment: ''
+            column: apellidoContacto
+        numero:
+            type: string
+            nullable: false
+            length: 20
+            fixed: false
+            comment: ''
+        relacion:
+            type: string
+            nullable: false
+            length: 50
+            fixed: false
+            comment: ''
+        fechaagregado:
+            type: datetime
+            nullable: false
+            comment: ''
+            default: CURRENT_TIMESTAMP
+            column: fechaAgregado
+    manyToOne:
+        idpaciente:
+            targetEntity: Paciente
+            cascade: {  }
+            mappedBy: null
+            inversedBy: telefonosEmergencia
+            joinColumns:
+                idPaciente:
+                    referencedColumnName: idPaciente
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

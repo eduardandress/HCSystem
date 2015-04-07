@@ -1,0 +1,33 @@
+paciente:
+    path:     /
+    defaults: { _controller: "HCHCBundle:Paciente:index" }
+
+paciente_show:
+    path:     /mostrar/{id}/
+    defaults: { _controller: "HCHCBundle:Paciente:mostrar" }
+
+paciente_new:
+    path:     /nuevo
+    defaults: { _controller: "HCHCBundle:Paciente:nuevo" }
+
+paciente_create:
+    path:     /crear
+    defaults: { _controller: "HCHCBundle:Paciente:crear" }
+    methods:  POST
+
+paciente_edit:
+    path:     /editar/{id}/
+    defaults: { _controller: "HCHCBundle:Paciente:editar" }
+
+paciente_update:
+    path:     /actualizar/{id}/
+    defaults: { _controller: "HCHCBundle:Paciente:actualizar" }
+    methods:  [POST, PUT]
+
+paciente_delete:
+    path:     /eliminar/{id}/
+    defaults: { _controller: "HCHCBundle:Paciente:eliminar" }
+    methods:  [POST, DELETE]
+registrarPac:
+    path:     /registrar
+    defaults: { _controller: HCHCBundle:Paciente:crear }

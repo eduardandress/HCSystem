@@ -1,0 +1,58 @@
+{% extends 'HCHCBundle::layout.html.twig' %}
+
+
+{% block content_header %}
+  <section class="content-header">
+    <h1>
+      Page Header
+      <small>Optional description</small>
+    </h1>
+    <ol class="breadcrumb">
+      <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
+      <li class="active">Here</li>
+    </ol>
+  </section>
+
+{% endblock %}
+
+
+
+{% block content %}
+    <h1>Hci list</h1>
+
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>Idhci</th>
+                <th>Fechacreacion</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('hci_show', { 'id': entity.idhci }) }}">{{ entity.idhci }}</a></td>
+                <td>{% if entity.fechacreacion %}{{ entity.fechacreacion|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('hci_show', { 'id': entity.idhci }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('hci_edit', { 'id': entity.idhci }) }}">edit</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <ul>
+        <li>
+            <a href="{{ path('hci_new') }}">
+                Create a new entry
+            </a>
+        </li>
+    </ul>
+    {% endblock %}

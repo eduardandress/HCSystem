@@ -1,0 +1,81 @@
+{% extends 'HCHCBundle::layout.html.twig' %}
+
+{% block stylesheets %}
+{{ parent() }}
+        {% stylesheets
+        'bundles/hchc/Admin/plugins/daterangepicker/daterangepicker-bs3.css'
+        'bundles/hchc/Admin/plugins/timepicker/bootstrap-timepicker.min.css'
+        
+        output='css/*.css' filter='cssrewrite' %}
+        <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}" />
+    {% endstylesheets %}
+{% endblock %}
+
+{% block content_header %}
+  <section class="content-header">
+    <h1>
+     Modificar Teléfono Personal
+      <small>Modificar teléfono seleccionado</small>
+    </h1>
+    <ol class="breadcrumb">
+      <li><a href="#"><i class="fa fa-dashboard"></i> Pacientes</a></li>
+      <li class="active">Detalle del paciente</li>
+    </ol>
+  </section>
+
+{% endblock %}
+
+
+{% block content -%}
+<div class="col-md-6">
+  
+  {{ form_start(edit_form) }}
+          {{ form_row(edit_form._token) }}
+     {{ form_row( edit_form.idtipotel,{'attr':{'class':'form-control'}} ) }}
+       <div class="form-group">
+        {{form_label(edit_form.numero)}}
+        <div class="input-group">
+          <div class="input-group-addon">
+            <i class="fa fa-phone"></i>
+          </div>
+          {{ form_widget( edit_form.numero,{'attr':{'class':'form-control','data-inputmask':"'mask':'(9999)-9999999' ",'data-mask':''}} ) }}
+        </div>
+      </div>
+   <center>
+    <div class="btn-group">
+   {{ form(edit_form) }}
+        <a href="{{app.request.headers.get('referer')}}"class="btn btn-default">
+           Regresar
+        </a>
+   {{ form(delete_form) }}
+    </div>
+  </center>  
+   
+</div>
+
+{% endblock %}
+{% block javascripts -%}
+  {{ parent() }}
+
+
+    {% javascripts
+    'bundles/hchc/Admin/plugins/input-mask/jquery.inputmask.js'
+    'bundles/hchc/Admin/plugins/input-mask/jquery.inputmask.date.extensions.js'
+    'bundles/hchc/Admin/plugins/input-mask/jquery.inputmask.extensions.js'
+    
+  
+    %}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+
+     <script type="text/javascript">
+       $(function () {
+         $("[data-mask]").inputmask();
+
+      });
+    </script>
+    
+
+
+    {% endjavascripts %}
+
+{% endblock %}

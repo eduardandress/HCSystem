@@ -1,0 +1,65 @@
+HC\HCBundle\Entity\Cita:
+    type: entity
+    table: cita
+    indexes:
+        idUsuario:
+            columns:
+                - idUsuario
+        idPaciente:
+            columns:
+                - idPaciente
+    id:
+        idcita:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            column: idCita
+            generator:
+                strategy: IDENTITY
+    fields:
+        fechacreacion:
+            type: datetime
+            nullable: false
+            comment: ''
+            default: CURRENT_TIMESTAMP
+            column: fechaCreacion
+        fechaprogramada:
+            type: date
+            nullable: false
+            comment: ''
+            column: fechaProgramada
+        horaprogramada:
+            type: string
+            nullable: false
+            length: 20
+            fixed: false
+            comment: ''
+            column: horaProgramada
+        motivo:
+            type: text
+            nullable: false
+            length: null
+            fixed: false
+            comment: ''
+    manyToOne:
+        idusuario:
+            targetEntity: Usuario
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idUsuario:
+                    referencedColumnName: idUsuario
+            orphanRemoval: false
+        idpaciente:
+            targetEntity: Paciente
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idPaciente:
+                    referencedColumnName: idPaciente
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

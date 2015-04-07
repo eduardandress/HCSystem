@@ -1,0 +1,40 @@
+HC\HCBundle\Entity\Phcicondicion:
+    type: entity
+    table: phciCondicion
+    indexes:
+        idHci:
+            columns:
+                - idHci
+    id:
+        idphcicondicion:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            column: idPhciCondicion
+            generator:
+                strategy: IDENTITY
+    fields:
+        descripcion:
+            type: text
+            nullable: false
+            length: null
+            fixed: false
+            comment: ''
+        fechaactualizacion:
+            type: date
+            nullable: false
+            comment: ''
+            column: fechaActualizacion
+    manyToOne:
+        idhci:
+            targetEntity: Hci
+            cascade: {  }
+            mappedBy: null
+            inversedBy: condiciones
+            joinColumns:
+                idHci:
+                    referencedColumnName: idHci
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

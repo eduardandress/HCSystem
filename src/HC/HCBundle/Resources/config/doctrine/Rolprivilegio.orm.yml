@@ -1,0 +1,40 @@
+HC\HCBundle\Entity\Rolprivilegio:
+    type: entity
+    table: rolPrivilegio
+    indexes:
+        idRol:
+            columns:
+                - idRol
+        idPrivilegio:
+            columns:
+                - idPrivilegio
+    id:
+        idrolprivilegio:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            column: idRolPrivilegio
+            generator:
+                strategy: IDENTITY
+    manyToOne:
+        idrol:
+            targetEntity: Rol
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idRol:
+                    referencedColumnName: idRol
+            orphanRemoval: false
+        idprivilegio:
+            targetEntity: Privilegio
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idPrivilegio:
+                    referencedColumnName: idPrivilegio
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

@@ -1,0 +1,36 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Phcicondicion</h1>
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Idphcicondicion</th>
+                <td>{{ entity.idphcicondicion }}</td>
+            </tr>
+            <tr>
+                <th>Descripcion</th>
+                <td>{{ entity.descripcion }}</td>
+            </tr>
+            <tr>
+                <th>Fechaactualizacion</th>
+                <td>{{ entity.fechaactualizacion|date('Y-m-d H:i:s') }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('phcicondicion') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('phcicondicion_edit', { 'id': entity.idphcicondicion }) }}">
+            Edit
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}

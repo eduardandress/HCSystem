@@ -1,0 +1,49 @@
+HC\HCBundle\Entity\Notacita:
+    type: entity
+    table: notaCita
+    id:
+        idnotacita:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            column: idNotaCita
+            generator:
+                strategy: IDENTITY
+    fields:
+        presionarterial:
+            type: float
+            nullable: false
+            precision: 10
+            scale: 0
+            comment: ''
+            column: presionArterial
+        alturapaciente:
+            type: float
+            nullable: false
+            precision: 10
+            scale: 0
+            comment: ''
+            column: alturaPaciente
+        pesopaciente:
+            type: float
+            nullable: false
+            precision: 10
+            scale: 0
+            comment: ''
+            column: pesoPaciente
+        frecuenciacardiaca:
+            type: float
+            nullable: false
+            precision: 10
+            scale: 0
+            comment: ''
+            column: frecuenciaCardiaca
+        temperatura:
+            type: float
+            nullable: false
+            precision: 10
+            scale: 0
+            comment: ''
+    lifecycleCallbacks: {  }

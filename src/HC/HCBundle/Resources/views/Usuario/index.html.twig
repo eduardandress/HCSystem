@@ -1,0 +1,85 @@
+{% extends 'HCHCBundle::layout.html.twig' %}
+
+
+{% block content_header %}
+  <section class="content-header">
+    <h1>
+      Gestionar Usuarios
+      <small>Optional description</small>
+    </h1>
+    <ol class="breadcrumb">
+      <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
+      <li class="active">Here</li>
+    </ol>
+  </section>
+
+{% endblock %}
+
+
+
+{% block content %}
+
+<style>
+    .small-btn{
+        width: 40px;
+        height: 40px;
+        padding:0px;
+    }
+
+</style>
+<div class="box">
+        
+    <div class="box-header">
+      <h3 class="box-title">Usuarios</h3>
+    </div>
+    <div class="box-body">
+       <table class="table table-bordered" style="vertical-align:center">
+            <tbody>
+                <tr>
+                    <th>Id</th>
+                    <th>Usuario</th>
+                    <!-- <th>Clave</th> -->
+                    <th>Nombre</th>
+                    <th>Fecha nac</th>
+                    <th>Numss</th>
+                    <th>Dirección</th>
+                    <th>Teléfono</th>
+                    <th>Fecha inicio</th>
+                    <th>Acciones</th>
+                </tr>
+
+                {% for entity in entities %}
+                    <tr>
+                        <td><a href="{{ path('gestionarusuarios_show', { 'id': entity.idusuario }) }}">{{ entity.idusuario }}</a></td>
+                        <td>{{ entity.usuario }}</td>
+                        <!-- <td>{{ entity.clave }}</td> -->
+                        <td>{{ entity.nombre }}</td>
+                        <td>{% if entity.fechanac %}{{ entity.fechanac|date('Y-m-d H:i:s') }}{% endif %}</td>
+                        <td>{{ entity.numss }}</td>
+                        <td>{{ entity.direccion }}</td>
+                        <td>{{ entity.telefono }}</td>
+                        <td>{% if entity.fechainicio %}{{ entity.fechainicio|date('Y-m-d H:i:s') }}{% endif %}</td>
+                        <td>
+                       
+
+
+                            <a href="{{ path('gestionarusuarios_show', { 'id': entity.idusuario }) }}" class="btn btn-app small-btn">
+                                <i class="fa fa-eye"></i> Mostrar
+                            </a>
+                                
+                                 
+                         
+                                        
+                            <a href="{{ path('gestionarusuarios_edit', { 'id': entity.idusuario }) }}" class="btn btn-app small-btn" ><i class="fa fa-edit"></i>Editar</a>
+                       
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+        <a href="{{ path('gestionarusuarios_new') }}" class="btn btn-block btn-primary btn-lg">
+            Nuevo usuario
+        </a>
+{% endblock %}

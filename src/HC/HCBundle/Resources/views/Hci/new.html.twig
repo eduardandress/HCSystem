@@ -1,0 +1,75 @@
+{% extends 'HCHCBundle::layout.html.twig' %}
+
+
+{% block content_header %}
+  <section class="content-header">
+    <h1>
+      Page Header
+      <small>Optional description</small>
+    </h1>
+    <ol class="breadcrumb">
+      <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
+      <li class="active">Here</li>
+    </ol>
+  </section>
+
+{% endblock %}
+
+
+
+{% block content %}
+
+    <h1>Nueva historia Clinica Inicial</h1>
+
+    <div class="col-md-6 center-block">
+          
+      {{form_start(form)}}
+    
+      {{ form_row( form._token ) }}
+
+
+      <div class="form-group">
+        
+             {{ form_row(form.idpaciente, {'attr':{'class':'form-control'}}) }}
+
+
+              <h3>Alergias del paciente</h3>
+
+              {% for alergia in form.alergias %}
+                 {{ form_row(alergia.descripcion,{'attr':{'class':'form-control'}}) }}
+              {% endfor %}
+
+                
+            <h3>Condiciones del paciente</h3>
+              {% for condicion in form.condiciones %}
+                {{ form_row(condicion.descripcion,{'attr':{'class':'form-control'}}) }}
+            {% endfor %}
+
+            
+            <h3>Medicamentos del paciente</h3>
+              {% for medicamento in form.medicamentos %}
+              {{ form_row(medicamento.descripcion,{'attr':{'class':'form-control'}}) }}
+            {% endfor %}
+
+
+            <h3>Consumos del paciente</h3>
+              {% for consumo in form.consumos %}
+                <h4>Consumo de {{form_row(consumo.idtipoconsumo)}}</h4>
+                {{ form_row(consumo.idtipoestado,{'attr':{'class':'form-control'}}) }}
+            {% endfor %}
+
+            <button class="btn btn-success btn-lg center-block" >Crear</button>
+        
+      </div>
+
+
+    </div>
+
+		<ul class="record_actions">
+		    <li>
+		        <a href="{{ path('hci') }}">
+		            Back to the list
+		        </a>
+		    </li>
+		</ul>
+{% endblock %}

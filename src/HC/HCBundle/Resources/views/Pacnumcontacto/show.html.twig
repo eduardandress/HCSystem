@@ -1,0 +1,48 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Pacnumcontacto</h1>
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Idpacnumcontacto</th>
+                <td>{{ entity.idpacnumcontacto }}</td>
+            </tr>
+            <tr>
+                <th>Nombrecontacto</th>
+                <td>{{ entity.nombrecontacto }}</td>
+            </tr>
+            <tr>
+                <th>Apellidocontacto</th>
+                <td>{{ entity.apellidocontacto }}</td>
+            </tr>
+            <tr>
+                <th>Numero</th>
+                <td>{{ entity.numero }}</td>
+            </tr>
+            <tr>
+                <th>Relacion</th>
+                <td>{{ entity.relacion }}</td>
+            </tr>
+            <tr>
+                <th>Fechaagregado</th>
+                <td>{{ entity.fechaagregado|date('Y-m-d H:i:s') }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('pacnumcontacto') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('pacnumcontacto_edit', { 'id': entity.idpacnumcontacto }) }}">
+            Edit
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}

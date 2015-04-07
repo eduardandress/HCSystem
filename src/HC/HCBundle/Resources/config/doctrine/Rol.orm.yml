@@ -1,0 +1,21 @@
+HC\HCBundle\Entity\Rol:
+    type: entity
+    table: rol
+    id:
+        idrol:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            column: idRol
+            generator:
+                strategy: IDENTITY
+    fields:
+        nombre:
+            type: string
+            nullable: false
+            length: 50
+            fixed: false
+            comment: ''
+    lifecycleCallbacks: {  }

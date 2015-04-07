@@ -1,0 +1,78 @@
+{% extends 'HCHCBundle::layout.html.twig' %}
+
+
+{% block content_header %}
+  <section class="content-header">
+    <h1>
+      Información General del usuario
+      <small>Optional description</small>
+    </h1>
+    <ol class="breadcrumb">
+      <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
+      <li class="active">Here</li>
+    </ol>
+  </section>
+
+{% endblock %}
+
+
+
+{% block content %}
+
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Idusuario</th>
+                <td>{{ entity.idusuario }}</td>
+            </tr>
+            <tr>
+                <th>Usuario</th>
+                <td>{{ entity.usuario }}</td>
+            </tr>
+            <tr>
+                <th>Clave</th>
+                <td>{{ entity.clave }}</td>
+            </tr>
+            <tr>
+                <th>Nombre</th>
+                <td>{{ entity.nombre }}</td>
+            </tr>
+            <tr>
+                <th>Fechanac</th>
+                <td>{{ entity.fechanac|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Numss</th>
+                <td>{{ entity.numss }}</td>
+            </tr>
+            <tr>
+                <th>Direccion</th>
+                <td>{{ entity.direccion }}</td>
+            </tr>
+            <tr>
+                <th>Telefono</th>
+                <td>{{ entity.telefono }}</td>
+            </tr>
+            <tr>
+                <th>Fechainicio</th>
+                <td>{{ entity.fechainicio|date('Y-m-d H:i:s') }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+<!-- <ul class="record_actions">
+    <li>
+    <a href="{{ path('gestionarusuarios') }}">
+    Back to the list
+    </a>
+    </li>
+    <li>
+    <a href="{{ path('gestionarusuarios_edit', { 'id': entity.idusuario }) }}">
+    Edit
+    </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+ -->
+ {% endblock %}

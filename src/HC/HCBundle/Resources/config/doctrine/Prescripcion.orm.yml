@@ -1,0 +1,45 @@
+HC\HCBundle\Entity\Prescripcion:
+    type: entity
+    table: prescripcion
+    indexes:
+        idNotaCita:
+            columns:
+                - idNotaCita
+    id:
+        idprescripcion:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            column: idPrescripcion
+            generator:
+                strategy: IDENTITY
+    fields:
+        fecha:
+            type: date
+            nullable: false
+            comment: ''
+        nombre:
+            type: string
+            nullable: false
+            length: 50
+            fixed: false
+            comment: ''
+        instrucciones:
+            type: text
+            nullable: false
+            length: null
+            fixed: false
+            comment: ''
+    manyToOne:
+        idnotacita:
+            targetEntity: Notacita
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idNotaCita:
+                    referencedColumnName: idNotaCita
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

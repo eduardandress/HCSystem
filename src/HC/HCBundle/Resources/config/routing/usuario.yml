@@ -1,0 +1,31 @@
+gestionarusuarios:
+    path:     /
+    defaults: { _controller: "HCHCBundle:Usuario:index" }
+
+gestionarusuarios_show:
+    path:     /{id}/show
+    defaults: { _controller: "HCHCBundle:Usuario:show" }
+
+gestionarusuarios_new:
+    path:     /new
+    defaults: { _controller: "HCHCBundle:Usuario:new" }
+
+gestionarusuarios_create:
+    path:     /create
+    defaults: { _controller: "HCHCBundle:Usuario:create" }
+    requirements: { _method: post }
+
+gestionarusuarios_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "HCHCBundle:Usuario:edit" }
+
+gestionarusuarios_update:
+    path:     /{id}/update
+    defaults: { _controller: "HCHCBundle:Usuario:update" }
+    requirements: { _method: post|put }
+
+gestionarusuarios_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "HCHCBundle:Usuario:delete" }
+    requirements: { _method: post|delete }
+

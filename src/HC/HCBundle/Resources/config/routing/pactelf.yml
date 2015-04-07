@@ -1,0 +1,30 @@
+pactelf:
+    path:     /
+    defaults: { _controller: "HCHCBundle:Pactelf:index" }
+
+pactelf_show:
+    path:     /{id}/show
+    defaults: { _controller: "HCHCBundle:Pactelf:show" }
+
+pactelf_new:
+    path:     /new
+    defaults: { _controller: "HCHCBundle:Pactelf:new" }
+
+pactelf_create:
+    path:     /create
+    defaults: { _controller: "HCHCBundle:Pactelf:create" }
+    methods:  POST
+
+pactelf_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "HCHCBundle:Pactelf:edit" }
+
+pactelf_update:
+    path:     /{id}/update
+    defaults: { _controller: "HCHCBundle:Pactelf:update" }
+    methods:  [POST, PUT]
+
+pactelf_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "HCHCBundle:Pactelf:delete" }
+    methods:  [POST, DELETE]

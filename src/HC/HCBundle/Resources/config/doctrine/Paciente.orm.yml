@@ -1,0 +1,79 @@
+HC\HCBundle\Entity\Paciente:
+    type: entity
+    table: paciente
+    uniqueConstraints:
+        cedula:
+            columns:
+                - cedula
+    id:
+        idpaciente:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            column: idPaciente
+            generator:
+                strategy: IDENTITY
+    fields:
+        cedula:
+            type: string
+            nullable: false
+            length: 50
+            fixed: false
+            comment: ''
+        nombre:
+            type: string
+            nullable: false
+            length: 100
+            fixed: false
+            comment: ''
+        apellido:
+            type: string
+            nullable: false
+            length: 100
+            fixed: false
+            comment: ''
+        direccion:
+            type: text
+            nullable: false
+            length: null
+            fixed: false
+            comment: ''
+        fechanac:
+            type: string
+            nullable: false
+            length: 50
+            fixed: false
+            comment: ''
+            column: fechaNac
+        numss:
+            type: string
+            nullable: false
+            length: 50
+            fixed: false
+            comment: ''
+            column: numSS
+        medicopref:
+            type: string
+            nullable: false
+            length: 150
+            fixed: false
+            comment: ''
+            column: medicoPref
+        telfmedico:
+            type: string
+            nullable: true
+            length: 20
+            fixed: false
+            comment: ''
+    oneToMany:
+        telefonosPersonales:
+            targetEntity: Pactelf
+            cascade: ["persist", "remove"]
+            mappedBy: idpaciente
+        telefonosEmergencia:
+            targetEntity: Pacnumcontacto
+            cascade: ["persist", "remove"]
+            mappedBy: idpaciente  
+    lifecycleCallbacks: {  }

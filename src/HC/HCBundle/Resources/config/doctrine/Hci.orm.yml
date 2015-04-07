@@ -1,0 +1,35 @@
+HC\HCBundle\Entity\Hci:
+    type: entity
+    table: hci
+    indexes:
+        idPaciente:
+            columns:
+                - idPaciente
+    id:
+        idhci:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            column: idHci
+            generator:
+                strategy: IDENTITY
+    fields:
+        fechacreacion:
+            type: datetime
+            nullable: false
+            comment: ''
+            default: CURRENT_TIMESTAMP
+            column: fechaCreacion
+    manyToOne:
+        idpaciente:
+            targetEntity: Paciente
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idPaciente:
+                    referencedColumnName: idPaciente
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

@@ -1,0 +1,40 @@
+HC\HCBundle\Entity\Phcialergia:
+    type: entity
+    table: phciAlergia
+    indexes:
+        idHci:
+            columns:
+                - idHci
+    id:
+        idphcialergia:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            column: idPhciAlergia
+            generator:
+                strategy: IDENTITY
+    fields:
+        descripcion:
+            type: text
+            nullable: false
+            length: null
+            fixed: false
+            comment: ''
+        fechaactualizacion:
+            type: date
+            nullable: false
+            comment: ''
+            column: fechaActualizacion
+    manyToOne:
+        idhci:
+            targetEntity: Hci
+            cascade: {  }
+            mappedBy: null
+            inversedBy: alergias
+            joinColumns:
+                idHci:
+                    referencedColumnName: idHci
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

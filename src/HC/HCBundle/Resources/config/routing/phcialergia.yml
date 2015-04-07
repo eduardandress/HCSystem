@@ -1,0 +1,30 @@
+phcialergia:
+    path:     /
+    defaults: { _controller: "HCHCBundle:Phcialergia:index" }
+
+phcialergia_show:
+    path:     /{id}/show
+    defaults: { _controller: "HCHCBundle:Phcialergia:show" }
+
+phcialergia_new:
+    path:     /new
+    defaults: { _controller: "HCHCBundle:Phcialergia:new" }
+
+phcialergia_create:
+    path:     /create
+    defaults: { _controller: "HCHCBundle:Phcialergia:create" }
+    requirements: { _method: post }
+
+phcialergia_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "HCHCBundle:Phcialergia:edit" }
+
+phcialergia_update:
+    path:     /{id}/update
+    defaults: { _controller: "HCHCBundle:Phcialergia:update" }
+    requirements: { _method: post|put }
+
+phcialergia_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "HCHCBundle:Phcialergia:delete" }
+    requirements: { _method: post|delete }

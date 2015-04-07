@@ -1,0 +1,30 @@
+gestionarcitas:
+    path:     /
+    defaults: { _controller: "HCHCBundle:Cita:index" }
+
+gestionarcitas_show:
+    path:     /{id}/show
+    defaults: { _controller: "HCHCBundle:Cita:show" }
+
+gestionarcitas_new:
+    path:     /new
+    defaults: { _controller: "HCHCBundle:Cita:new" }
+
+gestionarcitas_create:
+    path:     /create
+    defaults: { _controller: "HCHCBundle:Cita:create" }
+    requirements: { _method: post }
+
+gestionarcitas_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "HCHCBundle:Cita:edit" }
+
+gestionarcitas_update:
+    path:     /{id}/update
+    defaults: { _controller: "HCHCBundle:Cita:update" }
+    requirements: { _method: post|put }
+
+gestionarcitas_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "HCHCBundle:Cita:delete" }
+    requirements: { _method: post|delete }

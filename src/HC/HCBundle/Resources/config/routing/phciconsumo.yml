@@ -1,0 +1,30 @@
+phciconsumo:
+    path:     /
+    defaults: { _controller: "HCHCBundle:Phciconsumo:index" }
+
+phciconsumo_show:
+    path:     /{id}/show
+    defaults: { _controller: "HCHCBundle:Phciconsumo:show" }
+
+phciconsumo_new:
+    path:     /new
+    defaults: { _controller: "HCHCBundle:Phciconsumo:new" }
+
+phciconsumo_create:
+    path:     /create
+    defaults: { _controller: "HCHCBundle:Phciconsumo:create" }
+    requirements: { _method: post }
+
+phciconsumo_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "HCHCBundle:Phciconsumo:edit" }
+
+phciconsumo_update:
+    path:     /{id}/update
+    defaults: { _controller: "HCHCBundle:Phciconsumo:update" }
+    requirements: { _method: post|put }
+
+phciconsumo_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "HCHCBundle:Phciconsumo:delete" }
+    requirements: { _method: post|delete }

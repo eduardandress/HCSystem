@@ -1,0 +1,76 @@
+HC\HCBundle\Entity\Usuario:
+    type: entity
+    table: usuario
+    indexes:
+        idRol:
+            columns:
+                - idRol
+    id:
+        idusuario:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            column: idUsuario
+            generator:
+                strategy: IDENTITY
+    fields:
+        usuario:
+            type: string
+            nullable: false
+            length: 50
+            fixed: false
+            comment: ''
+        clave:
+            type: string
+            nullable: false
+            length: 50
+            fixed: false
+            comment: ''
+        nombre:
+            type: string
+            nullable: false
+            length: 50
+            fixed: false
+            comment: ''
+        fechanac:
+            type: date
+            nullable: false
+            comment: ''
+            column: fechaNac
+        numss:
+            type: string
+            nullable: false
+            length: 50
+            fixed: false
+            comment: ''
+            column: numSS
+        direccion:
+            type: text
+            nullable: false
+            length: null
+            fixed: false
+            comment: ''
+        telefono:
+            type: string
+            nullable: false
+            length: 50
+            fixed: false
+            comment: ''
+        fechainicio:
+            type: date
+            nullable: false
+            comment: ''
+            column: fechaInicio
+    manyToOne:
+        idrol:
+            targetEntity: Rol
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idRol:
+                    referencedColumnName: idRol
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

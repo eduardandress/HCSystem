@@ -1,0 +1,21 @@
+HC\HCBundle\Entity\Tipotel:
+    type: entity
+    table: tipoTel
+    id:
+        idtipotel:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            column: idTipoTel
+            generator:
+                strategy: IDENTITY
+    fields:
+        nombre:
+            type: string
+            nullable: false
+            length: 50
+            fixed: false
+            comment: ''
+    lifecycleCallbacks: {  }

@@ -1,0 +1,14 @@
+login_route:
+    path:     /login
+    defaults: { _controller: HCHCBundle:Seguridad:login }
+validar_login:
+    path: /validar_login
+logout:
+    path: /logout
+hchc:
+    resource: "@HCHCBundle/Resources/config/routing.yml"
+    prefix:   /
+
+app:
+    resource: @AppBundle/Controller/
+    type:     annotation
