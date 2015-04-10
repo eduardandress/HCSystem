@@ -7,7 +7,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use HC\HCBundle\Entity\Cita;
 use HC\HCBundle\Form\CitaType;
-
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
 /**
  * Cita controller.
  *
@@ -68,7 +69,7 @@ class CitaController extends Controller
             'action' => $this->generateUrl('gestionarcitas_create'),
             'method' => 'POST',
         ));
-
+    
         $form->add('submit', 'submit', array('label' => 'Create'));
 
         return $form;
@@ -222,5 +223,15 @@ class CitaController extends Controller
             ->add('submit', 'submit', array('label' => 'Delete'))
             ->getForm()
         ;
+    }
+    public function existepacienteAction(Request $request,$cedula){
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('HCHCBundle:Paciente')->findOneByCedula($cedula);
+
+        if($entity){
+            return new JsonResponse(array('respuesta' =>"Verdadero" ));
+        }else{
+            return new JsonResponse(array('respuesta' => "Falso"));
+       }
     }
 }

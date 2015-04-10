@@ -41,6 +41,7 @@
                             <tr>
                               <th>{{ form_row(form.idpaciente,{'attr': {'class': 'form-control'}}) }}</th>
                             </tr>
+                            
                              <tr>
                               <th>
                                  <div class="form-group">
@@ -99,6 +100,8 @@
         </div>
     </center>  
 
+  <!--   <button class="btn btn-success" type="button" onclick="validarCedulaPaciente()">Ajax</button> -->
+
 </div>
 {% endblock %}
 {% block javascripts %}
@@ -123,6 +126,20 @@
             showInputs: false
           });
       });
+      function validarCedulaPaciente(cedula){
+        
+        $.ajax({
+            url:cedula+"/validarcedula",
+            method:"GET",
+            success:function(resultado){
+                console.log(resultado);
+                if(resultado.respuesta=="Falso"){
+                  alert('No existe ese paciente');
+                }
+            }
+          });
+        
+      }
     </script>
     
 

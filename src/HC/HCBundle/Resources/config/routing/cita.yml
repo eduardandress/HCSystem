@@ -23,8 +23,10 @@ gestionarcitas_update:
     path:     /{id}/update
     defaults: { _controller: "HCHCBundle:Cita:update" }
     requirements: { _method: post|put }
-
 gestionarcitas_delete:
     path:     /{id}/delete
     defaults: { _controller: "HCHCBundle:Cita:delete" }
     requirements: { _method: post|delete }
+validarcedula:
+    path: /{cedula}/validarcedula
+    defaults: { _controller: "HCHCBundle:Cita:existepaciente" }
