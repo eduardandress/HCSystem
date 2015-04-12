@@ -69,12 +69,19 @@
 		    {{ form_widget(edit_form.fechainicio,{'attr': {'class': 'form-control','data-inputmask':"'alias': 'yyyy-mm-dd' ",'data-mask':''}}) }}
 		</div><!-- /.input group -->
 	</div>
-
-
     {{ form_row(edit_form.idrol,{'attr': {'class': 'form-control'}}) }}
+   <center>
+        <div class="btn-group">
+	             {{form(edit_form)}}
+                  <a href="{{ path('gestionarusuarios') }}" class="btn btn-default">Regresar</a>
 
-	<button type="submit" class="btn btn-success btn-lg center-block">Editar</button>
+              {{ form(delete_form) }}
+        </div>
+       </center> 
 </div>
+
+
+ 
 <!-- <ul class="record_actions">
 	<li>
 		<a href="{{ path('gestionarusuarios') }}">

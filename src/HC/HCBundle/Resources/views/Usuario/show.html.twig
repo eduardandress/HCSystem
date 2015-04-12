@@ -4,8 +4,8 @@
 {% block content_header %}
   <section class="content-header">
     <h1>
-      Información General del usuario
-      <small>Optional description</small>
+      Información  del usuario
+      <small>Detalle del usuario seleccionado</small>
     </h1>
     <ol class="breadcrumb">
       <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
@@ -19,48 +19,62 @@
 
 {% block content %}
 
-
-    <table class="record_properties">
-        <tbody>
-            <tr>
-                <th>Idusuario</th>
-                <td>{{ entity.idusuario }}</td>
-            </tr>
-            <tr>
-                <th>Usuario</th>
-                <td>{{ entity.usuario }}</td>
-            </tr>
-            <tr>
-                <th>Clave</th>
-                <td>{{ entity.clave }}</td>
-            </tr>
-            <tr>
-                <th>Nombre</th>
-                <td>{{ entity.nombre }}</td>
-            </tr>
-            <tr>
-                <th>Fechanac</th>
-                <td>{{ entity.fechanac|date('Y-m-d H:i:s') }}</td>
-            </tr>
-            <tr>
-                <th>Numss</th>
-                <td>{{ entity.numss }}</td>
-            </tr>
-            <tr>
-                <th>Direccion</th>
-                <td>{{ entity.direccion }}</td>
-            </tr>
-            <tr>
-                <th>Telefono</th>
-                <td>{{ entity.telefono }}</td>
-            </tr>
-            <tr>
-                <th>Fechainicio</th>
-                <td>{{ entity.fechainicio|date('Y-m-d H:i:s') }}</td>
-            </tr>
-        </tbody>
-    </table>
-
+<div class="box">
+            <div class="box-header">
+                <h3 class="box-title">Detalle del usuario</h3>
+                    </div><!-- /.box-header -->
+                        <div class="box-body no-padding">
+                          <table class="table table-condensed">
+                            <tbody>
+                                <tr>
+                                    <th> Nombre de usuario</th>
+                                    <td>{{ entity.usuario }}</td>
+                                </tr>
+                               <!--  <tr>
+                                    <th>Clave</th>
+                                    <td>{{ entity.clave }}</td>
+                                </tr> -->
+                                <tr>
+                                    <th>Nombre completo</th>
+                                    <td>{{ entity.nombre }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Fecha de nacimiento</th>
+                                    <td>{{ entity.fechanac|date('Y-m-d H:i:s') }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Número de seguro social</th>
+                                    <td>{{ entity.numss }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Dirección</th>
+                                    <td>{{ entity.direccion }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Teléfono</th>
+                                    <td>{{ entity.telefono }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Fecha de inicio</th>
+                                    <td>{{ entity.fechainicio|date('Y-m-d H:i:s') }}</td>
+                                </tr>
+                            </tbody>
+                     </table>
+            </div><!-- /.box-body -->
+        </div>
+       
+<center>
+       <div class="btn-group">
+             <a href="{{ path('gestionarusuarios') }}" class="btn btn-default">
+                    Regresar
+                </a>
+              <!--    <a href="{{ path('gestionarusuarios_edit', { 'id': entity.idusuario }) }}" class="btn btn-default">
+                    Editar
+                </a> -->
+                {{ form(delete_form) }}
+            
+    </div>
+</center>
 <!-- <ul class="record_actions">
     <li>
     <a href="{{ path('gestionarusuarios') }}">

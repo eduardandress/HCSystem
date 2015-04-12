@@ -5,11 +5,11 @@
   <section class="content-header">
     <h1>
       Gestionar Usuarios
-      <small>Optional description</small>
+      <small>Últimos 10 nuevos usuarios</small>
     </h1>
     <ol class="breadcrumb">
-      <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
-      <li class="active">Here</li>
+      <li><a href="#"><i class="fa fa-dashboard"></i> Gestionar Usuarios</a></li>
+      <li class="active">aqui</li>
     </ol>
   </section>
 
@@ -32,12 +32,12 @@
        <table class="table table-bordered" style="vertical-align:center">
             <tbody>
                 <tr>
-                    <th>Id</th>
+                    
                     <th>Usuario</th>
                     <!-- <th>Clave</th> -->
                     <th>Nombre</th>
-                    <th>Fecha nac</th>
-                    <th>Numss</th>
+                    <th>Fecha de naciemiento</th>
+                    <th>Número de seguro social</th>
                     <th>Dirección</th>
                     <th>Teléfono</th>
                     <th>Fecha inicio</th>
@@ -46,7 +46,7 @@
 
                 {% for entity in entities %}
                     <tr>
-                        <td><a href="{{ path('gestionarusuarios_show', { 'id': entity.idusuario }) }}">{{ entity.idusuario }}</a></td>
+            
                         <td>{{ entity.usuario }}</td>
                         <!-- <td>{{ entity.clave }}</td> -->
                         <td>{{ entity.nombre }}</td>
@@ -60,7 +60,7 @@
 
 
                             <a href="{{ path('gestionarusuarios_show', { 'id': entity.idusuario }) }}" class="btn btn-app small-btn">
-                                <i class="fa fa-eye"></i> Mostrar
+                                <i class="fa fa-eye"></i> Ver
                             </a>
                                 
                                  
