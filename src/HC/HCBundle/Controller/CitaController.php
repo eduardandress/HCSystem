@@ -41,8 +41,17 @@ class CitaController extends Controller
         $entity->setIdusuario($UsuarioLogeado); //Solo en la creacion de una nueva cita se coloca el id del Usuario logeado, no se ṕuede editar.
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
-        
-        if ($form->isValid()) {
+
+         $cedula=$form->get('cedula')->getData();
+         $em= $this->getDoctrine()->getManager();
+        $pacienteConCedula= $em->getRepository('HCHCBundle:Paciente')->findOneByCedula($cedula);
+       // echo $pacienteConCedula->getCedula();
+            $pacienteExiste=true;
+            if($pacienteConCedula==null){
+                $pacienteExiste=false;
+            }
+        if ($form->isValid()&& $pacienteExiste) {
+            $entity->setIdpaciente($pacienteConCedula);
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
@@ -145,12 +154,15 @@ class CitaController extends Controller
     */
     private function createEditForm(Cita $entity)
     {
+    
+      
+        $paciente=$entity->getIdpaciente();
         $form = $this->createForm(new CitaType(), $entity, array(
             'action' => $this->generateUrl('gestionarcitas_update', array('id' => $entity->getIdcita())),
             'method' => 'PUT',
         ));
-
-        $form->add('submit', 'submit', array('label' => 'Update'));
+        $form->get('cedula')->setData($paciente->getCedula());
+        $form->add('submit', 'submit', array('label' => 'Actualizar','attr'=>array('class'=>'btn btn-default enviar')));
 
         return $form;
     }
@@ -172,7 +184,16 @@ class CitaController extends Controller
         $editForm = $this->createEditForm($entity);
         $editForm->handleRequest($request);
 
-        if ($editForm->isValid()) {
+        $cedula=$editForm->get('cedula')->getData();
+         $em2= $this->getDoctrine()->getManager();
+        $pacienteConCedula= $em2->getRepository('HCHCBundle:Paciente')->findOneByCedula($cedula);
+      
+            $pacienteExiste=true;
+            if($pacienteConCedula==null){
+                $pacienteExiste=false;
+            }
+        if ($editForm->isValid() && $pacienteExiste) {
+            $entity->setIdpaciente($pacienteConCedula);
             $em->flush();
 
             return $this->redirect($this->generateUrl('gestionarcitas_edit', array('id' => $id)));
@@ -220,7 +241,7 @@ class CitaController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('gestionarcitas_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
+            ->add('submit', 'submit', array('label' => 'Eliminar','attr'=>array('class'=>'btn btn-default ')))
             ->getForm()
         ;
     }

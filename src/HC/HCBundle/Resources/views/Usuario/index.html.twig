@@ -50,11 +50,11 @@
                         <td>{{ entity.usuario }}</td>
                         <!-- <td>{{ entity.clave }}</td> -->
                         <td>{{ entity.nombre }}</td>
-                        <td>{% if entity.fechanac %}{{ entity.fechanac|date('Y-m-d H:i:s') }}{% endif %}</td>
+                        <td>{% if entity.fechanac %}{{ entity.fechanac|date('Y-m-d') }}{% endif %}</td>
                         <td>{{ entity.numss }}</td>
                         <td>{{ entity.direccion }}</td>
                         <td>{{ entity.telefono }}</td>
-                        <td>{% if entity.fechainicio %}{{ entity.fechainicio|date('Y-m-d H:i:s') }}{% endif %}</td>
+                        <td>{% if entity.fechainicio %}{{ entity.fechainicio|date('Y-m-d') }}{% endif %}</td>
                         <td>
                        
 

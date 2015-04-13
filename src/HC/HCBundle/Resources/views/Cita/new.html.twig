@@ -38,10 +38,12 @@
                         <div class="box-body no-padding">
                           <table class="table table-condensed">
                             <tbody>
-                            <tr>
+                           <!--  <tr>
                               <th>{{ form_row(form.idpaciente,{'attr': {'class': 'form-control'}}) }}</th>
+                            </tr> -->
+                            <tr >
+                              <th class="cedularow">{{ form_row(form.cedula,{'attr': {'class': 'form-control inputcedula', 'onchange':'validarCedulaPaciente(this.value)'}}) }}</th>
                             </tr>
-                            
                              <tr>
                               <th>
                                  <div class="form-group">
@@ -92,8 +94,8 @@
 
 
     <center>
-        <div class="btn-group">
-         <button type="submit"  class="btn btn-default" >Enviar</button>
+        <div class="btn-group opciones">
+         
             <a href="{{ path('gestionarcitas') }}" class="btn btn-default">
                 Regresar
             </a>
@@ -126,6 +128,21 @@
             showInputs: false
           });
       });
+
+
+      function pintarValidacion(clase, mensaje){
+               var cedularow= $('.cedularow > div');
+
+               if(clase=='success'){
+                 cedularow.removeClass('form-group has-error');
+               }else{
+                 cedularow.removeClass('form-group has-sucess');
+
+               }
+               cedularow.addClass('form-group has-'+clase)
+               cedularow.find('label').html(mensaje);
+               cedularow.find('label').addClass('control-label');
+      }
       function validarCedulaPaciente(cedula){
         
         $.ajax({
@@ -134,14 +151,22 @@
             success:function(resultado){
                 console.log(resultado);
                 if(resultado.respuesta=="Falso"){
-                  alert('No existe ese paciente');
+                  var botonRegistarU='<a href="{{path("paciente_new")}}" class="btn btn-success btn-xs">Registar</a>';
+                    pintarValidacion('error','No existe el paciente '+botonRegistarU)
+                    $('.opciones > .enviar').remove();
+          
+                }else{
+                    pintarValidacion('success','Cedula')
+                    if($('.enviar').length==0){
+                        $('.opciones').prepend('<button type="submit"  class="btn btn-default enviar" >Enviar</button>');
+                    }
                 }
             }
           });
         
       }
     </script>
-    
+
 
 
     {% endjavascripts %}
