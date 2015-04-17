@@ -15,35 +15,44 @@ class HciType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add("idpaciente")
-            ->add("alergias", "collection", 
+            ->add("idpaciente",null, array('label'=>false,'attr'=>array('class'=>'hidden')))
+            ->add('cedula','text',array('label'=>'Paciente','mapped'=>false))
+            ->add("alergia", "collection", 
                     array(
                         "type"=> new PhcialergiaType(), 
                         'allow_add'    => true,
                         'allow_delete' => true,
                     )
                  )
-            ->add("consumos", "collection", 
+            ->add("consumo", "collection", 
                     array(
                         "type"=> new PhciconsumoType(), 
                         'allow_add'    => true,
                         'allow_delete' => true,
                     ) 
                  )
-            ->add("medicamentos", "collection", 
+            ->add("medicamento", "collection", 
                     array(
                         "type"=> new PhcimedicamentoType(), 
                         'allow_add'    => true,
                         'allow_delete' => true,
                     ) 
                  )
-            ->add("condiciones", "collection", 
+            ->add("condicion", "collection", 
                     array(
                         "type"=> new PhcicondicionType(), 
                         'allow_add'    => true,
                         'allow_delete' => true,
                     ) 
                  )
+            ->add("notacita",'collection',
+                    array(  
+                        "type"=> new NotacitaType(),
+                        
+                    )
+
+                )
+
         ;
     }
     

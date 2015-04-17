@@ -44,7 +44,9 @@ class Cita
      */
     private $idusuario;
 
-
+    public function __toString(){
+        return $this->motivo;
+    }
     /**
      * Set fechacreacion
      *

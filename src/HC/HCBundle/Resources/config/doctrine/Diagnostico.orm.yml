@@ -5,6 +5,9 @@ HC\HCBundle\Entity\Diagnostico:
         idNotaCita:
             columns:
                 - idNotaCita
+        idUsuario:
+            columns:
+                - idUsuario
     id:
         iddiagnostico:
             type: integer
@@ -17,7 +20,7 @@ HC\HCBundle\Entity\Diagnostico:
                 strategy: IDENTITY
     fields:
         fecha:
-            type: date
+            type: datetime
             nullable: false
             comment: ''
         descripcion:
@@ -31,9 +34,19 @@ HC\HCBundle\Entity\Diagnostico:
             targetEntity: Notacita
             cascade: {  }
             mappedBy: null
-            inversedBy: null
+            inversedBy: diagnostico
             joinColumns:
                 idNotaCita:
                     referencedColumnName: idNotaCita
+            orphanRemoval: false
+    oneToOne:
+        idusuario:
+            targetEntity: Usuario
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idUsuario:
+                    referencedColumnName: idUsuario
             orphanRemoval: false
     lifecycleCallbacks: {  }

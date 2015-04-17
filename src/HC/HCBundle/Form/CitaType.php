@@ -23,7 +23,7 @@ class CitaType extends AbstractType
         $builder
             //->add('fechacreacion', null ,array('label'=>'Fecha de Creacion'))
             ->add('cedula','text',array('label'=>'Paciente','mapped'=>false))
-            ->add('idpaciente',null, array('label'=>'Paciente','attr'=>array('class'=>'hidden')))
+            ->add('idpaciente',null, array('label'=>false,'attr'=>array('class'=>'hidden')))
             ->add('fechaprogramada',null, array('label'=>'Fecha Programada','widget' => 'single_text'))
             ->add('horaprogramada',null, array('label'=>'Hora Programada'))
             ->add('motivo',null, array('label'=>'Motivo de la cita'))

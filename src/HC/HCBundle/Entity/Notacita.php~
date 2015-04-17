@@ -39,7 +39,43 @@ class Notacita
      */
     private $temperatura;
 
+    /**
+     * @var \HC\HCBundle\Entity\Cita
+     */
+    private $idcita;
 
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $prescripcion;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $diagnostico;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $referencia;
+
+    /**
+     * @var \HC\HCBundle\Entity\Hci
+     */
+    private $idhci;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->prescripcion = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->diagnostico = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->referencia = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+      public function __toString(){
+            return "Nota cita nombre";
+        }
     /**
      * Get idnotacita
      *
@@ -164,4 +200,170 @@ class Notacita
     {
         return $this->temperatura;
     }
+
+    /**
+     * Set idcita
+     *
+     * @param \HC\HCBundle\Entity\Cita $idcita
+     * @return Notacita
+     */
+    public function setIdcita(\HC\HCBundle\Entity\Cita $idcita = null)
+    {
+        $this->idcita = $idcita;
+
+        return $this;
+    }
+
+    /**
+     * Get idcita
+     *
+     * @return \HC\HCBundle\Entity\Cita 
+     */
+    public function getIdcita()
+    {
+        return $this->idcita;
+    }
+
+    /**
+     * Add prescripcion
+     *
+     * @param \HC\HCBundle\Entity\Prescripcion $prescripcion
+     * @return Notacita
+     */
+    public function addPrescripcion(\HC\HCBundle\Entity\Prescripcion $prescripcion)
+    {
+        $this->prescripcion[] = $prescripcion;
+
+        return $this;
+    }
+
+    /**
+     * Remove prescripcion
+     *
+     * @param \HC\HCBundle\Entity\Prescripcion $prescripcion
+     */
+    public function removePrescripcion(\HC\HCBundle\Entity\Prescripcion $prescripcion)
+    {
+        $this->prescripcion->removeElement($prescripcion);
+    }
+
+    /**
+     * Get prescripcion
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getPrescripcion()
+    {
+        return $this->prescripcion;
+    }
+
+    /**
+     * Add diagnostico
+     *
+     * @param \HC\HCBundle\Entity\Diagnostico $diagnostico
+     * @return Notacita
+     */
+    public function addDiagnostico(\HC\HCBundle\Entity\Diagnostico $diagnostico)
+    {
+        $this->diagnostico[] = $diagnostico;
+
+        return $this;
+    }
+
+    /**
+     * Remove diagnostico
+     *
+     * @param \HC\HCBundle\Entity\Diagnostico $diagnostico
+     */
+    public function removeDiagnostico(\HC\HCBundle\Entity\Diagnostico $diagnostico)
+    {
+        $this->diagnostico->removeElement($diagnostico);
+    }
+
+    /**
+     * Get diagnostico
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getDiagnostico()
+    {
+        return $this->diagnostico;
+    }
+
+    /**
+     * Add referencia
+     *
+     * @param \HC\HCBundle\Entity\Referencia $referencia
+     * @return Notacita
+     */
+    public function addReferencia(\HC\HCBundle\Entity\Referencia $referencia)
+    {
+        $this->referencia[] = $referencia;
+
+        return $this;
+    }
+
+    /**
+     * Remove referencia
+     *
+     * @param \HC\HCBundle\Entity\Referencia $referencia
+     */
+    public function removeReferencia(\HC\HCBundle\Entity\Referencia $referencia)
+    {
+        $this->referencia->removeElement($referencia);
+    }
+
+    /**
+     * Get referencia
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getReferencia()
+    {
+        return $this->referencia;
+    }
+
+    /**
+     * Set idhci
+     *
+     * @param \HC\HCBundle\Entity\Hci $idhci
+     * @return Notacita
+     */
+    public function setIdhci(\HC\HCBundle\Entity\Hci $idhci = null)
+    {
+        $this->idhci = $idhci;
+
+        return $this;
+    }
+
+    /**
+     * Get idhci
+     *
+     * @return \HC\HCBundle\Entity\Hci 
+     */
+    public function getIdhci()
+    {
+        return $this->idhci;
+    }
+    //Setters de prescripcion, referencia y diagnostico
+    public function setPrescripcion($prescripciones){
+            $this->prescripcion=$prescripciones;
+            foreach ($prescripciones as $prescripcion) {
+                $prescripcion->setIdnotacita($this);
+            }
+    }
+    public function setReferencia($referencias){
+            $this->referencia=$referencias;
+            foreach ($referencias as $referencia) {
+                $referencia->setIdnotacita($this);
+            }
+    }
+    public function setDiagnostico($diagnosticos){
+            $this->diagnostico=$diagnosticos;
+            foreach ($diagnosticos as $diagnostico) {
+                $diagnostico->setIdnotacita($this);
+            }
+    }
+
+    
 }

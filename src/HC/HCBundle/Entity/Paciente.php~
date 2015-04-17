@@ -335,4 +335,50 @@ class Paciente
     }
 
 
+
+    /**
+     * Add telefonosPersonales
+     *
+     * @param \HC\HCBundle\Entity\Pactelf $telefonosPersonales
+     * @return Paciente
+     */
+    public function addTelefonosPersonale(\HC\HCBundle\Entity\Pactelf $telefonosPersonales)
+    {
+        $this->telefonosPersonales[] = $telefonosPersonales;
+
+        return $this;
+    }
+
+    /**
+     * Remove telefonosPersonales
+     *
+     * @param \HC\HCBundle\Entity\Pactelf $telefonosPersonales
+     */
+    public function removeTelefonosPersonale(\HC\HCBundle\Entity\Pactelf $telefonosPersonales)
+    {
+        $this->telefonosPersonales->removeElement($telefonosPersonales);
+    }
+
+    /**
+     * Add telefonosEmergencia
+     *
+     * @param \HC\HCBundle\Entity\Pacnumcontacto $telefonosEmergencia
+     * @return Paciente
+     */
+    public function addTelefonosEmergencium(\HC\HCBundle\Entity\Pacnumcontacto $telefonosEmergencia)
+    {
+        $this->telefonosEmergencia[] = $telefonosEmergencia;
+
+        return $this;
+    }
+
+    /**
+     * Remove telefonosEmergencia
+     *
+     * @param \HC\HCBundle\Entity\Pacnumcontacto $telefonosEmergencia
+     */
+    public function removeTelefonosEmergencium(\HC\HCBundle\Entity\Pacnumcontacto $telefonosEmergencia)
+    {
+        $this->telefonosEmergencia->removeElement($telefonosEmergencia);
+    }
 }

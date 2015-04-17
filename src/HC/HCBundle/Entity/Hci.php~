@@ -19,30 +19,36 @@ class Hci
      */
     private $fechacreacion;
 
+
+    private $alergia;
+
+
+    private $condicion;
+
+    private $consumo;
+
+    private $medicamento;
+    
+    private $notacita;
     /**
      * @var \HC\HCBundle\Entity\Paciente
      */
     private $idpaciente;
 
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->alergia = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->condicion = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->consumo = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->medicamento = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->notacita = new \Doctrine\Common\Collections\ArrayCollection();
 
-     private $alergias;
-
-    private $consumos;
-
-    private $medicamentos;
-
-    private $condiciones;
-
-
-    public function __construct(){
-        $this->alergias = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->consumos = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->medicamentos = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->condiciones = new \Doctrine\Common\Collections\ArrayCollection();
     }
-
     public function __toString(){
-        return $this->paciente;
+        return "Nombre Del HCI";
     }
     /**
      * Get idhci
@@ -77,138 +83,136 @@ class Hci
         return $this->fechacreacion;
     }
 
-
-    
-    public function getConsumos(){
-        return $this->consumos;
-    }
-    public function getAlergias(){
-        return $this->alergias;
-    }
-    public function getMedicamentos(){
-        return $this->medicamentos;
-    }
-    public function getCondiciones(){
-        return $this->condiciones;
-    }
-    public function setConsumos($consumos){
-        $this->consumos= $consumos;
-        foreach ($consumos as $consumo) {
-            $consumo->setIdhci($this);
-        }
-    }
-    public function setAlergias($alergias){
-        $this->alergias= $alergias;
-        foreach ($alergias as $alergia) {
-            $alergia->setIdhci($this);
-        }
-    }
-    public function setMedicamentos($medicamentos){
-        $this->medicamentos= $medicamentos;
-        foreach ($medicamentos as $medicamento) {
-            $medicamento->setIdhci($this);
-        }
-    }
-    public function setCondiciones($condiciones){
-        $this->condiciones= $condiciones;
-        foreach ($condiciones as $condicion) {
-            $condicion->setIdhci($this);
-        }
-    }
-
-  
-
-
     /**
-     * Add alergias
+     * Add alergia
      *
-     * @param \HC\HCBundle\Entity\Phcialergia $alergias
+     * @param \HC\HCBundle\Entity\Phcialergia $alergia
      * @return Hci
      */
-    public function addAlergias(\HC\HCBundle\Entity\Phcialergia $alergias)
+    public function addAlergia(\HC\HCBundle\Entity\Phcialergia $alergia)
     {
-        $this->alergias[] = $alergias;
+        $this->alergia[] = $alergia;
 
         return $this;
     }
 
     /**
-     * Remove alergias
+     * Remove alergia
      *
-     * @param \HC\HCBundle\Entity\Phcialergia $alergias
+     * @param \HC\HCBundle\Entity\Phcialergia $alergia
      */
-    public function removeAlergias(\HC\HCBundle\Entity\Phcialergia $alergias)
+    public function removeAlergia(\HC\HCBundle\Entity\Phcialergia $alergia)
     {
-        $this->alergias->removeElement($alergias);
+        $this->alergia->removeElement($alergia);
     }
 
     /**
-     * Add consumos
+     * Get alergia
      *
-     * @param \HC\HCBundle\Entity\Phciconsumo $consumos
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getAlergia()
+    {
+        return $this->alergia;
+    }
+
+    /**
+     * Add condicion
+     *
+     * @param \HC\HCBundle\Entity\Phcicondicion $condicion
      * @return Hci
      */
-    public function addConsumos(\HC\HCBundle\Entity\Phciconsumo $consumos)
+    public function addCondicion(\HC\HCBundle\Entity\Phcicondicion $condicion)
     {
-        $this->consumos[] = $consumos;
+        $this->condicion[] = $condicion;
 
         return $this;
     }
 
     /**
-     * Remove consumos
+     * Remove condicion
      *
-     * @param \HC\HCBundle\Entity\Phciconsumo $consumos
+     * @param \HC\HCBundle\Entity\Phcicondicion $condicion
      */
-    public function removeConsumos(\HC\HCBundle\Entity\Phciconsumo $consumos)
+    public function removeCondicion(\HC\HCBundle\Entity\Phcicondicion $condicion)
     {
-        $this->consumos->removeElement($consumos);
+        $this->condicion->removeElement($condicion);
     }
 
     /**
-     * Add medicamentos
+     * Get condicion
      *
-     * @param \HC\HCBundle\Entity\Phcimedicamento $medicamentos
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getCondicion()
+    {
+        return $this->condicion;
+    }
+
+    /**
+     * Add consumo
+     *
+     * @param \HC\HCBundle\Entity\Phciconsumo $consumo
      * @return Hci
      */
-    public function addMedicamentos(\HC\HCBundle\Entity\Phcimedicamento $medicamentos)
+    public function addConsumo(\HC\HCBundle\Entity\Phciconsumo $consumo)
     {
-        $this->medicamentos[] = $medicamentos;
+        $this->consumo[] = $consumo;
 
         return $this;
     }
 
     /**
-     * Remove medicamentos
+     * Remove consumo
      *
-     * @param \HC\HCBundle\Entity\Phcimedicamento $medicamentos
+     * @param \HC\HCBundle\Entity\Phciconsumo $consumo
      */
-    public function removeMedicamentos(\HC\HCBundle\Entity\Phcimedicamento $medicamentos)
+    public function removeConsumo(\HC\HCBundle\Entity\Phciconsumo $consumo)
     {
-        $this->medicamentos->removeElement($medicamentos);
+        $this->consumo->removeElement($consumo);
     }
 
     /**
-     * Add condiciones
+     * Get consumo
      *
-     * @param \HC\HCBundle\Entity\Phcicondicion $condiciones
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getConsumo()
+    {
+        return $this->consumo;
+    }
+
+    /**
+     * Add medicamento
+     *
+     * @param \HC\HCBundle\Entity\Phcimedicamento $medicamento
      * @return Hci
      */
-    public function addCondiciones(\HC\HCBundle\Entity\Phcicondicion $condiciones)
+    public function addMedicamento(\HC\HCBundle\Entity\Phcimedicamento $medicamento)
     {
-        $this->condiciones[] = $condiciones;
+        $this->medicamento[] = $medicamento;
 
         return $this;
     }
 
     /**
-     * Remove condiciones
+     * Remove medicamento
      *
-     * @param \HC\HCBundle\Entity\Phcicondicion $condiciones
+     * @param \HC\HCBundle\Entity\Phcimedicamento $medicamento
      */
-    public function removeCondiciones(\HC\HCBundle\Entity\Phcicondicion $condiciones)
+    public function removeMedicamento(\HC\HCBundle\Entity\Phcimedicamento $medicamento)
     {
-        $this->condiciones->removeElement($condiciones);
+        $this->medicamento->removeElement($medicamento);
+    }
+
+    /**
+     * Get medicamento
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getMedicamento()
+    {
+        return $this->medicamento;
     }
 
     /**
@@ -232,5 +236,114 @@ class Hci
     public function getIdpaciente()
     {
         return $this->idpaciente;
+    }
+
+    public function setConsumo($consumos){
+            $this->consumo=$consumos;
+            foreach ($consumos as $consumo ) {
+               $consumo->setIdhci($this);
+            }
+    }
+    public function setCondicion($condiciones){
+            $this->condicion=$condiciones;
+            foreach ($condiciones as $condicion ) {
+               $condicion->setIdhci($this);
+            }
+    }
+     public function setAlergia($alergias){
+            $this->alergia=$alergias;
+            foreach ($alergias as $alergia ) {
+               $alergia->setIdhci($this);
+            }
+    }
+     public function setMedicamento($medicamentos){
+            $this->medicamento=$medicamentos;
+            foreach ($medicamentos as $medicamento ) {
+               $medicamento->setIdhci($this);
+            }
+    }
+    public function setNotacita($notacitas){
+            $this->notacita=$notacitas;
+            foreach ($notacitas as $notacita ) {
+               $notacita->setIdhci($this);
+            }
+    }
+    /**
+     * Get notacita
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getNotacita()
+    {
+        return $this->notacita;
+    }
+
+    /**
+     * Add notacita
+     *
+     * @param \HC\HCBundle\Entity\Notacita $notacita
+     * @return Hci
+     */
+    public function addNotacita(\HC\HCBundle\Entity\Notacita $notacita)
+    {
+        $this->notacita[] = $notacita;
+
+        return $this;
+    }
+
+    /**
+     * Remove notacita
+     *
+     * @param \HC\HCBundle\Entity\Notacita $notacita
+     */
+    public function removeNotacita(\HC\HCBundle\Entity\Notacita $notacita)
+    {
+        $this->notacita->removeElement($notacita);
+    }
+
+    /**
+     * Add alergia
+     *
+     * @param \HC\HCBundle\Entity\Phcialergia $alergia
+     * @return Hci
+     */
+    public function addAlergium(\HC\HCBundle\Entity\Phcialergia $alergia)
+    {
+        $this->alergia[] = $alergia;
+
+        return $this;
+    }
+
+    /**
+     * Remove alergia
+     *
+     * @param \HC\HCBundle\Entity\Phcialergia $alergia
+     */
+    public function removeAlergium(\HC\HCBundle\Entity\Phcialergia $alergia)
+    {
+        $this->alergia->removeElement($alergia);
+    }
+
+    /**
+     * Add notacita
+     *
+     * @param \HC\HCBundle\Entity\Notacita $notacita
+     * @return Hci
+     */
+    public function addNotacitum(\HC\HCBundle\Entity\Notacita $notacita)
+    {
+        $this->notacita[] = $notacita;
+
+        return $this;
+    }
+
+    /**
+     * Remove notacita
+     *
+     * @param \HC\HCBundle\Entity\Notacita $notacita
+     */
+    public function removeNotacitum(\HC\HCBundle\Entity\Notacita $notacita)
+    {
+        $this->notacita->removeElement($notacita);
     }
 }

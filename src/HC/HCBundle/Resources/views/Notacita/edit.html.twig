@@ -1,0 +1,37 @@
+{% extends 'HCHCBundle::layout.html.twig' %}
+
+
+{% block content_header %}
+  <section class="content-header">
+    <h1>
+     Modificar Nota de cita 
+      <small>Modificar Nota de cita seleccionada</small>
+    </h1>
+    <ol class="breadcrumb">
+      <li><a href="#"><i class="fa fa-dashboard"></i> Notas de cita</a></li>
+      <li class="active">aqui</li>
+    </ol>
+  </section>
+
+{% endblock %}
+
+
+{% block content -%}
+
+  {{ form_start(edit_form) }}
+  {{ form_row(edit_form._token) }}
+
+    {{ form_row(edit_form.presionarterial,{'attr':{'class':'form-control'}}) }}
+    {{ form_row(edit_form.alturapaciente,{'attr':{'class':'form-control'}}) }}
+    {{ form_row(edit_form.pesopaciente,{'attr':{'class':'form-control'}}) }}
+    {{ form_row(edit_form.frecuenciacardiaca,{'attr':{'class':'form-control'}}) }}
+    {{ form_row(edit_form.temperatura,{'attr':{'class':'form-control'}}) }}
+
+    <div class="btn-group">
+      {{ form_end(edit_form) }}
+          <a href="{{app.request.headers.get('referer')}}"class="btn btn-default">
+           Regresar
+        </a>
+    </div>
+   {{ form(delete_form) }}
+{% endblock %}

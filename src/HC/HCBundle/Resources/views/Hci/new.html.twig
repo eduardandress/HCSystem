@@ -4,8 +4,8 @@
 {% block content_header %}
   <section class="content-header">
     <h1>
-      Page Header
-      <small>Optional description</small>
+      Nueva Historia Clinica Inicial
+      <small>Crear una nueva historia clinica</small>
     </h1>
     <ol class="breadcrumb">
       <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
@@ -19,57 +19,184 @@
 
 {% block content %}
 
-    <h1>Nueva historia Clinica Inicial</h1>
-
     <div class="col-md-6 center-block">
           
       {{form_start(form)}}
     
       {{ form_row( form._token ) }}
 
+              
 
       <div class="form-group">
         
-             {{ form_row(form.idpaciente, {'attr':{'class':'form-control'}}) }}
+             <!-- {{ form_row(form.idpaciente, {'attr':{'class':'form-control'}}) }} -->
+              <div class="cedularow">{{ form_row(form.cedula,{'attr': {'class': 'form-control inputcedula', 'onchange':'validarCedulaPaciente(this.value)'}}) }}</div>
+           
+             </br>
+             <div class="box box-success " >
+                <div class="box-header">
+                  <h3 class="box-title">Alergias del paciente</h3>
+                </div>
+                <div class="box-body alergias" data-prototype="{{ form_widget(form.alergia.vars.prototype)|e }}">
+                    {% for alergia in form.alergia %}
+                       {{ form_row(alergia.descripcion,{'attr':{'class':'form-control'}}) }}
+                    {% endfor %}
+                </div>
+                 </br>
+                <a id="addalergia" class="btn btn-block btn-success" href="#">Agregar nueva alergia</a>
+             </div>
+              <div class="box box-success " >
+                <div class="box-header">
+                  <h3 class="box-title">Condiciones del paciente</h3>
+                </div>
+                <div class="box-body condiciones" data-prototype="{{ form_widget(form.condicion.vars.prototype)|e }}">
+                     {% for condicion in form.condicion %}
+                        {{ form_row(condicion.descripcion,{'attr':{'class':'form-control'}}) }}
+                     {% endfor %}
+                </div>
+                 </br>
+                <a id="addcondicion" class="btn btn-block btn-success" href="#">Agregar nueva condicion</a>
+             </div>
 
+              <div class="box box-success " >
+                <div class="box-header">
+                  <h3 class="box-title">Medicamentos del paciente</h3>
+                </div>
+                <div class="box-body medicamentos" data-prototype="{{ form_widget(form.medicamento.vars.prototype)|e }}">
+                       {% for medicamento in form.medicamento %}
+                        {{ form_row(medicamento.descripcion,{'attr':{'class':'form-control'}}) }}
+                      {% endfor %}
+                </div>
+                 </br>
+                <a id="addmedicamento" class="btn btn-block btn-success" href="#">Agregar nuevo medicamento</a>
+             </div>
+             <div class="box box-success " >
+                <div class="box-header">
+                  <h3 class="box-title">Consumos del paciente</h3>
+                </div>
+                <div class="box-body consumos" data-prototype="{{ form_widget(form.consumo.vars.prototype)|e }}">
+                       {% for consumo in form.consumo %}
+                         <h4>Consumo de {{form_row(consumo.idtipoconsumo)}}</h4>
+                      {{ form_row(consumo.idtipoestado,{'attr':{'class':'form-control'}}) }}
+                       {% endfor %}
+                </div>
+                  </br>
+                <a id="addconsumo" class="btn btn-block btn-success" href="#">Agregar nuevo consumo</a>
+             </div>
 
-              <h3>Alergias del paciente</h3>
+             
+           
 
-              {% for alergia in form.alergias %}
-                 {{ form_row(alergia.descripcion,{'attr':{'class':'form-control'}}) }}
-              {% endfor %}
-
-                
-            <h3>Condiciones del paciente</h3>
-              {% for condicion in form.condiciones %}
-                {{ form_row(condicion.descripcion,{'attr':{'class':'form-control'}}) }}
-            {% endfor %}
-
-            
-            <h3>Medicamentos del paciente</h3>
-              {% for medicamento in form.medicamentos %}
-              {{ form_row(medicamento.descripcion,{'attr':{'class':'form-control'}}) }}
-            {% endfor %}
-
-
-            <h3>Consumos del paciente</h3>
-              {% for consumo in form.consumos %}
-                <h4>Consumo de {{form_row(consumo.idtipoconsumo)}}</h4>
-                {{ form_row(consumo.idtipoestado,{'attr':{'class':'form-control'}}) }}
-            {% endfor %}
-
-            <button class="btn btn-success btn-lg center-block" >Crear</button>
         
       </div>
 
 
-    </div>
 
-		<ul class="record_actions">
-		    <li>
-		        <a href="{{ path('hci') }}">
-		            Back to the list
-		        </a>
-		    </li>
-		</ul>
+
+      <center>
+          <div class="btn-group">
+            <!-- <button type="submit" class="btn btn-success  center-block" >Crear</button> -->
+            
+             <a href="{{ path('hci') }}" class="btn btn-default">
+                Regresar
+            </a>
+           
+        </div>
+      </center>  
 {% endblock %}
+{% block javascripts%}
+{{parent()}}
+
+<script type="text/javascript">
+  
+    function addItem($collectionHolder) {
+
+        var prototype = $collectionHolder.data('prototype');
+        var index = $collectionHolder.data('index');
+        var newForm = prototype.replace(/__name__/g, index);
+        $collectionHolder.data('index', index + 1);
+        $collectionHolder.append("<div> <div class='delete btn btn-default btn-xs pull-right'>Eliminar </div> "+newForm+"</div>");
+
+        $(".delete").on("click", function(){
+          $(this).parent().remove();
+        })
+    }
+
+    $(document).ready(function(){
+      $ListadeAlergias=$('.alergias');
+      $ListadeAlergias.data(
+          'index', $ListadeAlergias.find(':input').length
+                    );
+      $ListadeCondiciones=$('.condiciones');
+      $ListadeCondiciones.data(
+          'index', $ListadeCondiciones.find(':input').length
+                    );
+      $ListadeConsumos=$('.consumos');
+      $ListadeConsumos.data(
+          'index', $ListadeConsumos.find(':input').length
+                    );
+      $ListadeMedicamentos=$('.medicamentos');
+      $ListadeMedicamentos.data(
+          'index', $ListadeMedicamentos.find(':input').length
+                    );
+
+        //Eventos de los botones de agregar
+
+        $('#addalergia').on('click', function(e){
+          e.preventDefault();
+          addItem($ListadeAlergias);
+        });
+         $('#addcondicion').on('click', function(e){
+          e.preventDefault();
+          addItem($ListadeCondiciones);
+        });
+          $('#addconsumo').on('click', function(e){
+          e.preventDefault();
+          addItem($ListadeConsumos);
+        });
+           $('#addmedicamento').on('click', function(e){
+          e.preventDefault();
+          addItem($ListadeMedicamentos);
+        });
+     });
+
+          // Funciones para la validacion de la cedula
+        function pintarValidacion(clase, mensaje){
+           var cedularow= $('.cedularow > div');
+
+           if(clase=='success'){
+             cedularow.removeClass('form-group has-error');
+           }else{
+             cedularow.removeClass('form-group has-sucess');
+
+           }
+           cedularow.addClass('form-group has-'+clase)
+           cedularow.find('label').html(mensaje);
+           cedularow.find('label').addClass('control-label');
+         }
+         function validarCedulaPaciente(cedula){
+            var rutaValidar="{{ path('validarcedula', {cedula:'texto'} ) }}";
+           rutaValidar=rutaValidar.replace("texto", cedula);
+
+          $.ajax({
+            url:rutaValidar,
+            method:"GET",
+            success:function(resultado){
+              console.log(resultado);
+              if(resultado.respuesta=="Falso"){
+                var botonRegistarU='<a href="{{path("paciente_new")}}" class="btn btn-success btn-xs">Registar</a>';
+                pintarValidacion('error','No existe el paciente '+botonRegistarU)
+                $('.opciones > .enviar').remove();
+
+              }else{
+                pintarValidacion('success','Cedula')
+                if($('.enviar').length==0){
+                  $('.opciones').prepend('<button type="submit"  class="btn btn-default enviar" >Enviar</button>');
+                }
+              }
+            }
+          });
+
+        }
+</script>
+{% endblock%}

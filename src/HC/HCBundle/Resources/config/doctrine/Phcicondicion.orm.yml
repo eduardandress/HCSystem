@@ -23,7 +23,7 @@ HC\HCBundle\Entity\Phcicondicion:
             fixed: false
             comment: ''
         fechaactualizacion:
-            type: date
+            type: datetime
             nullable: false
             comment: ''
             column: fechaActualizacion
@@ -32,7 +32,7 @@ HC\HCBundle\Entity\Phcicondicion:
             targetEntity: Hci
             cascade: {  }
             mappedBy: null
-            inversedBy: condiciones
+            inversedBy: condicion
             joinColumns:
                 idHci:
                     referencedColumnName: idHci

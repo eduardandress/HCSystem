@@ -23,7 +23,7 @@ HC\HCBundle\Entity\Phciconsumo:
                 strategy: IDENTITY
     fields:
         fechaactualizacion:
-            type: date
+            type: datetime
             nullable: false
             comment: ''
             column: fechaActualizacion
@@ -32,7 +32,7 @@ HC\HCBundle\Entity\Phciconsumo:
             targetEntity: Hci
             cascade: {  }
             mappedBy: null
-            inversedBy: null
+            inversedBy: consumo
             joinColumns:
                 idHci:
                     referencedColumnName: idHci

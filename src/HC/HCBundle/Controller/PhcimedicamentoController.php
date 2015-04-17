@@ -44,7 +44,7 @@ class PhcimedicamentoController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('phcimedicamento_show', array('id' => $entity->getIdphcimedicamento())));
+            return $this->redirect($this->getRequest()->headers->get('referer'));
         }
 
         return $this->render('HCHCBundle:Phcimedicamento:new.html.twig', array(
@@ -202,7 +202,8 @@ class PhcimedicamentoController extends Controller
             $em->flush();
         }
 
-        return $this->redirect($this->generateUrl('phcimedicamento'));
+       return $this->redirect($this->getRequest()->headers->get('referer'));
+        
     }
 
     /**

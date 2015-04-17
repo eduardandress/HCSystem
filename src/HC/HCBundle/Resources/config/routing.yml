@@ -1,3 +1,31 @@
+hchc_diagnostico:
+    resource: "@HCHCBundle/Resources/config/routing/diagnostico.yml"
+    prefix:   /diagnostico
+
+hchc_referencia:
+    resource: "@HCHCBundle/Resources/config/routing/referencia.yml"
+    prefix:   /referencia
+
+hchc_prescripcion:
+    resource: "@HCHCBundle/Resources/config/routing/prescripcion.yml"
+    prefix:   /prescripcion
+
+hchc_notacita:
+    resource: "@HCHCBundle/Resources/config/routing/notacita.yml"
+    prefix:   /notacita
+
+hchc_phcialergia:
+    resource: "@HCHCBundle/Resources/config/routing/phcialergia.yml"
+    prefix:   /phcialergia
+hchc_phcicondicion:
+    resource: "@HCHCBundle/Resources/config/routing/phcicondicion.yml"
+    prefix:   /phcicondicion
+hchc_phcimedicamento:
+    resource: "@HCHCBundle/Resources/config/routing/phcimedicamento.yml"
+    prefix:   /phcimedicamento
+hchc_phciconsumo:
+    resource: "@HCHCBundle/Resources/config/routing/phciconsumo.yml"
+    prefix:   /phciconsumo
 hchc_hci:
     resource: "@HCHCBundle/Resources/config/routing/hci.yml"
     prefix:   /hci
@@ -9,7 +37,6 @@ hchc_gestionarcitas:
 hchc_gestionarusuarios:
     resource: "@HCHCBundle/Resources/config/routing/usuario.yml"
     prefix:   /gestionarusuarios
-
 hchc_homepage:
     path:     /
     defaults: { _controller: HCHCBundle:Default:index }
@@ -25,3 +52,6 @@ HCHCBundle_paciente:
 HCHCBundle_pactelf:
     resource: "@HCHCBundle/Resources/config/routing/pactelf.yml"
     prefix:   /telefonosPersonales
+validarcedula:
+    path: /{cedula}/validarcedula
+    defaults: { _controller: "HCHCBundle:Default:existepaciente" }

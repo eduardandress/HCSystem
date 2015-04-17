@@ -27,4 +27,4 @@ phcialergia_update:
 phcialergia_delete:
     path:     /{id}/delete
     defaults: { _controller: "HCHCBundle:Phcialergia:delete" }
-    requirements: { _method: post|delete }
+    methods:  [POST, DELETE]

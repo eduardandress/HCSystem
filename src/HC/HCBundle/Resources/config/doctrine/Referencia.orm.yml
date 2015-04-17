@@ -5,6 +5,9 @@ HC\HCBundle\Entity\Referencia:
         idNotaCita:
             columns:
                 - idNotaCita
+        idUsuario:
+            columns:
+                - idUsuario
     id:
         idreferencia:
             type: integer
@@ -30,17 +33,27 @@ HC\HCBundle\Entity\Referencia:
             fixed: false
             comment: ''
         fecha:
-            type: date
+            type: datetime
             nullable: false
             comment: ''
-    manyToOne:
+    manyToOne:    
         idnotacita:
             targetEntity: Notacita
             cascade: {  }
             mappedBy: null
-            inversedBy: null
+            inversedBy: referencia
             joinColumns:
                 idNotaCita:
                     referencedColumnName: idNotaCita
+            orphanRemoval: false
+    oneToOne:
+        idusuario:
+            targetEntity: Usuario
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idUsuario:
+                    referencedColumnName: idUsuario
             orphanRemoval: false
     lifecycleCallbacks: {  }

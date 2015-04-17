@@ -23,7 +23,7 @@ HC\HCBundle\Entity\Phcialergia:
             fixed: false
             comment: ''
         fechaactualizacion:
-            type: date
+            type: datetime
             nullable: false
             comment: ''
             column: fechaActualizacion
@@ -32,7 +32,7 @@ HC\HCBundle\Entity\Phcialergia:
             targetEntity: Hci
             cascade: {  }
             mappedBy: null
-            inversedBy: alergias
+            inversedBy: alergia
             joinColumns:
                 idHci:
                     referencedColumnName: idHci

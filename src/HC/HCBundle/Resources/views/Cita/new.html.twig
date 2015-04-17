@@ -144,9 +144,10 @@
                cedularow.find('label').addClass('control-label');
       }
       function validarCedulaPaciente(cedula){
-        
+        var rutaValidar="{{ path('validarcedula', {cedula:'texto'} ) }}";
+        rutaValidar=rutaValidar.replace("texto", cedula);
         $.ajax({
-            url:cedula+"/validarcedula",
+            url:rutaValidar,
             method:"GET",
             success:function(resultado){
                 console.log(resultado);

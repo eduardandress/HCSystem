@@ -34,6 +34,11 @@ class Referencia
      */
     private $idnotacita;
 
+    /**
+     * @var \HC\HCBundle\Entity\Usuario
+     */
+    private $idusuario;
+
 
     /**
      * Get idreferencia
@@ -135,5 +140,28 @@ class Referencia
     public function getIdnotacita()
     {
         return $this->idnotacita;
+    }
+
+    /**
+     * Set idusuario
+     *
+     * @param \HC\HCBundle\Entity\Usuario $idusuario
+     * @return Referencia
+     */
+    public function setIdusuario(\HC\HCBundle\Entity\Usuario $idusuario = null)
+    {
+        $this->idusuario = $idusuario;
+
+        return $this;
+    }
+
+    /**
+     * Get idusuario
+     *
+     * @return \HC\HCBundle\Entity\Usuario 
+     */
+    public function getIdusuario()
+    {
+        return $this->idusuario;
     }
 }

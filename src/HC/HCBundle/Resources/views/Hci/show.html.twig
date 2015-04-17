@@ -4,12 +4,12 @@
 {% block content_header %}
   <section class="content-header">
     <h1>
-      Page Header
-      <small>Optional description</small>
+      Detalle de la Historia Clinica
+      <small>Detalle de la Historia seleccionada</small>
     </h1>
     <ol class="breadcrumb">
-      <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
-      <li class="active">Here</li>
+      <li><a href="#"><i class="fa fa-dashboard"></i> Todas las Historias clinicas</a></li>
+      <li class="active">Aqui</li>
     </ol>
   </section>
 
@@ -20,21 +20,711 @@
 
 
 {% block content -%}
-    <h1>Hci</h1>
+    <div class="box box-default box-solid collapsed-box">
+      <div class="box-header with-border">
+        <h3 class="box-title">Historia Medica Inicial</h3>
+        <div class="box-tools pull-right">
+          <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
+        </div><!-- /.box-tools -->
+      </div><!-- /.box-header -->
+      <div style="display: none;" class="box-body">
 
-    <table class="record_properties">
-        <tbody>
-            <tr>
-                <th>Idhci</th>
-                <td>{{ entity.idhci }}</td>
-            </tr>
-            <tr>
-                <th>Fechacreacion</th>
-                <td>{{ entity.fechacreacion|date('Y-m-d H:i:s') }}</td>
-            </tr>
 
-        </tbody>
-    </table>
-    
-    
+               <div class="box">
+                <div class="box-header">
+                  <h3 class="box-title">Historia Médica Inicial</h3>
+                </div><!-- /.box-header -->
+                <div class="box-body no-padding">
+                  <table class="table table-condensed">
+                    <tr>
+                      <th style="width:60%" >Paciente</th>
+                      <td>{{ entity.idpaciente.nombre}} {{entity.idpaciente.apellido}}</td>
+                      <td> <a href="{{ path('paciente_show', { 'id': entity.idpaciente.idpaciente }) }}" class="btn btn-default btn-xs">
+                                            Ver paciente
+                                          </a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th>Fecha de Creación</th>
+                      <td>{{ entity.fechacreacion|date('Y-m-d') }}</td>
+                    </tr>
+
+                    <tr>
+                      <!-- Comienza Las alergias del paciente -->
+                        <table class="table table-condensed"  >
+                         <h4>Alergias del paciente <a data-nombre="Alergia" class="nuevo btn btn-success btn-xs"  href="">Nuevo</a></h4>
+                                <tbody>
+                                     <thead>
+                                     <tr>
+                                        <th style="width:60%">
+                                          Descripción
+                                        </th>
+                                         <th>
+                                          Fecha de Actualización
+                                        </th>
+                                       <th>
+                                         Acciones
+                                       </th>
+                                     </tr>
+                                   </thead>
+                                {% for alergia in entity.alergia %}
+                                       <tr class="rowAlergia" id="al_{{alergia.idphcialergia}}">
+                                   
+
+                                        <td>{{alergia.descripcion}}</td>
+                                        <td>{{alergia.fechaactualizacion|date('Y-m-d')}}</td>
+                                        <td> 
+                                          <button class="modificarAlergia btn btn-default btn-xs">
+                                            Modificar
+                                          </button>
+                                          <button class="eliminarAlergia btn btn-danger btn-xs">
+                                            Eliminar
+                                          </button>
+                                        </td>
+                                      </tr>
+                                {% endfor %}
+
+                                </tbody>
+                          </table>
+                      <!-- Termina Las alergias del paciente -->
+                      <!-- Comienza Nueva alergia del paciente -->
+                            <div class="box box-success nuevoformAlergia" style="display:none" >
+                              <div class="box-header">
+                                <h3 class="box-title">Nueva Alergia del paciente</h3>
+                              </div><!-- /.box-header -->
+                              <div class="box-body no-padding">
+                                <table class="table table-condensed">
+                                      <tbody>
+                                      {{form_start(formNuevoAlergia)}}
+                                      {{form_row(formNuevoAlergia._token)}}
+                                        <tr>
+                                          <td>{{form_row(formNuevoAlergia.descripcion,{'attr':{'class':'form-control'}})}}</td>
+                                        </tr>
+                                        <tr>
+                                          <td>
+                                             {{form(formNuevoAlergia)}}
+                                           </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                              </div><!-- /.box-body -->
+                            </div>
+                      <!-- Termina Nueva alergia del paciente -->
+
+                    </tr>
+                      <tr>
+                      <!-- Comienza Las Condiciones del paciente -->
+                        <table  class="table table-condensed" >
+                         <h4>Condiciones del paciente <a  data-nombre="Condicion" class="nuevo btn btn-success btn-xs"  href="">Nuevo</a></h4>
+                                <tbody>
+                                     <thead>
+                                     <tr>
+                                        <th style="width:60%">
+                                          Descripción
+                                        </th>
+                                         <th>
+                                          Fecha de Actualización
+                                        </th>
+                                       <th>
+                                         Acciones
+                                       </th>
+                                     </tr>
+                                   </thead>
+                                {% for condicion in entity.condicion %}
+                                       <tr class="rowCondicion" id="con_{{condicion.idphcicondicion}}" >
+                                   
+
+                                        <td>{{condicion.descripcion}}</td>
+                                        <td>{{condicion.fechaactualizacion|date('Y-m-d')}}</td>
+                                        <td> 
+                                          <button class="modificarCondicion btn btn-default btn-xs">
+                                            Modificar
+                                          </button>
+                                          <button class="eliminarCondicion btn btn-danger btn-xs">
+                                            Eliminar
+                                          </button>
+                                        </td>
+                                      </tr>
+                                {% endfor %}
+                                </tbody>
+                          </table>
+                      <!-- Termina Las Condiciones del paciente -->
+                      <!-- Comienza Nueva condicion del paciente -->
+                            <div class="box box-success nuevoformCondicion" style="display:none" >
+                              <div class="box-header">
+                                <h3 class="box-title">Nueva Condición del paciente</h3>
+                              </div><!-- /.box-header -->
+                              <div class="box-body no-padding">
+                                <table class="table table-condensed">
+                                      <tbody>
+                                      {{form_start(formNuevoCondicion)}}
+                                      {{form_row(formNuevoCondicion._token)}}
+                                        <tr>
+                                          <td>{{form_row(formNuevoCondicion.descripcion,{'attr':{'class':'form-control'}})}}</td>
+                                        </tr>
+                                        <tr>
+                                          <td>
+                                              {{form_end(formNuevoCondicion)}}
+                                          </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                              </div><!-- /.box-body -->
+                            </div>
+                      <!-- Termina Nueva condicion del paciente -->
+                    </tr>
+                    <tr>
+                      <!-- Comienza Los Medicamentos del paciente -->
+                        <table  class="table table-condensed">
+                         <h4>Medicamentos del paciente <a data-nombre="Medicamento" class="nuevo btn btn-success btn-xs"  href="">Nuevo</a></h4>
+                                <tbody>
+                                     <thead>
+                                     <tr>
+                                        <th style="width:60%">
+                                          Descripción
+                                        </th>
+                                         <th>
+                                          Fecha de Actualización
+                                        </th>
+                                       <th>
+                                         Acciones
+                                       </th>
+                                     </tr>
+                                   </thead>
+                                {% for medicamento in entity.medicamento %}
+                                       <tr class="rowMedicamento" id="me_{{medicamento.idphcimedicamento}}" >
+
+                                        <td>{{medicamento.descripcion}}</td>
+                                        <td>{{medicamento.fechaactualizacion|date('Y-m-d')}}</td>
+                                        <td> 
+                                          <button class="modificarMedicamento btn btn-default btn-xs">
+                                            Modificar
+                                          </button>
+                                          <button class="eliminarMedicamento btn btn-danger btn-xs">
+                                            Eliminar
+                                          </button>
+                                        </td>
+                                      </tr>
+                                {% endfor %}
+
+                                </tbody>
+                          </table>
+                      <!-- Comienza Los Medicamentos del paciente -->
+                      <!-- Comienza Nuevo Medicamento del paciente -->
+                            <div class="box box-success nuevoformMedicamento" style="display:none" >
+                              <div class="box-header">
+                                <h3 class="box-title">Nuevo Medicamento del paciente</h3>
+                              </div><!-- /.box-header -->
+                              <div class="box-body no-padding">
+                                <table class="table table-condensed">
+                                      <tbody>
+                                        {{form_start(formNuevoMedicamento)}}
+                                      {{form_row(formNuevoAlergia._token)}}
+                                        <tr>
+                                          <td>{{form_row(formNuevoMedicamento.descripcion,{'attr':{'class':'form-control'}})}}</td>
+                                        </tr>
+                                        <tr>
+                                          <td>
+                                              {{form_end(formNuevoMedicamento)}}
+                                          </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                              </div><!-- /.box-body -->
+                            </div>
+                      <!-- Termina Nueva Medicamento del paciente -->
+
+                    </tr>
+                       <tr>
+                      <!-- Comienza Los consumos del paciente -->
+                        <table  class="table table-condensed ">
+                         <h4>Consumos del paciente</h4>
+                                <tbody>
+                                     <thead>
+                                     <tr>
+                                         <th style="width:50%">
+                                          Consumo
+                                        </th>
+                                        <th >
+                                          Estado
+                                        </th>
+                                         <th>
+                                          Fecha de Actualización
+                                        </th>
+                                       <th>
+                                         Acciones
+                                       </th>
+                                     </tr>
+                                   </thead>
+                                {% for consumo in entity.consumo %}
+                                       <tr class="rowConsumo" id="co_{{consumo.idphciconsumo}}" >
+                                   
+                                        <td>{{consumo.idtipoconsumo}}</td>
+                                        <td>{{consumo.idtipoestado}}</td>
+                                        <td>{{consumo.fechaactualizacion|date('Y-m-d')}}</td>
+                                        <td> 
+                                          <button class="modificarConsumo btn btn-default btn-xs">
+                                            Modificar
+                                          </button>
+                                        
+                                        </td>
+                                      </tr>
+                                {% endfor %}
+
+                                </tbody>
+                          </table>
+                      <!-- Termina Los consumos del paciente -->
+                     
+                    </tr>
+                  </table>
+                </div><!-- /.box-body -->
+              </div>
+              
+        </div><!-- /.box-body -->
+    </div>
+    <!-- Comienza Nota citas del paciente-->
+    <div class="box box-default box-solid collapsed-box">
+      <div class="box-header with-border">
+        <h3 class="box-title">Notas De Cita</h3>
+        <div class="box-tools pull-right">
+          <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
+        </div><!-- /.box-tools -->
+      </div><!-- /.box-header -->
+      <div style="display: none;" class="box-body">
+          <div class="box">
+                <!-- <div class="box-header">
+                  <h3 class="box-title">Condensed Full Width Table</h3>
+                </div> --><!-- /.box-header -->
+                <div class="box-body no-padding">
+                  <table class="table table-condensed">
+                      <tbody>
+                        <tr>
+                          <th >Cita</th>
+                          <th>Presión Arterial</th>
+                          <th>Altura</th>
+                          <th >Peso</th>
+                          <th >Frecuencia Cardíaca</th>
+                          <th >Temperatura Corporal</th>
+                          <th >Acciones</th>
+                        </tr>
+                          {% for notacita in entity.notacita %}
+                            <tr class="rowNotacita" id="nc_{{notacita.idnotacita}}">
+                                  <td>{{notacita.idcita.fechaprogramada|date('Y-m-d')}}</td>
+                                  <td>{{notacita.presionarterial}}</td>
+                                  <td>{{notacita.alturapaciente}}</td>
+                                  <td>{{notacita.pesopaciente}}</td>
+                                  <td>{{notacita.frecuenciacardiaca}}</td>
+                                  <td>{{notacita.temperatura}}</td>
+                                  <td> 
+                                      <button class="verNotacita btn btn-default btn-xs">
+                                          Mostrar
+                                      </button>
+                                      <button class="eliminarNotacita btn btn-danger btn-xs">
+                                          Eliminar
+                                      </button>
+                                  </td>
+                            </tr>
+                          {% endfor %}
+                   
+                     </tbody>
+                  </table>
+                </div><!-- /.box-body -->
+              </div>
+      </div><!-- /.box-body -->
+    </div>
+    <!-- Termina Nota citas del paciente-->
+
+{% if tieneCitaHoy and notadeCitahoyRellena==false %}
+<!--Comienza Nota cita hoy-->
+
+<!-- Macros de los estilos de Prescripcion, refrencias y diagnosticos -->
+{% macro NuevoElementoPrescripcion(prescripcion)%}
+    <div>
+      {{form_row(prescripcion.nombre,{'attr':{'class':'form-control'}})}}
+      {{form_row(prescripcion.instrucciones,{'attr':{'class':'form-control'}})}}
+      {{form_row(prescripcion.idnotacita)}}
+      {{form_row(prescripcion.idusuario)}}
+    </div>
+{% endmacro %}
+{% macro NuevoElementoDiagnostico(diagnostico)%}
+    <div>
+     {{form_row(diagnostico.descripcion,{'attr':{'class':'form-control'}})}}
+     {{form_row(diagnostico.idnotacita)}}
+     {{form_row(diagnostico.idusuario)}}
+    </div>
+{% endmacro %}
+{% macro NuevoElementoReferencia(referencia)%}
+    <div>
+     {{form_row(referencia.nombredoctor,{'attr':{'class':'form-control'}})}}
+     {{form_row(referencia.descripcion,{'attr':{'class':'form-control'}})}}
+     {{form_row(referencia.idnotacita)}}
+     {{form_row(referencia.idusuario)}}
+    </div>
+{% endmacro %}
+<!-- Fin de los macros de estitolos de P,R,D -->
+    <div class="col-md-6">
+        {{form_start(notacitahoy)}}
+        {{form_row(notacitahoy._token)}}
+      
+        <div class="box">
+                    <div class="box-header">
+                      <h3 class="box-title">Nota de Cita de Hoy</h3>
+                    </div><!-- /.box-header -->
+                    <div class="box-body no-padding">
+                      <table class="table table-condensed">
+                        <tbody>
+                            <tr>
+                              <td>{{form_row(notacitahoy.idhci)}}</td>
+                            </tr>
+                            <tr>
+                              <td>{{form_row(notacitahoy.idcita)}}</td>
+                            </tr>
+                            <tr>
+                              <td>{{form_row(notacitahoy.presionarterial,{'attr':{'class':'form-control'}})}}</td>
+                            </tr>
+                            <tr>
+                              <td>{{form_row(notacitahoy.alturapaciente,{'attr':{'class':'form-control'}})}}</td>
+                            </tr>
+                            <tr>
+                              <td>{{form_row(notacitahoy.pesopaciente,{'attr':{'class':'form-control'}})}}</td>
+                            </tr>
+                            <tr>
+                              <td>{{form_row(notacitahoy.frecuenciacardiaca,{'attr':{'class':'form-control'}})}}</td>
+                            </tr>
+                            <tr>
+                              <td>{{form_row(notacitahoy.temperatura,{'attr':{'class':'form-control'}})}}</td>
+                            </tr>
+
+                        </tbody>
+                      </table>
+
+
+
+                    </div><!-- /.box-body -->
+                  </div>
+                   <button type="button" data-nombre="Prescripcion" class="btn btn-block btn-default btn-lg anexarANC">Anexar Prescripcion</button>
+                        <div class="box  divNPrescripcion" style="display:none">
+                        
+                          <div class="box-body no-padding holderPrescripcion" data-prototype="{{ _self.NuevoElementoPrescripcion(notacitahoy.prescripcion.vars.prototype)|e }}">
+                            {%for prescripcion in notacitahoy.prescripcion %}
+                            {{ _self.NuevoElementoPrescripcion(prescripcion)}}
+                            {%endfor%}
+                          </br>
+                        </div>
+                          <a class="btn btn-block btn-default addBtnPrescripciones" href="#">Agregar</a>
+                      </div> 
+
+                   <button type="button" data-nombre="Diagnostico" class="btn btn-block btn-default btn-lg anexarANC">Anexar Diagnostico</button>
+                        <div class="box  divNDiagnostico" style="display:none">
+                          
+                          <div class="box-body no-padding holderDiagnostico" data-prototype="{{ _self.NuevoElementoDiagnostico(notacitahoy.diagnostico.vars.prototype)|e }}">
+                            {%for diagnostico in notacitahoy.diagnostico %}
+                            {{ _self.NuevoElementoDiagnostico(diagnostico)}}
+                            {%endfor%}
+                          </br>
+                        </div>
+                          <a  class="btn btn-block btn-default addBtnDiagnostico" href="#">Agregar  </a>
+                      </div> 
+                    <button type="button" data-nombre="Referencia" class="btn btn-block btn-default btn-lg anexarANC">Anexar Referencia</button>
+                        <div class="box  divNReferencia" style="display:none">
+                          
+                          <div class="box-body no-padding holderReferencia" data-prototype="{{ _self.NuevoElementoReferencia(notacitahoy.referencia.vars.prototype)|e }}">
+                            {%for referencia in notacitahoy.referencia %}
+                            {{ _self.NuevoElementoReferencia(referencia)}}
+                            {%endfor%}
+                          </br>
+                        </div>
+                          <a  class="btn btn-block btn-default addBtnReferencia" href="#">Agregar </a>
+                      </div> 
+
+                      <center> {{form_row(notacitahoy.submit,{'render_rest':false})}}</center>
+    </div>
+<!--Termina Nota cita hoy-->
+{% elseif(notadeCitahoyRellena) %}
+<!-- Mensaje de que ya la nota de cita se relleno y ahora puede agrgar los diagnosticos, prescripciones y referencia de esa nota -->
+<div class="callout callout-success">
+  <h4>Ya se rellenó la nota de cita de hoy</h4>
+  <p> Ya fue registrado la nota de cita para la cita de hoy.</p>
+</div>
+<!--Comienza nueva prescripcion-->
+
+
+
+
+
+{% else %}
+  <div class="callout callout-danger">
+  <h4>No existe cita asociada para hoy</h4>
+    <p> El paciente no posee una cita previa para hoy.</p>
+  </div>
+{% endif %}
+
+
+   <div class="btn-group opciones" style="botton:0">
+        <a href="{{ path('hci') }}" class="btn btn-default">Regresar</a>
+   </div>
+
 {% endblock %}
+{% macro modal(id, header, body, footer) %}
+
+    <div id="{{id}}" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"> &times; </button>
+                    <h4 class="modal-title">
+                      
+                      {{ header }}
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    {{ body }}
+                </div>
+                <div class="modal-footer">
+                  {{ footer }}
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="confirm btn btn-primary">Si</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endmacro %}
+{% block javascripts %}
+{{ parent() }}
+
+<script >
+  //Variables que guardan los formularios de eliminacion para cada uno de los items de la HMI(Historia Medica Inical)
+  var formDeleteAlergia='{{form(formDeleteAlergia)}}'
+  var formDeleteCondicion='{{form(formDeleteCondicion)}}'
+  var formDeleteMedicamento='{{form(formDeleteMedicamento)}}'
+// Variables que guardan Las rutas para la modificar cada uno de los items de la HMI
+   var EditarAlergiaRuta="{{ path('phcialergia_edit', {id:'texto'} ) }}";
+   var EditarCondicionRuta="{{ path('phcicondicion_edit', {id:'texto'} ) }}";
+   var EditarMedicamentoRuta="{{ path('phcimedicamento_edit', {id:'texto'} ) }}";
+   var EditarConsumoRuta="{{ path('phciconsumo_edit', {id:'texto'} ) }}";
+
+//Variable que guarda el formulario de eliminacion para las notas de cita
+  var formDeleteNotacita='{{form(formDeleteNotacita)}}'
+  //Variable que guarda la ruta de ver  un item de la lista de nota de citas
+   var VerNotacitaRuta="{{ path('notacita_show', {id:'texto'} ) }}";
+
+          function CrearModal(datos){ // Fue copy and paste, se debe organizar generalizar para usarlo en todas partes
+              var s="{% import _self as modales %}";
+              var Modal= "{{ modales.modal('IdModal','ModalHeader','ModalBody','ModalFooter')|e('js') }} ";
+              Modal= Modal.replace("IdModal",datos.IdModal);
+              Modal= Modal.replace("ModalHeader",datos.ModalHeader);
+              Modal= Modal.replace("ModalBody",datos.ModalBody);
+              Modal= Modal.replace("ModalFooter",datos.ModalFooter);
+
+
+              $("body").append(Modal);
+              $("#"+datos.IdModal).modal("show");
+
+              $("#"+ datos.IdModal+" .confirm").on("click", function(){
+                  datos.AccionModal();
+
+              })
+           }
+  //Funcion que elimina cuaquier campo de cualquier entidad(dado un formulario de eliminacion y el id del elemento) :D
+  function eliminarItem(formularioEliminar, id){
+       formularioEliminar=formularioEliminar.replace("texto", id);
+       var deleteForm= formularioEliminar;
+       $("body").append("<div id='dTelf'>"+deleteForm+"</div>");
+        $("#dTelf").find("form").submit();
+        $("#dTelf").remove()
+  }
+  //funcion que generica que redirecciona a la ruta de eliminar de cualquier entidad
+   function modificarItem(rutam, id){
+        var ruta= rutam;
+        console.log(ruta);
+        ruta=ruta.replace("texto", id);
+        window.location=ruta;
+    }
+    //Agrega un nuevo item de (prescripcion, diagnostico o refreencia) de la nota de cita
+    function addNotaCitaItem($collectionHolder) {
+
+        var prototype = $collectionHolder.data('prototype');
+        var index = $collectionHolder.data('index');
+        var newForm = prototype.replace(/__name__/g, index);
+        $collectionHolder.data('index', index + 1);
+        $collectionHolder.append("<div> <div class='delete btn btn-default btn-xs pull-right'>Eliminar </div> "+newForm+"</div>");
+           $(".delete").on("click", function(){
+              $(this).parent().remove();
+            })
+
+      
+    }
+    $(document).ready(function(){
+
+      //Eventos Botones Eliminar 
+
+        $('.eliminarAlergia').on('click', function(e){
+            e.preventDefault();
+            var idphcialergia=$(this).parents(".rowAlergia").attr("id");
+            idphcialergia= idphcialergia.replace("al_","");
+
+              var datosModal={
+               "IdModal": "modal_"+idphcialergia,
+               "ModalHeader": "Eliminar",
+               "ModalBody": "¿ Esta seguro de eliminar la alergia del paciente ?",
+               "ModalFooter": " ",
+                AccionModal: function(){
+                  eliminarItem(formDeleteAlergia,idphcialergia);
+                }
+              }
+              CrearModal(datosModal);
+        })
+        $('.eliminarMedicamento').on('click', function(e){
+            e.preventDefault();
+            var idphcimedicamento=$(this).parents(".rowMedicamento").attr("id");
+            idphcimedicamento= idphcimedicamento.replace("me_","");
+
+              var datosModal={
+                 "IdModal": "modal_"+idphcimedicamento,
+                 "ModalHeader": "Eliminar",
+                 "ModalBody": "¿ Esta seguro de eliminar el medicamento del paciente ?",
+                 "ModalFooter": " ",
+                  AccionModal: function(){
+                    eliminarItem(formDeleteMedicamento,idphcimedicamento);
+                  }
+                }
+                CrearModal(datosModal);
+        })
+        $('.eliminarCondicion').on('click', function(e){
+            e.preventDefault();
+            var idphcicondicion=$(this).parents(".rowCondicion").attr("id");
+            idphcicondicion= idphcicondicion.replace("con_","");
+
+                var datosModal={
+                   "IdModal": "modal_"+idphcicondicion,
+                   "ModalHeader": "Eliminar",
+                   "ModalBody": "¿ Esta seguro de eliminar la condicion del paciente ?",
+                   "ModalFooter": " ",
+                    AccionModal: function(){
+                      eliminarItem(formDeleteCondicion,idphcicondicion);
+                    }
+                  }
+                  CrearModal(datosModal);
+        })
+
+        //Evento para la eliminacion de un item de la lista de Notas de cita de la Historia Medica
+         $('.eliminarNotacita').on('click', function(e){
+            e.preventDefault();
+            var idnotacita=$(this).parents(".rowNotacita").attr("id");
+            idnotacita= idnotacita.replace("nc_","");
+
+                var datosModal={
+                   "IdModal": "modal_"+idnotacita,
+                   "ModalHeader": "Eliminar",
+                   "ModalBody": "¿ Esta seguro de eliminar esta Nota de cita ?",
+                   "ModalFooter": " ",
+                    AccionModal: function(){
+                      eliminarItem(formDeleteNotacita,idnotacita);
+                    }
+                  }
+                  CrearModal(datosModal);
+        })
+          //Evento para la modificacion de una nota de cita
+        $(".verNotacita").on("click", function(e){
+          e.preventDefault();
+          var idnotacita=$(this).parents(".rowNotacita").attr("id");
+          idnotacita= idnotacita.replace("nc_","");
+          modificarItem(VerNotacitaRuta,idnotacita);
+        })
+        //  Eventos Botones modificar
+        $(".modificarAlergia").on("click", function(e){
+          e.preventDefault();
+
+          var idphcialergia=$(this).parents(".rowAlergia").attr("id");
+          idphcialergia= idphcialergia.replace("al_","");
+          modificarItem(EditarAlergiaRuta,idphcialergia);
+
+        })
+        $(".modificarCondicion").on("click", function(e){
+          e.preventDefault();
+
+          var idphcicondicion=$(this).parents(".rowCondicion").attr("id");
+          idphcicondicion= idphcicondicion.replace("con_","");
+
+
+          modificarItem(EditarCondicionRuta,idphcicondicion);
+
+        })
+        $(".modificarMedicamento").on("click", function(e){
+          e.preventDefault();
+
+          var idphcimedicamento=$(this).parents(".rowMedicamento").attr("id");
+          idphcimedicamento= idphcimedicamento.replace("me_","");
+
+
+          modificarItem(EditarMedicamentoRuta,idphcimedicamento);
+
+        })
+        $(".modificarConsumo").on("click", function(e){
+          e.preventDefault();
+
+          var idphciconsumo=$(this).parents(".rowConsumo").attr("id");
+          idphciconsumo= idphciconsumo.replace("co_","");
+
+
+          modificarItem(EditarConsumoRuta,idphciconsumo);
+
+        })
+        //Eventos Botones Nuevo
+
+        $('.nuevo').on('click',function(e){
+              e.preventDefault();
+                 if($(this).text()=="Nuevo"){
+                    $(this).text("Cancelar");     
+                }else{
+                    $(this).text("Nuevo");
+                }
+                //Se obtiene el tipo de item (Alergia, Condicion o Medicamento)
+                var nombreItem=$(this).data('nombre');
+                 
+                $(".nuevoform"+nombreItem).fadeToggle();
+        })
+        //Evento de los botones de nuevo prescripcion, diagnostico, referencia
+         $('.anexarANC').on('click',function(e){
+            e.preventDefault();
+            //Se ontiene el nombre del item (prescripcion, diagnostico, referencia)
+            var nombre= $(this).data('nombre')
+            if($(this).text()=="Anexar "+nombre){
+                    $(this).text("Cancelar");     
+            }else{
+              $(this).text("Anexar "+nombre);
+               $('.holder'+nombre).html('');
+            }
+            $('.divN'+nombre).fadeToggle()
+         });
+
+         var ListaDePrescripciones= $('.holderPrescripcion');
+         ListaDePrescripciones.data(
+          'index', ListaDePrescripciones.find(':input').length
+               );
+              var ListaDeDiagnostico= $('.holderDiagnostico');
+         ListaDeDiagnostico.data(
+          'index', ListaDeDiagnostico.find(':input').length
+               );
+              var ListaDeReferencia= $('.holderReferencia');
+         ListaDeReferencia.data(
+          'index', ListaDeReferencia.find(':input').length
+               );
+
+
+        $(".addBtnPrescripciones").on('click', function(e) {
+            e.preventDefault();
+            addNotaCitaItem(ListaDePrescripciones);
+         })
+          $(".addBtnDiagnostico").on('click', function(e) {
+            e.preventDefault();
+            addNotaCitaItem(ListaDeDiagnostico);
+         }) 
+          $(".addBtnReferencia").on('click', function(e) {
+            e.preventDefault();
+            addNotaCitaItem(ListaDeReferencia);
+         })
+    });
+
+</script>
+{% endblock%}

@@ -1,16 +1,34 @@
-{% extends '::base.html.twig' %}
+{% extends 'HCHCBundle::layout.html.twig' %}
 
-{% block body -%}
-    <h1>Phcicondicion edit</h1>
 
-    {{ form(edit_form) }}
+{% block content_header %}
+  <section class="content-header">
+    <h1>
+     Modificar condición de paciente 
+      <small>Modificar condición seleccionada</small>
+    </h1>
+    <ol class="breadcrumb">
+      <li><a href="#"><i class="fa fa-dashboard"></i> condiciones</a></li>
+      <li class="active">aqui</li>
+    </ol>
+  </section>
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('phcicondicion') }}">
-            Back to the list
+{% endblock %}
+
+
+{% block content -%}
+
+  {{ form_start(edit_form) }}
+  {{ form_row(edit_form._token) }}
+  {{ form_row( edit_form.descripcion,{'attr':{'class':'form-control'}} ) }}
+
+
+    <div class="btn-group">
+      {{ form_end(edit_form) }}
+          <a href="{{app.request.headers.get('referer')}}"class="btn btn-default">
+           Regresar
         </a>
-    </li>
-    <li>{{ form(delete_form) }}</li>
-</ul>
+    </div>
+
+   {{ form(delete_form) }}
 {% endblock %}

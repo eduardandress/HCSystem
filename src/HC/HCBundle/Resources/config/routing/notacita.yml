@@ -1,0 +1,30 @@
+notacita:
+    path:     /
+    defaults: { _controller: "HCHCBundle:Notacita:index" }
+
+notacita_show:
+    path:     /{id}/show
+    defaults: { _controller: "HCHCBundle:Notacita:show" }
+
+notacita_new:
+    path:     /new
+    defaults: { _controller: "HCHCBundle:Notacita:new" }
+
+notacita_create:
+    path:     /create
+    defaults: { _controller: "HCHCBundle:Notacita:create" }
+    requirements: { _method: post }
+
+notacita_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "HCHCBundle:Notacita:edit" }
+
+notacita_update:
+    path:     /{id}/update
+    defaults: { _controller: "HCHCBundle:Notacita:update" }
+    requirements: { _method: post|put }
+
+notacita_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "HCHCBundle:Notacita:delete" }
+    requirements: { _method: post|delete }

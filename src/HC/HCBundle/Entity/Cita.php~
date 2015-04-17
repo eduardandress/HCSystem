@@ -10,11 +10,6 @@ use Doctrine\ORM\Mapping as ORM;
 class Cita
 {
     /**
-     * @var integer
-     */
-    private $idcita;
-
-    /**
      * @var \DateTime
      */
     private $fechacreacion;
@@ -35,26 +30,23 @@ class Cita
     private $motivo;
 
     /**
-     * @var \HC\HCBundle\Entity\Usuario
+     * @var integer
      */
-    private $idusuario;
+    private $idcita;
 
     /**
      * @var \HC\HCBundle\Entity\Paciente
      */
     private $idpaciente;
 
-
     /**
-     * Get idcita
-     *
-     * @return integer 
+     * @var \HC\HCBundle\Entity\Usuario
      */
-    public function getIdcita()
-    {
-        return $this->idcita;
-    }
+    private $idusuario;
 
+    public function __toString(){
+        return $this->motivo;
+    }
     /**
      * Set fechacreacion
      *
@@ -148,26 +140,13 @@ class Cita
     }
 
     /**
-     * Set idusuario
+     * Get idcita
      *
-     * @param \HC\HCBundle\Entity\Usuario $idusuario
-     * @return Cita
+     * @return integer 
      */
-    public function setIdusuario(\HC\HCBundle\Entity\Usuario $idusuario = null)
+    public function getIdcita()
     {
-        $this->idusuario = $idusuario;
-
-        return $this;
-    }
-
-    /**
-     * Get idusuario
-     *
-     * @return \HC\HCBundle\Entity\Usuario 
-     */
-    public function getIdusuario()
-    {
-        return $this->idusuario;
+        return $this->idcita;
     }
 
     /**
@@ -191,5 +170,28 @@ class Cita
     public function getIdpaciente()
     {
         return $this->idpaciente;
+    }
+
+    /**
+     * Set idusuario
+     *
+     * @param \HC\HCBundle\Entity\Usuario $idusuario
+     * @return Cita
+     */
+    public function setIdusuario(\HC\HCBundle\Entity\Usuario $idusuario = null)
+    {
+        $this->idusuario = $idusuario;
+
+        return $this;
+    }
+
+    /**
+     * Get idusuario
+     *
+     * @return \HC\HCBundle\Entity\Usuario 
+     */
+    public function getIdusuario()
+    {
+        return $this->idusuario;
     }
 }

@@ -1,0 +1,30 @@
+diagnostico:
+    path:     /
+    defaults: { _controller: "HCHCBundle:Diagnostico:index" }
+
+diagnostico_show:
+    path:     /{id}/show
+    defaults: { _controller: "HCHCBundle:Diagnostico:show" }
+
+diagnostico_new:
+    path:     /new
+    defaults: { _controller: "HCHCBundle:Diagnostico:new" }
+
+diagnostico_create:
+    path:     /create
+    defaults: { _controller: "HCHCBundle:Diagnostico:create" }
+    requirements: { _method: post }
+
+diagnostico_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "HCHCBundle:Diagnostico:edit" }
+
+diagnostico_update:
+    path:     /{id}/update
+    defaults: { _controller: "HCHCBundle:Diagnostico:update" }
+    requirements: { _method: post|put }
+
+diagnostico_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "HCHCBundle:Diagnostico:delete" }
+    requirements: { _method: post|delete }

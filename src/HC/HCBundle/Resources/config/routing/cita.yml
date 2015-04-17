@@ -27,6 +27,3 @@ gestionarcitas_delete:
     path:     /{id}/delete
     defaults: { _controller: "HCHCBundle:Cita:delete" }
     requirements: { _method: post|delete }
-validarcedula:
-    path: /{cedula}/validarcedula
-    defaults: { _controller: "HCHCBundle:Cita:existepaciente" }

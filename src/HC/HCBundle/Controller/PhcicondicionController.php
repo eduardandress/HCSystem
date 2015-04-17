@@ -44,7 +44,7 @@ class PhcicondicionController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('phcicondicion_show', array('id' => $entity->getIdphcicondicion())));
+            return $this->redirect($this->getRequest()->headers->get('referer'));
         }
 
         return $this->render('HCHCBundle:Phcicondicion:new.html.twig', array(
@@ -202,7 +202,8 @@ class PhcicondicionController extends Controller
             $em->flush();
         }
 
-        return $this->redirect($this->generateUrl('phcicondicion'));
+       return $this->redirect($this->getRequest()->headers->get('referer'));
+       
     }
 
     /**

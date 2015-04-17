@@ -1,6 +1,13 @@
 HC\HCBundle\Entity\Notacita:
     type: entity
     table: notaCita
+    indexes:
+        idCita:
+            columns:
+                - idCita
+        idHci:
+            columns:
+                - idHci
     id:
         idnotacita:
             type: integer
@@ -46,4 +53,37 @@ HC\HCBundle\Entity\Notacita:
             precision: 10
             scale: 0
             comment: ''
+    manyToOne:
+        idhci:
+            targetEntity: Hci
+            cascade: {  }
+            mappedBy: null
+            inversedBy: notacita
+            joinColumns:
+                idHci:
+                    referencedColumnName: idHci
+            orphanRemoval: false
+    oneToMany:
+        prescripcion:
+            targetEntity: Prescripcion
+            cascade: ["persist","remove"]
+            mappedBy: idnotacita
+        diagnostico:
+            targetEntity: Diagnostico
+            cascade: ["persist","remove"]
+            mappedBy: idnotacita
+        referencia:
+            targetEntity: Referencia
+            cascade: ["persist","remove"]
+            mappedBy: idnotacita
+    oneToOne:
+        idcita:
+            targetEntity: Cita
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idCita:
+                    referencedColumnName: idCita
+            orphanRemoval: false
     lifecycleCallbacks: {  }

@@ -237,7 +237,7 @@
  <center>
       <div class="btn-group">
 
-        <a href="{{ path('paciente') }}" class="btn btn-default">
+        <a href="{{ app.request.headers.get('referer') }}" class="btn btn-default">
             Regresar
         </a>
         {{ form(delete_form) }}

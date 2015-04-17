@@ -1,0 +1,157 @@
+{% extends 'HCHCBundle::layout.html.twig' %}
+
+{% block stylesheets %}
+{{ parent() }}
+        {% stylesheets
+        'bundles/hchc/Admin/plugins/daterangepicker/daterangepicker-bs3.css'
+        'bundles/hchc/Admin/plugins/timepicker/bootstrap-timepicker.min.css'
+        
+        output='css/*.css' filter='cssrewrite' %}
+        <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}" />
+    {% endstylesheets %}
+{% endblock %}
+
+{% block content_header %}
+  <section class="content-header">
+    <h1>
+      Detalle de la Nota de cita
+      <small>Detalle de la nota de cita seleccionada</small>
+    </h1>
+    <ol class="breadcrumb">
+      <li><a href="#"><i class="fa fa-dashboard"></i> Notas de cita</a></li>
+      <li class="active">aqui</li>
+    </ol>
+  </section>
+
+{% endblock %}
+{% block content -%}
+ <div class="col-md-6 ">
+        <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">Información de nota de cita <a class="btn btn-success btn-xs " href="{{ path('notacita_edit', { 'id': entity.idnotacita }) }}">Editar</a></h3>
+          </div><!-- /.box-header -->
+          <div class="box-body">
+        <table class="table table-bordered">
+        <tbody>
+            <!-- <tr>
+                <th>Idnotacita</th>
+                <td>{{ entity.idnotacita }}</td>
+            </tr> -->
+            <tr>
+                <th>Presion Arterial</th>
+                <td>{{ entity.presionarterial }}</td>
+            </tr>
+            <tr>
+                <th>Altura del paciente</th>
+                <td>{{ entity.alturapaciente }}</td>
+            </tr>
+            <tr>
+                <th>Peso del paciente</th>
+                <td>{{ entity.pesopaciente }}</td>
+            </tr>
+            <tr>
+                <th>Frecuencia Cardíaca</th>
+                <td>{{ entity.frecuenciacardiaca }}</td>
+            </tr>
+            <tr>
+                <th>Temperatura Corporal</th>
+                <td>{{ entity.temperatura }}</td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+    </div>
+{% if prescripciones %}
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title">Prescripciones <a class="agregarPrescripcion btn btn-success btn-xs"  href="">Nuevo</a></h3>
+          </div><!-- /.box-header -->
+          <div class="box-body">
+                          <table class="table table-condensed table-hover">
+                              <thead>
+                                  <tr>
+                                      <th> Nombre</th>
+                                      <th> Descripcion</th>
+                                      <th> Acciones</th>
+
+                                  </tr>
+
+                              </thead>
+                              <tbody>
+    {% for prescripcion in prescripciones%}
+                                  <tr>
+                                  <td>{{ prescripcion.nombre }}</td>
+                                  <td> {{ prescripcion.instrucciones }}</td>
+                                      <td>
+                                      <button class="modificarPrescripcion btn btn-default btn-xs">
+                                            Modificar
+                                        </button>
+                                        <button class="eliminarPrescripcion btn btn-danger btn-xs">
+                                            Eliminar
+                                        </button>
+                                    </td>
+                                  </tr>
+        {% endfor %}
+                              </tbody>
+                          </table>
+     
+         </div>
+         </div>
+
+{% endif%}
+{% if referencias %}
+     {% for referencia in referencias%}
+        <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">Referencia <a class="btn btn-success btn-xs " href="{{ path('referencia_edit', { 'id': referencia.idreferencia }) }}">Editar</a></h3>
+          </div><!-- /.box-header -->
+          <div class="box-body">
+                <table class="table table-bordered">
+                     <tbody>
+                         <tr>
+                             <th>Nombre del doctor</th>
+                             <td>{{ referencia.nombredoctor }}</td>
+                         </tr>
+                        <tr>
+                           <th>Descripcion</br>
+                           {{ referencia.descripcion }}
+                           </th>
+                        </tr>
+                     </tbody>
+                </table>
+         </div>
+         </div>
+    {% endfor %}
+{% endif%}
+{% if diagnosticos %}
+     {% for diagnostico in diagnosticos%}
+        <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">Diagnostico <a class="btn btn-success btn-xs " href="{{ path('diagnostico_edit', { 'id': diagnostico.iddiagnostico }) }}">Editar</a></h3>
+          </div><!-- /.box-header -->
+          <div class="box-body">
+                <table class="table table-bordered">
+                     <tbody>
+                         <tr>
+                             <th>Descripcion</br>
+                            {{ diagnostico.descripcion }}
+                             </th>
+                         </tr>
+                     </tbody>
+                </table>
+         </div>
+         </div>
+    {% endfor %}
+{% endif%}
+</div>
+    
+    <center>
+      <div class="btn-group">
+       <a href="{{ app.request.headers.get('referer') }}" class="btn btn-default">
+        Regresar
+        </a>
+        {{ form(delete_form) }}
+     </div>
+   </center>  
+
+{% endblock %}

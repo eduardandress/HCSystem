@@ -23,7 +23,7 @@ HC\HCBundle\Entity\Phcimedicamento:
             fixed: false
             comment: ''
         fechaactualizacion:
-            type: date
+            type: datetime
             nullable: false
             comment: ''
             column: fechaActualizacion
@@ -32,7 +32,7 @@ HC\HCBundle\Entity\Phcimedicamento:
             targetEntity: Hci
             cascade: {  }
             mappedBy: null
-            inversedBy: medicamentos
+            inversedBy: medicamento
             joinColumns:
                 idHci:
                     referencedColumnName: idHci

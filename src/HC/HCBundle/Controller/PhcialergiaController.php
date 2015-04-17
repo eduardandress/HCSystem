@@ -44,7 +44,7 @@ class PhcialergiaController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('phcialergia_show', array('id' => $entity->getIdphcialergia())));
+            return $this->redirect($this->getRequest()->headers->get('referer'));
         }
 
         return $this->render('HCHCBundle:Phcialergia:new.html.twig', array(
@@ -202,7 +202,7 @@ class PhcialergiaController extends Controller
             $em->flush();
         }
 
-        return $this->redirect($this->generateUrl('phcialergia'));
+            return $this->redirect($this->getRequest()->headers->get('referer'));
     }
 
     /**

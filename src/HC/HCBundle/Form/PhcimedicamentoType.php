@@ -16,8 +16,8 @@ class PhcimedicamentoType extends AbstractType
     {
         $builder
             ->add('descripcion')
-            //->add('fechaactualizacion')
-            //->add('idhci')
+            ->add('fechaactualizacion', null, array('label'=>false,'attr'=>array('class'=>'hidden')))
+            ->add('idhci', null, array('label'=>false,'attr'=>array('class'=>'hidden')))
         ;
     }
     

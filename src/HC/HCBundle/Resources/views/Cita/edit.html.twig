@@ -89,10 +89,10 @@
         <div class="btn-group opciones">
                   <button type="submit" class="btn btn-default enviar" >Enviar</button>
                   <a href="{{ path('gestionarcitas') }}" class="btn btn-default">Regresar</a>
+                  {{ form_end(edit_form, {'render_rest': false}) }}<!-- Se termina el formulario antes de colocar el formulario de eliminar :/ :D  -->
                   {{ form(delete_form) }}
         </div>
        </center> 
-               {{ form_end(edit_form, {'render_rest': false}) }}
 
 </div>      
 {% endblock %}

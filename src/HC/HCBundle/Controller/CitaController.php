@@ -4,11 +4,11 @@ namespace HC\HCBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 use HC\HCBundle\Entity\Cita;
 use HC\HCBundle\Form\CitaType;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\JsonResponse;
 /**
  * Cita controller.
  *
@@ -41,10 +41,9 @@ class CitaController extends Controller
         $entity->setIdusuario($UsuarioLogeado); //Solo en la creacion de una nueva cita se coloca el id del Usuario logeado, no se ṕuede editar.
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
-
          $cedula=$form->get('cedula')->getData();
          $em= $this->getDoctrine()->getManager();
-        $pacienteConCedula= $em->getRepository('HCHCBundle:Paciente')->findOneByCedula($cedula);
+         $pacienteConCedula= $em->getRepository('HCHCBundle:Paciente')->findOneByCedula($cedula);
        // echo $pacienteConCedula->getCedula();
             $pacienteExiste=true;
             if($pacienteConCedula==null){
@@ -241,7 +240,7 @@ class CitaController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('gestionarcitas_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Eliminar','attr'=>array('class'=>'btn btn-default ')))
+            ->add('submit2', 'submit', array('label' => 'Eliminar','attr'=>array('class'=>'btn btn-default ')))
             ->getForm()
         ;
     }

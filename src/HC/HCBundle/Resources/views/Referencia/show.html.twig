@@ -1,0 +1,40 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Referencia</h1>
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Idreferencia</th>
+                <td>{{ entity.idreferencia }}</td>
+            </tr>
+            <tr>
+                <th>Nombredoctor</th>
+                <td>{{ entity.nombredoctor }}</td>
+            </tr>
+            <tr>
+                <th>Descripcion</th>
+                <td>{{ entity.descripcion }}</td>
+            </tr>
+            <tr>
+                <th>Fecha</th>
+                <td>{{ entity.fecha|date('Y-m-d H:i:s') }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('referencia') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('referencia_edit', { 'id': entity.idreferencia }) }}">
+            Edit
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}

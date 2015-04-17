@@ -202,7 +202,8 @@ class PhciconsumoController extends Controller
             $em->flush();
         }
 
-        return $this->redirect($this->generateUrl('phciconsumo'));
+       return $this->redirect($this->getRequest()->headers->get('referer'));
+        
     }
 
     /**

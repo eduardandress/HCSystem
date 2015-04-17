@@ -1,0 +1,30 @@
+prescripcion:
+    path:     /
+    defaults: { _controller: "HCHCBundle:Prescripcion:index" }
+
+prescripcion_show:
+    path:     /{id}/show
+    defaults: { _controller: "HCHCBundle:Prescripcion:show" }
+
+prescripcion_new:
+    path:     /new
+    defaults: { _controller: "HCHCBundle:Prescripcion:new" }
+
+prescripcion_create:
+    path:     /create
+    defaults: { _controller: "HCHCBundle:Prescripcion:create" }
+    requirements: { _method: post }
+
+prescripcion_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "HCHCBundle:Prescripcion:edit" }
+
+prescripcion_update:
+    path:     /{id}/update
+    defaults: { _controller: "HCHCBundle:Prescripcion:update" }
+    requirements: { _method: post|put }
+
+prescripcion_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "HCHCBundle:Prescripcion:delete" }
+    requirements: { _method: post|delete }

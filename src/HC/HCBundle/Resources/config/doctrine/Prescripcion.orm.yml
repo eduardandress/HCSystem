@@ -5,6 +5,9 @@ HC\HCBundle\Entity\Prescripcion:
         idNotaCita:
             columns:
                 - idNotaCita
+        idUsuario:
+            columns:
+                - idUsuario
     id:
         idprescripcion:
             type: integer
@@ -17,7 +20,7 @@ HC\HCBundle\Entity\Prescripcion:
                 strategy: IDENTITY
     fields:
         fecha:
-            type: date
+            type: datetime
             nullable: false
             comment: ''
         nombre:
@@ -37,9 +40,19 @@ HC\HCBundle\Entity\Prescripcion:
             targetEntity: Notacita
             cascade: {  }
             mappedBy: null
-            inversedBy: null
+            inversedBy: prescripcion
             joinColumns:
                 idNotaCita:
                     referencedColumnName: idNotaCita
+            orphanRemoval: false
+    oneToOne:
+        idusuario:
+            targetEntity: Usuario
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idUsuario:
+                    referencedColumnName: idUsuario
             orphanRemoval: false
     lifecycleCallbacks: {  }

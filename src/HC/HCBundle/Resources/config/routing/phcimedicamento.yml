@@ -27,4 +27,4 @@ phcimedicamento_update:
 phcimedicamento_delete:
     path:     /{id}/delete
     defaults: { _controller: "HCHCBundle:Phcimedicamento:delete" }
-    requirements: { _method: post|delete }
+    methods:  [POST, DELETE]

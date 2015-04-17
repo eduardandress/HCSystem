@@ -18,7 +18,7 @@ class PhciconsumoType extends AbstractType
             //->add('fechaactualizacion')
             ->add('idtipoestado')
             //->add('idhci')
-            ->add('idtipoconsumo')
+            ->add('idtipoconsumo',null,array('label'=>false,'attr'=>array('class'=>'hidden')))
         ;
     }
     

@@ -27,4 +27,4 @@ phcicondicion_update:
 phcicondicion_delete:
     path:     /{id}/delete
     defaults: { _controller: "HCHCBundle:Phcicondicion:delete" }
-    requirements: { _method: post|delete }
+    methods:  [POST, DELETE]

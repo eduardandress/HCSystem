@@ -1,0 +1,30 @@
+referencia:
+    path:     /
+    defaults: { _controller: "HCHCBundle:Referencia:index" }
+
+referencia_show:
+    path:     /{id}/show
+    defaults: { _controller: "HCHCBundle:Referencia:show" }
+
+referencia_new:
+    path:     /new
+    defaults: { _controller: "HCHCBundle:Referencia:new" }
+
+referencia_create:
+    path:     /create
+    defaults: { _controller: "HCHCBundle:Referencia:create" }
+    requirements: { _method: post }
+
+referencia_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "HCHCBundle:Referencia:edit" }
+
+referencia_update:
+    path:     /{id}/update
+    defaults: { _controller: "HCHCBundle:Referencia:update" }
+    requirements: { _method: post|put }
+
+referencia_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "HCHCBundle:Referencia:delete" }
+    requirements: { _method: post|delete }

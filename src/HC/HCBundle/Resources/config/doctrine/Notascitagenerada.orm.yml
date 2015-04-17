@@ -5,6 +5,9 @@ HC\HCBundle\Entity\Notascitagenerada:
         idCita:
             columns:
                 - idCita
+        idNotaCita:
+            columns:
+                - idNotaCita
     id:
         idnotacitagen:
             type: integer
@@ -15,13 +18,6 @@ HC\HCBundle\Entity\Notascitagenerada:
             column: idNotaCitaGen
             generator:
                 strategy: IDENTITY
-    fields:
-        idnotacita:
-            type: integer
-            nullable: false
-            unsigned: false
-            comment: ''
-            column: idNotaCita
     manyToOne:
         idcita:
             targetEntity: Cita
@@ -31,5 +27,14 @@ HC\HCBundle\Entity\Notascitagenerada:
             joinColumns:
                 idCita:
                     referencedColumnName: idCita
+            orphanRemoval: false
+        idnotacita:
+            targetEntity: Notacita
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idNotaCita:
+                    referencedColumnName: idNotaCita
             orphanRemoval: false
     lifecycleCallbacks: {  }

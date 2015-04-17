@@ -32,4 +32,25 @@ HC\HCBundle\Entity\Hci:
                 idPaciente:
                     referencedColumnName: idPaciente
             orphanRemoval: false
+    oneToMany:
+        alergia:
+            targetEntity: Phcialergia
+            cascade: ["persist", "remove"]
+            mappedBy: idhci
+        condicion:
+            targetEntity: Phcicondicion
+            cascade: ["persist", "remove"]
+            mappedBy: idhci
+        consumo:
+            targetEntity: Phciconsumo
+            cascade: ["persist", "remove"]
+            mappedBy: idhci
+        medicamento:
+            targetEntity: Phcimedicamento
+            cascade: ["persist", "remove"]
+            mappedBy: idhci
+        notacita:
+            targetEntity: Notacita
+            cascade: ["persist", "remove"]
+            mappedBy: idhci
     lifecycleCallbacks: {  }

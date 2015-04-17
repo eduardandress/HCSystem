@@ -23,7 +23,6 @@ hci_update:
     path:     /{id}/update
     defaults: { _controller: "HCHCBundle:Hci:update" }
     requirements: { _method: post|put }
-
 hci_delete:
     path:     /{id}/delete
     defaults: { _controller: "HCHCBundle:Hci:delete" }
