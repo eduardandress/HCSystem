@@ -11,6 +11,10 @@ use HC\HCBundle\Form\NotacitaType;
 use HC\HCBundle\Entity\Prescripcion;
 use HC\HCBundle\Entity\Diagnostico;
 use HC\HCBundle\Entity\Referencia;
+
+use HC\HCBundle\Form\PrescripcionType;
+use HC\HCBundle\Form\DiagnosticoType;
+use HC\HCBundle\Form\ReferenciaType;
 /**
  * Notacita controller.
  *
@@ -126,7 +130,7 @@ class NotacitaController extends Controller
         return $this->render('HCHCBundle:Notacita:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
-            
+
         ));
     }
 
@@ -149,13 +153,36 @@ class NotacitaController extends Controller
         $prescripciones=$entity->getPrescripcion();
         $referencias=$entity->getReferencia();
         $diagnosticos=$entity->getDiagnostico();
-        
+
+        // se pasan los formualarios d eliminacion de Prescripciones, referencias y diagnosticos
+         $formDeletePrescripciones= $this->createGenericDeleteForm('prescripcion_delete');
+         $formDeleteDiagnosticos= $this->createGenericDeleteForm('diagnostico_delete');
+         $formDeleteReferencias= $this->createGenericDeleteForm('referencia_delete');
+
+         $formNuevoPrescripcion=$this->createGenericNewForm(new PrescripcionType(),'prescripcion_create');
+         $formNuevoDiagnostico=$this->createGenericNewForm(new DiagnosticoType(),'diagnostico_create');
+         $formNuevoReferencia=$this->createGenericNewForm(new ReferenciaType(),'referencia_create');
+         $formNuevoPrescripcion->get('idnotacita')->setData($entity);
+         $formNuevoDiagnostico->get('idnotacita')->setData($entity);
+         $formNuevoReferencia->get('idnotacita')->setData($entity);
+
+        $UsuarioLogeado=$this->get('security.context')->getToken()->getUser();
+         $formNuevoPrescripcion->get('idusuario')->setData($UsuarioLogeado);
+         $formNuevoDiagnostico->get('idusuario')->setData($UsuarioLogeado);
+         $formNuevoReferencia->get('idusuario')->setData($UsuarioLogeado);
+
         return $this->render('HCHCBundle:Notacita:show.html.twig', array(
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),
             'prescripciones'=>$prescripciones,
             'referencias'=>$referencias,
             'diagnosticos'=>$diagnosticos,
+            'formDeletePrescripciones'=>$formDeletePrescripciones->createView(),
+            'formDeleteDiagnosticos'=>$formDeleteDiagnosticos->createView(),
+            'formDeleteReferencias'=>$formDeleteReferencias->createView(),
+            'formNuevoPrescripcion'=>$formNuevoPrescripcion->createView(),
+            'formNuevoDiagnostico'=>$formNuevoDiagnostico->createView(),
+            'formNuevoReferencia'=>$formNuevoReferencia->createView(),
             
         ));
     }
@@ -201,6 +228,26 @@ class NotacitaController extends Controller
         $form->add('submit', 'submit', array('label' => 'Update'));
 
         return $form;
+    }
+    //Metodo que crea un formulario nuevo para cualquier entidad
+    private function createGenericNewForm($entityType, $actionForm){
+        $form= $this->createForm($entityType, null, 
+        array(
+            "action" => $this->generateUrl($actionForm),
+            "method"=>"POST"
+        ))
+        ->add('submit', 'submit', array('label' => 'Agregar'));
+
+        return $form;
+    }
+        //Metodo para crear un formulario de eliminar generico
+     private function createGenericDeleteForm($url){
+        return $this->createFormBuilder()
+            ->setAction($this->generateUrl($url, array('id' => "texto")))
+            ->setMethod('DELETE')
+            ->add('submit', 'submit', array('label' => 'Eliminar'))
+            ->getForm()
+        ;
     }
     /**
      * Edits an existing Notacita entity.

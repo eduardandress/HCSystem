@@ -35,6 +35,9 @@ class Phciconsumo
     private $idtipoestado;
 
 
+    public function __toString(){
+        return $this->idphciconsumo->getNombre();
+    }
     /**
      * Get idphciconsumo
      *

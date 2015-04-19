@@ -97,7 +97,7 @@ class PacienteController extends Controller
             'method' => 'PUT',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Update'));
+        $form->add('submit', 'submit', array('label' => 'Actualizar'));
 
         return $form;
 
@@ -118,6 +118,7 @@ class PacienteController extends Controller
         $Paciente->addTelefonosPersonales($TelfPersonal);
         $Paciente->addTelefonosEmergencia($TelfEmegencia);
 
+
         $form = $this->createForm(new PacienteType(), $Paciente,
             array(
                 'action' => $this->generateUrl('registrarPac'),
@@ -127,7 +128,7 @@ class PacienteController extends Controller
         );
         
 
-        $form->add('submit', 'submit', array('label' => 'Create'));
+        $form->add('submit', 'submit', array('label' => 'Crear'));
 
         return $form;
     }
@@ -199,7 +200,7 @@ class PacienteController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl($url, array('id' => "texto")))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
+            ->add('submit', 'submit', array('label' => 'Eliminar'))
             ->getForm()
         ;
     }
@@ -301,7 +302,7 @@ class PacienteController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('paciente_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
+            ->add('submit', 'submit', array('label' => 'Eliminar'))
             ->getForm()
         ;
     }

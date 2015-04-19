@@ -61,12 +61,12 @@
     </table>
     </div>
     </div>
-{% if prescripciones %}
         <div class="box">
             <div class="box-header">
-                <h3 class="box-title">Prescripciones <a class="agregarPrescripcion btn btn-success btn-xs"  href="">Nuevo</a></h3>
+                <h3 class="box-title">Prescripciones <a  data-nombre="Prescripcion" class="nuevoItem btn btn-success btn-xs"  href="">Nuevo</a></h3>
           </div><!-- /.box-header -->
           <div class="box-body">
+{% if prescripciones is not empty %}
                           <table class="table table-condensed table-hover">
                               <thead>
                                   <tr>
@@ -79,7 +79,7 @@
                               </thead>
                               <tbody>
     {% for prescripcion in prescripciones%}
-                                  <tr>
+                                  <tr class="rowPrescripcion" id="pre_{{prescripcion.idprescripcion}}">
                                   <td>{{ prescripcion.nombre }}</td>
                                   <td> {{ prescripcion.instrucciones }}</td>
                                       <td>
@@ -94,55 +94,160 @@
         {% endfor %}
                               </tbody>
                           </table>
+{% endif%}
      
          </div>
          </div>
+         <div class="box box-success nuevoformPrescripcion" style="display:none" >
+          <div class="box-header">
+            <h3 class="box-title">Nueva Prescripcion</h3>
+        </div><!-- /.box-header -->
+        <div class="box-body no-padding">
+            <table class="table table-condensed">
+              <tbody>
+              {{form_start(formNuevoPrescripcion)}}
+                  {{form_row(formNuevoPrescripcion._token)}}
+                  {{form_row(formNuevoPrescripcion.idnotacita)}}
+                  {{form_row(formNuevoPrescripcion.idusuario)}} 
+                  <tr>
+                  <td>{{form_row(formNuevoPrescripcion.nombre,{'attr':{'class':'form-control'}})}}</td>
+                      
+                  </tr>
+                  <tr>
+                  <td>{{form_row(formNuevoPrescripcion.instrucciones,{'attr':{'class':'form-control'}})}}</td>
+                  </tr>
+                  <tr>
+                      <td>
+                       {{form(formNuevoPrescripcion)}}
+                   </td>
+               </tr>
+           </tbody>
+           </table>
+       </div><!-- /.box-body -->
+</div>
 
-{% endif%}
-{% if referencias %}
-     {% for referencia in referencias%}
         <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Referencia <a class="btn btn-success btn-xs " href="{{ path('referencia_edit', { 'id': referencia.idreferencia }) }}">Editar</a></h3>
+                <h3 class="box-title">Referencias <a  data-nombre="Referencia" class="nuevoItem btn btn-success btn-xs"  href="">Nuevo</a></h3>
           </div><!-- /.box-header -->
           <div class="box-body">
-                <table class="table table-bordered">
-                     <tbody>
-                         <tr>
-                             <th>Nombre del doctor</th>
-                             <td>{{ referencia.nombredoctor }}</td>
-                         </tr>
-                        <tr>
-                           <th>Descripcion</br>
-                           {{ referencia.descripcion }}
-                           </th>
-                        </tr>
-                     </tbody>
-                </table>
+{% if referencias is not empty %}
+                          <table class="table table-condensed table-hover">
+                              <thead>
+                                  <tr>
+                                      <th> Nombre del Doctor</th>
+                                      <th> Descripcion</th>
+                                      <th> Acciones</th>
+
+                                  </tr>
+
+                              </thead>
+                              <tbody>
+    {% for referencia in referencias%}
+                                  <tr class="rowReferencia" id="re_{{referencia.idreferencia}}">
+                                  <td>{{ referencia.nombredoctor }}</td>
+                                  <td> {{ referencia.descripcion }}</td>
+                                      <td>
+                                      <button class="modificarReferencia btn btn-default btn-xs">
+                                            Modificar
+                                        </button>
+                                        <button class="eliminarReferencia btn btn-danger btn-xs">
+                                            Eliminar
+                                        </button>
+                                    </td>
+                                  </tr>
+        {% endfor %}
+                              </tbody>
+                          </table>
+        {% endif%}
+     
          </div>
          </div>
-    {% endfor %}
-{% endif%}
-{% if diagnosticos %}
-     {% for diagnostico in diagnosticos%}
+         
+         <div class="box box-success nuevoformReferencia" style="display:none" >
+          <div class="box-header">
+            <h3 class="box-title">Nueva Referencia</h3>
+        </div><!-- /.box-header -->
+        <div class="box-body no-padding">
+            <table class="table table-condensed">
+              <tbody>
+                  {{form_start(formNuevoReferencia)}}
+                  {{form_row(formNuevoReferencia._token)}}
+                  {{form_row(formNuevoReferencia.idnotacita)}}
+                  {{form_row(formNuevoReferencia.idusuario)}}
+                  <tr>
+                      <td>{{form_row(formNuevoReferencia.nombredoctor,{'attr':{'class':'form-control'}})}}</td>
+                      
+                  </tr>
+                  <td>{{form_row(formNuevoReferencia.descripcion,{'attr':{'class':'form-control'}})}}</td>
+                  <tr>
+                  </tr>
+                  <tr>
+                      <td>
+                         {{form(formNuevoReferencia)}}
+                     </td>
+                 </tr>
+             </tbody>
+         </table>
+     </div><!-- /.box-body -->
+</div>
         <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Diagnostico <a class="btn btn-success btn-xs " href="{{ path('diagnostico_edit', { 'id': diagnostico.iddiagnostico }) }}">Editar</a></h3>
+                <h3 class="box-title">Diagnosticos <a data-nombre="Diagnostico"  class="nuevoItem btn btn-success btn-xs"  href="">Nuevo</a></h3>
           </div><!-- /.box-header -->
           <div class="box-body">
-                <table class="table table-bordered">
-                     <tbody>
-                         <tr>
-                             <th>Descripcion</br>
-                            {{ diagnostico.descripcion }}
-                             </th>
-                         </tr>
-                     </tbody>
-                </table>
-         </div>
-         </div>
-    {% endfor %}
+{% if diagnosticos is not empty  %}
+                          <table class="table table-condensed table-hover">
+                              <thead>
+                                  <tr>
+                                      <th> Descripcion</th>
+                                      <th> Acciones</th>
+
+                                  </tr>
+
+                              </thead>
+                              <tbody>
+    {% for diagnostico in diagnosticos%}
+                                  <tr class="rowDiagnostico" id="di_{{diagnostico.iddiagnostico}}" >
+                                  <td> {{ diagnostico.descripcion }}</td>
+                                      <td>
+                                      <button class="modificarDiagnostico btn btn-default btn-xs">
+                                            Modificar
+                                        </button>
+                                        <button class="eliminarDiagnostico btn btn-danger btn-xs">
+                                            Eliminar
+                                        </button>
+                                    </td>
+                                  </tr>
+        {% endfor %}
+                              </tbody>
+                          </table>
 {% endif%}
+     
+         </div>
+         </div>
+        <div class="box box-success nuevoformDiagnostico" style="display:none" >
+          <div class="box-header">
+            <h3 class="box-title">Nueva Diagnostico</h3>
+        </div><!-- /.box-header -->
+        <div class="box-body no-padding">
+            <table class="table table-condensed">
+              <tbody>
+                  {{form_start(formNuevoDiagnostico)}}
+                  {{form_row(formNuevoDiagnostico._token)}}
+                  {{form_row(formNuevoDiagnostico.idnotacita)}}
+                  {{form_row(formNuevoDiagnostico.idusuario)}}
+                  <tr>
+                      <td>{{form_row(formNuevoDiagnostico.descripcion,{'attr':{'class':'form-control'}})}}</td>
+                  </tr>
+                  <tr>
+                      <td>
+                         {{form(formNuevoDiagnostico)}}
+                     </td>
+                 </tr>
+             </tbody>
+         </table>
+     </div><!-- /.box-body -->
 </div>
     
     <center>
@@ -153,5 +258,173 @@
         {{ form(delete_form) }}
      </div>
    </center>  
+{% macro modal(id, header, body, footer) %}
 
+    <div id="{{id}}" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"> &times; </button>
+                    <h4 class="modal-title">
+                      
+                      {{ header }}
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    {{ body }}
+                </div>
+                <div class="modal-footer">
+                  {{ footer }}
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="confirm btn btn-primary">Si</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endmacro %}
+{% endblock %}
+{% block javascripts -%}
+    {{ parent() }}
+ <script>
+    var formDeletePrescripciones= '{{ form(formDeletePrescripciones) }}';
+    var formDeleteDiagnosticos= '{{ form(formDeleteDiagnosticos) }}';
+    var formDeleteReferencias= '{{ form(formDeleteReferencias) }}';
+
+
+    var EditarPrescripcionRuta="{{ path('prescripcion_edit', {id:'texto'} ) }}";
+    var EditarDiagnosticoRuta="{{ path('diagnostico_edit', {id:'texto'} ) }}";
+    var EditarReferenciaRuta="{{ path('referencia_edit', {id:'texto'} ) }}";
+
+    
+
+
+
+   function modificarItem(rutam, id){
+        var ruta= rutam;
+        console.log(ruta);
+        ruta=ruta.replace("texto", id);
+        window.location=ruta;
+    }
+
+   function eliminarItem(formularioEliminar, id){
+       formularioEliminar=formularioEliminar.replace("texto", id);
+       var deleteForm= formularioEliminar;
+       $("body").append("<div id='dTelf'>"+deleteForm+"</div>");
+        $("#dTelf").find("form").submit();
+        $("#dTelf").remove()
+  }
+
+       function CrearModal(datos){ // Fue copy and paste, se debe organizar generalizar para usarlo en todas partes
+              var s="{% import _self as modales %}";
+              var Modal= "{{ modales.modal('IdModal','ModalHeader','ModalBody','ModalFooter')|e('js') }} ";
+              Modal= Modal.replace("IdModal",datos.IdModal);
+              Modal= Modal.replace("ModalHeader",datos.ModalHeader);
+              Modal= Modal.replace("ModalBody",datos.ModalBody);
+              Modal= Modal.replace("ModalFooter",datos.ModalFooter);
+
+
+              $("body").append(Modal);
+              $("#"+datos.IdModal).modal("show");
+
+              $("#"+ datos.IdModal+" .confirm").on("click", function(){
+                  datos.AccionModal();
+
+              })
+           }
+
+        $(document).ready(function(){
+
+            $('.nuevoItem').on('click',function(e){
+                  e.preventDefault();
+                     if($(this).text()=="Nuevo"){
+                        $(this).text("Cancelar");     
+                    }else{
+                        $(this).text("Nuevo");
+                    }
+                    //Se obtiene el tipo de item (Alergia, Condicion o Medicamento)
+                    var nombreItem=$(this).data('nombre');
+                     
+                    $(".nuevoform"+nombreItem).fadeToggle();
+            })
+           //Eventos Botones Eliminar 
+
+            $('.eliminarPrescripcion').on('click', function(e){
+                e.preventDefault();
+                var idprescripcion=$(this).parents(".rowPrescripcion").attr("id");
+                idprescripcion= idprescripcion.replace("pre_","");
+
+                  var datosModal={
+                   "IdModal": "modal_"+idprescripcion,
+                   "ModalHeader": "Eliminar",
+                   "ModalBody": "¿ Esta seguro de eliminar la prescripcion ?",
+                   "ModalFooter": " ",
+                    AccionModal: function(){
+                      eliminarItem(formDeletePrescripciones,idprescripcion);
+                    }
+                  }
+                  CrearModal(datosModal);
+            })
+            $('.eliminarReferencia').on('click', function(e){
+                e.preventDefault();
+                var idreferencia=$(this).parents(".rowReferencia").attr("id");
+                idreferencia= idreferencia.replace("re_","");
+
+                  var datosModal={
+                     "IdModal": "modal_"+idreferencia,
+                     "ModalHeader": "Eliminar",
+                     "ModalBody": "¿ Esta seguro de eliminar la referencia ?",
+                     "ModalFooter": " ",
+                      AccionModal: function(){
+                        eliminarItem(formDeleteReferencias,idreferencia);
+                      }
+                    }
+                    CrearModal(datosModal);
+            })
+            $('.eliminarDiagnostico').on('click', function(e){
+                e.preventDefault();
+                var iddiagnostico=$(this).parents(".rowDiagnostico").attr("id");
+                iddiagnostico= iddiagnostico.replace("di_","");
+
+                  var datosModal={
+                     "IdModal": "modal_"+iddiagnostico,
+                     "ModalHeader": "Eliminar",
+                     "ModalBody": "¿ Esta seguro de eliminar el medicamento del paciente ?",
+                     "ModalFooter": " ",
+                      AccionModal: function(){
+                        eliminarItem(formDeleteDiagnosticos,iddiagnostico);
+                      }
+                    }
+                    CrearModal(datosModal);
+            })
+            $(".modificarPrescripcion").on("click", function(e){
+                e.preventDefault();
+
+                var idprescripcion= $(this).parents(".rowPrescripcion").attr("id");
+                idprescripcion= idprescripcion.replace("pre_","");
+               
+                modificarItem(EditarPrescripcionRuta,idprescripcion);
+
+            })
+            $(".modificarDiagnostico").on("click", function(e){
+                e.preventDefault();
+
+                var iddiagnostico= $(this).parents(".rowDiagnostico").attr("id");
+                iddiagnostico= iddiagnostico.replace("di_","");
+               
+                modificarItem(EditarDiagnosticoRuta,iddiagnostico);
+
+            })
+              $(".modificarReferencia").on("click", function(e){
+                e.preventDefault();
+
+                var idreferencia= $(this).parents(".rowReferencia").attr("id");
+                idreferencia= idreferencia.replace("re_","");
+               
+                modificarItem(EditarReferenciaRuta,idreferencia);
+
+            })
+
+
+        });
+    </script>
 {% endblock %}

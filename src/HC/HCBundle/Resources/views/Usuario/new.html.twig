@@ -23,7 +23,10 @@
 	
     {{ form_start(form) }}
     {{ form_row(form._token) }}
-    {{ form_row(form.usuario,{'attr': {'class': 'form-control'}}) }}
+    <div class="usuariorow">
+    {{ form_row(form.usuario,{'attr': {'class': 'form-control ', 'onchange':'validarNombreUsuario(this.value)'}}) }}
+      
+    </div>
     {{ form_row(form.clave,{'attr': {  'class': 'form-control'}}) }}
     {{ form_row(form.nombre,{'attr': {'class': 'form-control'}}) }}
 
@@ -73,8 +76,7 @@
 
 
     {{ form_row(form.idrol,{'attr': {'class': 'form-control'}}) }}
-
-    <button class="btn btn-success btn-lg center-block"> Agregar </button>
+<div class="opciones"></div>
 </div>
 <!-- <ul class="record_actions">
     <li>
@@ -104,6 +106,43 @@
             showInputs: false
           });
       });
+
+      function pintarValidacion(clase, mensaje){
+               var usuariorow= $('.usuariorow > div');
+
+               if(clase=='success'){
+                 usuariorow.removeClass('form-group has-error');
+               }else{
+                 usuariorow.removeClass('form-group has-sucess');
+
+               }
+               usuariorow.addClass('form-group has-'+clase)
+               usuariorow.find('label').html(mensaje);
+               usuariorow.find('label').addClass('control-label');
+      }
+      //valida en vivo  si ya existe un usuario con el login ingresado
+      function validarNombreUsuario(nombreusuario){
+        var rutaValidar="{{ path('existeUsuario', {nombreusuario:'texto'} ) }}";
+        rutaValidar=rutaValidar.replace("texto", nombreusuario);
+        $.ajax({
+            url:rutaValidar,
+            method:"GET",
+            success:function(resultado){
+                console.log(resultado);
+                if(resultado.respuesta=="Falso"){
+          
+                    pintarValidacion('success','Nombre de usuario')
+                    if($('.enviar').length==0){
+                        $('.opciones').prepend('<button type="submit"  class="btn btn-default enviar center-block" >Enviar</button>');
+                    }
+          
+                }else{
+                    pintarValidacion('error','Ya existe ese usuario, Intenta otro')
+                    $('.opciones > .enviar').remove();
+                }
+            }
+          });
+      }
     </script>
     
 

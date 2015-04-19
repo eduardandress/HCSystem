@@ -28,4 +28,6 @@ gestionarusuarios_delete:
     path:     /{id}/delete
     defaults: { _controller: "HCHCBundle:Usuario:delete" }
     requirements: { _method: post|delete }
-
+existeUsuario:
+    path:     /{nombreusuario}/existeusuario
+    defaults: { _controller: "HCHCBundle:Usuario:existeUsuario" }

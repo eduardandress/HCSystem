@@ -201,8 +201,8 @@ class PrescripcionController extends Controller
             $em->remove($entity);
             $em->flush();
         }
+                        return $this->redirect($this->getRequest()->headers->get('referer'));
 
-        return $this->redirect($this->generateUrl('prescripcion'));
     }
 
     /**

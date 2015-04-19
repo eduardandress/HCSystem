@@ -3,8 +3,8 @@
 namespace HC\HCBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\Criteria;
 
-use Doctrine\Common\Collections\ArrayCollection;
 /**
  * Paciente
  */
@@ -46,28 +46,30 @@ class Paciente
     private $numss;
 
     /**
-     * @var string
+     * @var \Doctrine\Common\Collections\Collection
      */
-    private $medicopref;
-
-    /**
-     * @var string
-     */
-    private $telfmedico;
-
     private $telefonosPersonales;
 
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
     private $telefonosEmergencia;
-    
 
-        public function  __toString(){
+    /**
+     * @var \HC\HCBundle\Entity\Usuario
+     */
+    private $idmedicopref;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->telefonosPersonales = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->telefonosEmergencia = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+      public function  __toString(){
             return $this->cedula;
-        }
-        public function __construct(){
-          
-           $this->telefonosPersonales=  new \Doctrine\Common\Collections\ArrayCollection();
-           $this->telefonosEmergencia=  new \Doctrine\Common\Collections\ArrayCollection();
-        
         }
     /**
      * Get idpaciente
@@ -218,77 +220,6 @@ class Paciente
     }
 
     /**
-     * Set medicopref
-     *
-     * @param string $medicopref
-     * @return Paciente
-     */
-    public function setMedicopref($medicopref)
-    {
-        $this->medicopref = $medicopref;
-
-        return $this;
-    }
-
-    /**
-     * Get medicopref
-     *
-     * @return string 
-     */
-    public function getMedicopref()
-    {
-        return $this->medicopref;
-    }
-
-    /**
-     * Set telfmedico
-     *
-     * @param string $telfmedico
-     * @return Paciente
-     */
-    public function setTelfmedico($telfmedico)
-    {
-        $this->telfmedico = $telfmedico;
-
-        return $this;
-    }
-
-    /**
-     * Get telfmedico
-     *
-     * @return string 
-     */
-    public function getTelfmedico()
-    {
-        return $this->telfmedico;
-    }
-    public function getTelefonosPersonales(){
-
-        return $this->telefonosPersonales;
-    }
-     public function setTelefonosPersonales($telefonosPersonales){
-
-        $this->telefonosPersonales= $telefonosPersonales;
-        foreach ($telefonosPersonales as $telfP) {
-            $telfP->setIdPaciente($this);
-        }
-    }
- 
-    public function getTelefonosEmergencia(){
-        return $this->telefonosEmergencia;
-    }
-
-    public function setTelefonosEmergencia($telefonosEmergencia){
-        $this->telefonosEmergencia= $telefonosEmergencia;
-        foreach ($telefonosEmergencia as $telfE) {
-                $telfE->setIdPaciente($this);
-        }
-    }
-
-  
-
-
-    /**
      * Add telefonosPersonales
      *
      * @param \HC\HCBundle\Entity\Pactelf $telefonosPersonales
@@ -309,6 +240,16 @@ class Paciente
     public function removeTelefonosPersonales(\HC\HCBundle\Entity\Pactelf $telefonosPersonales)
     {
         $this->telefonosPersonales->removeElement($telefonosPersonales);
+    }
+
+    /**
+     * Get telefonosPersonales
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getTelefonosPersonales()
+    {
+        return $this->telefonosPersonales;
     }
 
     /**
@@ -334,51 +275,52 @@ class Paciente
         $this->telefonosEmergencia->removeElement($telefonosEmergencia);
     }
 
-
+    /**
+     * Get telefonosEmergencia
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getTelefonosEmergencia()
+    {
+        return $this->telefonosEmergencia;
+    }
 
     /**
-     * Add telefonosPersonales
+     * Set idmedicopref
      *
-     * @param \HC\HCBundle\Entity\Pactelf $telefonosPersonales
+     * @param \HC\HCBundle\Entity\Usuario $idmedicopref
      * @return Paciente
      */
-    public function addTelefonosPersonale(\HC\HCBundle\Entity\Pactelf $telefonosPersonales)
+    public function setIdmedicopref(\HC\HCBundle\Entity\Usuario $idmedicopref = null)
     {
-        $this->telefonosPersonales[] = $telefonosPersonales;
+        $this->idmedicopref = $idmedicopref;
 
         return $this;
     }
 
     /**
-     * Remove telefonosPersonales
+     * Get idmedicopref
      *
-     * @param \HC\HCBundle\Entity\Pactelf $telefonosPersonales
+     * @return \HC\HCBundle\Entity\Usuario 
      */
-    public function removeTelefonosPersonale(\HC\HCBundle\Entity\Pactelf $telefonosPersonales)
+    public function getIdmedicopref()
     {
-        $this->telefonosPersonales->removeElement($telefonosPersonales);
+ 
+         return $this->idmedicopref;
     }
+    public function setTelefonosPersonales($telefonosPersonales){
 
-    /**
-     * Add telefonosEmergencia
-     *
-     * @param \HC\HCBundle\Entity\Pacnumcontacto $telefonosEmergencia
-     * @return Paciente
-     */
-    public function addTelefonosEmergencium(\HC\HCBundle\Entity\Pacnumcontacto $telefonosEmergencia)
-    {
-        $this->telefonosEmergencia[] = $telefonosEmergencia;
-
-        return $this;
+        $this->telefonosPersonales= $telefonosPersonales;
+        foreach ($telefonosPersonales as $telfP) {
+            $telfP->setIdPaciente($this);
+        }
     }
-
-    /**
-     * Remove telefonosEmergencia
-     *
-     * @param \HC\HCBundle\Entity\Pacnumcontacto $telefonosEmergencia
-     */
-    public function removeTelefonosEmergencium(\HC\HCBundle\Entity\Pacnumcontacto $telefonosEmergencia)
-    {
-        $this->telefonosEmergencia->removeElement($telefonosEmergencia);
+   public function setTelefonosEmergencia($telefonosEmergencia){
+        $this->telefonosEmergencia= $telefonosEmergencia;
+        foreach ($telefonosEmergencia as $telfE) {
+                $telfE->setIdPaciente($this);
+        }
     }
+  
+
 }

@@ -1,0 +1,30 @@
+gestionarvisitas:
+    path:     /
+    defaults: { _controller: "HCHCBundle:Visita:index" }
+
+gestionarvisitas_show:
+    path:     /{id}/show
+    defaults: { _controller: "HCHCBundle:Visita:show" }
+
+gestionarvisitas_new:
+    path:     /new
+    defaults: { _controller: "HCHCBundle:Visita:new" }
+
+gestionarvisitas_create:
+    path:     /create
+    defaults: { _controller: "HCHCBundle:Visita:create" }
+    requirements: { _method: post }
+
+gestionarvisitas_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "HCHCBundle:Visita:edit" }
+
+gestionarvisitas_update:
+    path:     /{id}/update
+    defaults: { _controller: "HCHCBundle:Visita:update" }
+    requirements: { _method: post|put }
+
+gestionarvisitas_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "HCHCBundle:Visita:delete" }
+    requirements: { _method: post|delete }

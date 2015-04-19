@@ -20,6 +20,7 @@ class Tipoconsumo
     private $nombre;
 
 
+   
     /**
      * Get idtipoconsumo
      *

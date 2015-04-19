@@ -15,7 +15,7 @@ class PhcimedicamentoType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('descripcion')
+            ->add('descripcion',null,array('attr'=>array('class'=>'form-control')))
             ->add('fechaactualizacion', null, array('label'=>false,'attr'=>array('class'=>'hidden')))
             ->add('idhci', null, array('label'=>false,'attr'=>array('class'=>'hidden')))
         ;

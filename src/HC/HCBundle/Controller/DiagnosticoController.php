@@ -202,7 +202,8 @@ class DiagnosticoController extends Controller
             $em->flush();
         }
 
-        return $this->redirect($this->generateUrl('diagnostico'));
+                        return $this->redirect($this->getRequest()->headers->get('referer'));
+       
     }
 
     /**

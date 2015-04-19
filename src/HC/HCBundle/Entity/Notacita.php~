@@ -346,24 +346,54 @@ class Notacita
         return $this->idhci;
     }
     //Setters de prescripcion, referencia y diagnostico
-    public function setPrescripcion($prescripciones){
+    public function setPrescripcion($prescripciones,$Medico ){
             $this->prescripcion=$prescripciones;
             foreach ($prescripciones as $prescripcion) {
                 $prescripcion->setIdnotacita($this);
+                $prescripcion->setIdusuario($Medico);
             }
     }
-    public function setReferencia($referencias){
+    public function setReferencia($referencias,$Medico){
             $this->referencia=$referencias;
             foreach ($referencias as $referencia) {
                 $referencia->setIdnotacita($this);
+                $referencia->setIdusuario($Medico);
+
             }
     }
-    public function setDiagnostico($diagnosticos){
+    public function setDiagnostico($diagnosticos,$Medico){
+
             $this->diagnostico=$diagnosticos;
             foreach ($diagnosticos as $diagnostico) {
                 $diagnostico->setIdnotacita($this);
+                $diagnostico->setIdusuario($Medico);
             }
     }
 
     
+
+
+
+    /**
+     * Add referencia
+     *
+     * @param \HC\HCBundle\Entity\Referencia $referencia
+     * @return Notacita
+     */
+    public function addReferencium(\HC\HCBundle\Entity\Referencia $referencia)
+    {
+        $this->referencia[] = $referencia;
+
+        return $this;
+    }
+
+    /**
+     * Remove referencia
+     *
+     * @param \HC\HCBundle\Entity\Referencia $referencia
+     */
+    public function removeReferencium(\HC\HCBundle\Entity\Referencia $referencia)
+    {
+        $this->referencia->removeElement($referencia);
+    }
 }

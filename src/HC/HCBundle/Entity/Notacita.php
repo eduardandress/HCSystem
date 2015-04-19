@@ -373,4 +373,27 @@ class Notacita
     
 
 
+
+    /**
+     * Add referencia
+     *
+     * @param \HC\HCBundle\Entity\Referencia $referencia
+     * @return Notacita
+     */
+    public function addReferencium(\HC\HCBundle\Entity\Referencia $referencia)
+    {
+        $this->referencia[] = $referencia;
+
+        return $this;
+    }
+
+    /**
+     * Remove referencia
+     *
+     * @param \HC\HCBundle\Entity\Referencia $referencia
+     */
+    public function removeReferencium(\HC\HCBundle\Entity\Referencia $referencia)
+    {
+        $this->referencia->removeElement($referencia);
+    }
 }

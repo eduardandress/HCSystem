@@ -1,0 +1,65 @@
+{% extends 'HCHCBundle::layout.html.twig' %}
+
+
+{% block content_header %}
+<section class="content-header">
+    <h1>
+    Detalle de la visita
+      <small>Detalle de la visita seleccionada</small>
+  </h1>
+  <ol class="breadcrumb">
+      <li><a href="#"><i class="fa fa-dashboard"></i> Todas las  visitas</a></li>
+      <li class="active">aqui</li>
+  </ol>
+</section>
+
+{% endblock %}
+
+
+
+{% block content %}
+<div class="col-md-6">
+
+    <div class="box">
+        <div class="box-header">
+          <h3 class="box-title">Detalle de la vista</h3>
+      </div><!-- /.box-header -->
+      <div class="box-body no-padding">
+          <table class="table table-condensed">
+            <tbody>
+                <tr>
+                    <th>Paciente</th>
+                    <td>{{ entity.idpaciente.nombre }} {{ entity.idpaciente.apellido }}</td>
+                </tr>
+                 <tr>
+                    <th>Médico encargado</th>
+                    <td>{{ entity.idmedico.nombre }} </td>
+                </tr>
+                 <tr>
+                    <th>Paciente</th>
+                    <td>{{ entity.idenfermera.nombre }} </td>
+                </tr>
+                <tr>
+                    <th>Fecha</th>
+                    <td>{{ entity.fecha|date('Y-m-d') }}</td>
+                </tr>
+                <tr>
+                    <th>Hora</th>
+                    <td>{{ entity.fecha|date('H:i') }}</td>
+                </tr>
+            </tbody>
+        </table>
+<center>
+    <div class="btn-group">
+             <a href="{{ path('gestionarvisitas') }}" class="btn btn-default">
+                    Regresar
+                </a>
+                 <a href="{{ path('gestionarvisitas_edit', { 'id': entity.idvisita }) }}" class="btn btn-default">
+                    Editar
+                </a>
+                {{ form(delete_form) }}
+            
+    </div>
+</center>  
+
+        {% endblock %}

@@ -133,7 +133,7 @@ class HciController extends Controller
 
        
         
-        $form->add('submit', 'submit', array('label' => 'Create'));
+        $form->add('submit', 'submit', array('label' => 'Crear'));
 
         return $form;
     }
@@ -308,7 +308,7 @@ class HciController extends Controller
             'method' => 'PUT',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Update'));
+        $form->add('submit', 'submit', array('label' => 'Actualizar'));
 
         return $form;
     }
@@ -378,13 +378,16 @@ class HciController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('hci_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
+            ->add('submit', 'submit', array('label' => 'Eliminar'))
             ->getForm()
         ;
     }
-    public function existepacienteAction(Request $request,$cedula){
+    public function tieneHistoriaAction(Request $request,$cedula){
         $em = $this->getDoctrine()->getManager();
-        $entity = $em->getRepository('HCHCBundle:Paciente')->findOneByCedula($cedula);
+        //Optimizar para no hacer de nuevo la consulta :/
+        $paciente = $em->getRepository('HCHCBundle:Paciente')->findOneByCedula($cedula);
+        //luego buscar la historia con el paciente de la cedula dada
+        $entity = $em->getRepository('HCHCBundle:Hci')->findOneByIdpaciente($paciente);
 
         if($entity){
             return new JsonResponse(array('respuesta' =>"Verdadero" ));

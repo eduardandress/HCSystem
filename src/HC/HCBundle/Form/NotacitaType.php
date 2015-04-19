@@ -26,21 +26,27 @@ class NotacitaType extends AbstractType
                 array(
                     'type'=>new PrescripcionType(),
                       'allow_add'    => true,
-                      'allow_delete' => true
+                      'allow_delete' => true,
+                      'label'=>false,
+                      'attr'=>array('class'=>'hidden')
                     )
                 )
             ->add('referencia','collection',
                 array(
                     'type'=>new ReferenciaType(),
                      'allow_add'    => true,
-                    'allow_delete' => true
+                    'allow_delete' => true,
+                      'label'=>false,
+                      'attr'=>array('class'=>'hidden')
                     )
                 )
             ->add('diagnostico','collection',
                 array(
                     'type'=>new DiagnosticoType(),
                      'allow_add'    => true,
-                    'allow_delete' => true
+                    'allow_delete' => true,
+                      'label'=>false,
+                      'attr'=>array('class'=>'hidden')
                     )
                 )
         ;

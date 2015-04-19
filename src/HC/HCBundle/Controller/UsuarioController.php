@@ -4,6 +4,7 @@ namespace HC\HCBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 use HC\HCBundle\Entity\Usuario;
 use HC\HCBundle\Form\UsuarioType;
@@ -67,7 +68,7 @@ class UsuarioController extends Controller
             'method' => 'POST',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Create'));
+        $form->add('submit', 'submit', array('label' => 'Crear'));
 
         return $form;
     }
@@ -147,7 +148,7 @@ class UsuarioController extends Controller
             'method' => 'PUT',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Update'));
+        $form->add('submit', 'submit', array('label' => 'Actualizar'));
 
         return $form;
     }
@@ -217,8 +218,18 @@ class UsuarioController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('gestionarusuarios_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
+            ->add('submit', 'submit', array('label' => 'Eliminar'))
             ->getForm()
         ;
+    }
+    public function existeUsuarioAction(Request $request,$nombreusuario){
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('HCHCBundle:Usuario')->findOneByUsuario($nombreusuario);
+
+        if($entity){
+            return new JsonResponse(array('respuesta' =>"Verdadero" ));
+        }else{
+            return new JsonResponse(array('respuesta' => "Falso"));
+       }
     }
 }

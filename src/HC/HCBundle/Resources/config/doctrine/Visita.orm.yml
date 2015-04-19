@@ -1,6 +1,19 @@
 HC\HCBundle\Entity\Visita:
     type: entity
     table: visita
+    indexes:
+        idPaciente:
+            columns:
+                - idPaciente
+        idCita:
+            columns:
+                - idCita
+        idMedico:
+            columns:
+                - idMedico
+        idEnfermera:
+            columns:
+                - idEnfermera
     id:
         idvisita:
             type: integer
@@ -17,4 +30,41 @@ HC\HCBundle\Entity\Visita:
             nullable: false
             comment: ''
             default: CURRENT_TIMESTAMP
+    manyToOne:
+        idpaciente:
+            targetEntity: Paciente
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idPaciente:
+                    referencedColumnName: idPaciente
+            orphanRemoval: false
+        idcita:
+            targetEntity: Cita
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idCita:
+                    referencedColumnName: idCita
+            orphanRemoval: false
+        idmedico:
+            targetEntity: Usuario
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idMedico:
+                    referencedColumnName: idUsuario
+            orphanRemoval: false
+        idenfermera:
+            targetEntity: Usuario
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idEnfermera:
+                    referencedColumnName: idUsuario
+            orphanRemoval: false
     lifecycleCallbacks: {  }

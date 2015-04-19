@@ -5,37 +5,37 @@ namespace HC\HCBundle\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-use HC\HCBundle\Entity\Referencia;
-use HC\HCBundle\Form\ReferenciaType;
+use HC\HCBundle\Entity\Visita;
+use HC\HCBundle\Form\VisitaType;
 
 /**
- * Referencia controller.
+ * Visita controller.
  *
  */
-class ReferenciaController extends Controller
+class VisitaController extends Controller
 {
 
     /**
-     * Lists all Referencia entities.
+     * Lists all Visita entities.
      *
      */
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('HCHCBundle:Referencia')->findAll();
+        $entities = $em->getRepository('HCHCBundle:Visita')->findAll();
 
-        return $this->render('HCHCBundle:Referencia:index.html.twig', array(
+        return $this->render('HCHCBundle:Visita:index.html.twig', array(
             'entities' => $entities,
         ));
     }
     /**
-     * Creates a new Referencia entity.
+     * Creates a new Visita entity.
      *
      */
     public function createAction(Request $request)
     {
-        $entity = new Referencia();
+        $entity = new Visita();
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
 
@@ -44,26 +44,26 @@ class ReferenciaController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->getRequest()->headers->get('referer'));
+            return $this->redirect($this->generateUrl('gestionarvisitas_show', array('id' => $entity->getIdvisita())));
         }
 
-        return $this->render('HCHCBundle:Referencia:new.html.twig', array(
+        return $this->render('HCHCBundle:Visita:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
         ));
     }
 
     /**
-     * Creates a form to create a Referencia entity.
+     * Creates a form to create a Visita entity.
      *
-     * @param Referencia $entity The entity
+     * @param Visita $entity The entity
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createCreateForm(Referencia $entity)
+    private function createCreateForm(Visita $entity)
     {
-        $form = $this->createForm(new ReferenciaType(), $entity, array(
-            'action' => $this->generateUrl('referencia_create'),
+        $form = $this->createForm(new VisitaType(), $entity, array(
+            'action' => $this->generateUrl('gestionarvisitas_create'),
             'method' => 'POST',
         ));
 
@@ -73,60 +73,60 @@ class ReferenciaController extends Controller
     }
 
     /**
-     * Displays a form to create a new Referencia entity.
+     * Displays a form to create a new Visita entity.
      *
      */
     public function newAction()
     {
-        $entity = new Referencia();
+        $entity = new Visita();
         $form   = $this->createCreateForm($entity);
 
-        return $this->render('HCHCBundle:Referencia:new.html.twig', array(
+        return $this->render('HCHCBundle:Visita:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
         ));
     }
 
     /**
-     * Finds and displays a Referencia entity.
+     * Finds and displays a Visita entity.
      *
      */
     public function showAction($id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('HCHCBundle:Referencia')->find($id);
+        $entity = $em->getRepository('HCHCBundle:Visita')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Referencia entity.');
+            throw $this->createNotFoundException('Unable to find Visita entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('HCHCBundle:Referencia:show.html.twig', array(
+        return $this->render('HCHCBundle:Visita:show.html.twig', array(
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),
         ));
     }
 
     /**
-     * Displays a form to edit an existing Referencia entity.
+     * Displays a form to edit an existing Visita entity.
      *
      */
     public function editAction($id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('HCHCBundle:Referencia')->find($id);
+        $entity = $em->getRepository('HCHCBundle:Visita')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Referencia entity.');
+            throw $this->createNotFoundException('Unable to find Visita entity.');
         }
 
         $editForm = $this->createEditForm($entity);
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('HCHCBundle:Referencia:edit.html.twig', array(
+        return $this->render('HCHCBundle:Visita:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
@@ -134,16 +134,16 @@ class ReferenciaController extends Controller
     }
 
     /**
-    * Creates a form to edit a Referencia entity.
+    * Creates a form to edit a Visita entity.
     *
-    * @param Referencia $entity The entity
+    * @param Visita $entity The entity
     *
     * @return \Symfony\Component\Form\Form The form
     */
-    private function createEditForm(Referencia $entity)
+    private function createEditForm(Visita $entity)
     {
-        $form = $this->createForm(new ReferenciaType(), $entity, array(
-            'action' => $this->generateUrl('referencia_update', array('id' => $entity->getIdreferencia())),
+        $form = $this->createForm(new VisitaType(), $entity, array(
+            'action' => $this->generateUrl('gestionarvisitas_update', array('id' => $entity->getIdvisita())),
             'method' => 'PUT',
         ));
 
@@ -152,17 +152,17 @@ class ReferenciaController extends Controller
         return $form;
     }
     /**
-     * Edits an existing Referencia entity.
+     * Edits an existing Visita entity.
      *
      */
     public function updateAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('HCHCBundle:Referencia')->find($id);
+        $entity = $em->getRepository('HCHCBundle:Visita')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Referencia entity.');
+            throw $this->createNotFoundException('Unable to find Visita entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
@@ -172,17 +172,17 @@ class ReferenciaController extends Controller
         if ($editForm->isValid()) {
             $em->flush();
 
-            return $this->redirect($this->generateUrl('referencia_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('gestionarvisitas_edit', array('id' => $id)));
         }
 
-        return $this->render('HCHCBundle:Referencia:edit.html.twig', array(
+        return $this->render('HCHCBundle:Visita:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
     /**
-     * Deletes a Referencia entity.
+     * Deletes a Visita entity.
      *
      */
     public function deleteAction(Request $request, $id)
@@ -192,21 +192,21 @@ class ReferenciaController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('HCHCBundle:Referencia')->find($id);
+            $entity = $em->getRepository('HCHCBundle:Visita')->find($id);
 
             if (!$entity) {
-                throw $this->createNotFoundException('Unable to find Referencia entity.');
+                throw $this->createNotFoundException('Unable to find Visita entity.');
             }
 
             $em->remove($entity);
             $em->flush();
         }
-                        return $this->redirect($this->getRequest()->headers->get('referer'));
 
+        return $this->redirect($this->generateUrl('gestionarvisitas'));
     }
 
     /**
-     * Creates a form to delete a Referencia entity by id.
+     * Creates a form to delete a Visita entity by id.
      *
      * @param mixed $id The entity id
      *
@@ -215,7 +215,7 @@ class ReferenciaController extends Controller
     private function createDeleteForm($id)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('referencia_delete', array('id' => $id)))
+            ->setAction($this->generateUrl('gestionarvisitas_delete', array('id' => $id)))
             ->setMethod('DELETE')
             ->add('submit', 'submit', array('label' => 'Delete'))
             ->getForm()

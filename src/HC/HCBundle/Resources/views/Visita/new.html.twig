@@ -1,0 +1,65 @@
+{% extends 'HCHCBundle::layout.html.twig' %}
+
+
+
+
+{% block content_header %}
+  <section class="content-header">
+    <h1>
+      Nueva Visita
+      <small>Registar visita del paciente</small>
+    </h1>
+    <ol class="breadcrumb">
+      <li><a href="#"><i class="fa fa-dashboard"></i> visitas</a></li>
+      <li class="active">Nueva visita</li>
+    </ol>
+  </section>
+
+{% endblock %}
+
+{% block content %}
+<div class="col-md-6">
+    {{form_start(form)}}
+    {{ form_row(form._token) }}
+              <div class="box">
+                    <div class="box-header">
+                      <h3 class="box-title">Nueva  Visita</h3>
+                    </div><!-- /.box-header -->
+                        <div class="box-body no-padding">
+                          <table class="table table-condensed">
+                            <tbody>
+                        <tr>
+                            <th class="cedularow">{{ form_row(form.idpaciente,{'attr': {'class': 'form-control inputcedula', 'onchange':'validarCedulaPaciente(this.value)'}}) }}</th>
+                        </tr>
+                      <!--   <tr>
+                            <th>{{ form_row(form.idcita,{'attr': {'class': 'form-control'}}) }}</th>
+
+                        </tr>  -->
+                        <tr>
+                              <th>{{ form_row(form.idmedico,{'attr': {'class': 'form-control'}}) }}</th>
+                        </tr>
+                        <tr>
+                            <th>{{ form_row(form.idenfermera,{'attr': {'class': 'form-control'}}) }}</th>
+
+                        </tr>
+                        </tbody>
+                          </table>
+                        </div><!-- /.box-body -->
+                </div>
+     
+
+       
+
+    {{ form(form) }}
+
+
+    <center>
+        <div class="btn-group opciones">
+         
+            <a href="{{ path('gestionarvisitas') }}" class="btn btn-default">
+                Regresar
+            </a>
+        </div>
+    </center>  
+
+{% endblock %}

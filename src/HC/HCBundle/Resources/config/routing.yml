@@ -1,3 +1,7 @@
+hchc_gestionarvisitas:
+    resource: "@HCHCBundle/Resources/config/routing/visita.yml"
+    prefix:   /gestionarvisitas
+
 hchc_diagnostico:
     resource: "@HCHCBundle/Resources/config/routing/diagnostico.yml"
     prefix:   /diagnostico

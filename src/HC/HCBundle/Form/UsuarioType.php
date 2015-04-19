@@ -22,7 +22,7 @@ class UsuarioType extends AbstractType
             ->add('numss',null, array("label"=>"Número de seguro social"))
             ->add('direccion',null, array("label"=>"Dirección"))
             ->add('telefono',null, array("label"=>"Teléfono Personal"))
-            ->add('fechainicio',null, array("widget"=> "single_text", "label"=>"Fecha de Inicio en la carrera"))
+            ->add('fechainicio',null, array("widget"=> "single_text", "label"=>"Fecha de Inicio"))
             ->add('idrol',null, array("label"=>"Rol de usuario"))
         ;
     }

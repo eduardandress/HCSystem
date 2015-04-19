@@ -1,6 +1,10 @@
 HC\HCBundle\Entity\Paciente:
     type: entity
     table: paciente
+    indexes:
+        idmedicoPref:
+            columns:
+                - idmedicoPref
     uniqueConstraints:
         cedula:
             columns:
@@ -54,19 +58,16 @@ HC\HCBundle\Entity\Paciente:
             fixed: false
             comment: ''
             column: numSS
-        medicopref:
-            type: string
-            nullable: false
-            length: 150
-            fixed: false
-            comment: ''
-            column: medicoPref
-        telfmedico:
-            type: string
-            nullable: true
-            length: 20
-            fixed: false
-            comment: ''
+    manyToOne:
+        idmedicopref:
+            targetEntity: Usuario
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idmedicoPref:
+                    referencedColumnName: idUsuario
+            orphanRemoval: false
     oneToMany:
         telefonosPersonales:
             targetEntity: Pactelf

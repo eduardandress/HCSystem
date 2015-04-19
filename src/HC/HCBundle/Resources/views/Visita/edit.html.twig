@@ -1,0 +1,64 @@
+{% extends 'HCHCBundle::layout.html.twig' %}
+
+
+
+{% block content_header %}
+  <section class="content-header">
+    <h1>
+      Editar visita
+      <small>Editar la visita seleccionada</small>
+    </h1>
+    <ol class="breadcrumb">
+      <li><a href="#"><i class="fa fa-dashboard"></i>  toda las visitas</a></li>
+      <li class="active">aqui</li>
+    </ol>
+  </section>
+
+{% endblock %}
+
+{% block content %}
+<div class="col-md-6">
+      {{form_start(edit_form)}}
+      {{ form_row(edit_form._token) }}
+            <div class="box">
+                      <div class="box-header">
+                        <h3 class="box-title">Editar visita</h3>
+                      </div><!-- /.box-header -->
+                          <div class="box-body no-padding">
+                            <table class="table table-condensed">
+                              <tbody>
+                              <tr>
+                                
+                                <th class="cedularow">{{ form_row(edit_form.idpaciente,{'attr': {'class': 'form-control inputcedula', 'onchange':'validarCedulaPaciente(this.value)'}}) }}</th>
+                              </tr>
+                              <tr>
+                                 <th>{{ form_row(edit_form.idmedico,{'attr': {'class': 'form-control'}}) }}</th>
+                                
+                              </tr>
+                              <tr>
+                                 <th>{{ form_row(edit_form.idenfermera,{'attr': {'class': 'form-control'}}) }}</th>
+                                
+                              </tr>
+                             <!--   <tr>
+                                 <th>{{ form_row(edit_form.idcita,{'attr': {'class': 'form-control'}}) }}</th>
+                                
+                              </tr> -->
+                            </tbody>
+                            </table>
+                          </div><!-- /.box-body -->
+                  </div>
+
+       <center>
+        <div class="btn-group opciones">
+                  <button type="submit" class="btn btn-default enviar" >Enviar</button>
+                  <a href="{{ path('gestionarvisitas') }}" class="btn btn-default">Regresar</a>
+                  {{ form_end(edit_form, {'render_rest': false}) }}<!-- Se termina el formulario antes de colocar el formulario de eliminar :/ :D  -->
+                  {{ form(delete_form) }}
+        </div>
+       </center> 
+
+</div>      
+
+
+
+{% endblock %}

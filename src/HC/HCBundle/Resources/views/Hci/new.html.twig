@@ -76,12 +76,12 @@
                 </div>
                 <div class="box-body consumos" data-prototype="{{ form_widget(form.consumo.vars.prototype)|e }}">
                        {% for consumo in form.consumo %}
-                         <h4>Consumo de {{form_row(consumo.idtipoconsumo)}}</h4>
+                        <h4>Consumo de {{form_row(consumo.idtipoconsumo) }}</h4>
                       {{ form_row(consumo.idtipoestado,{'attr':{'class':'form-control'}}) }}
                        {% endfor %}
                 </div>
                   </br>
-                <a id="addconsumo" class="btn btn-block btn-success" href="#">Agregar nuevo consumo</a>
+                
              </div>
 
              
@@ -94,7 +94,7 @@
 
 
       <center>
-          <div class="btn-group">
+          <div class="btn-group opciones">
             <!-- <button type="submit" class="btn btn-success  center-block" >Crear</button> -->
             
              <a href="{{ path('hci') }}" class="btn btn-default">
@@ -131,10 +131,7 @@
       $ListadeCondiciones.data(
           'index', $ListadeCondiciones.find(':input').length
                     );
-      $ListadeConsumos=$('.consumos');
-      $ListadeConsumos.data(
-          'index', $ListadeConsumos.find(':input').length
-                    );
+     
       $ListadeMedicamentos=$('.medicamentos');
       $ListadeMedicamentos.data(
           'index', $ListadeMedicamentos.find(':input').length
@@ -150,10 +147,7 @@
           e.preventDefault();
           addItem($ListadeCondiciones);
         });
-          $('#addconsumo').on('click', function(e){
-          e.preventDefault();
-          addItem($ListadeConsumos);
-        });
+          
            $('#addmedicamento').on('click', function(e){
           e.preventDefault();
           addItem($ListadeMedicamentos);
@@ -182,21 +176,40 @@
             url:rutaValidar,
             method:"GET",
             success:function(resultado){
-              console.log(resultado);
+              //console.log(resultado);
               if(resultado.respuesta=="Falso"){
                 var botonRegistarU='<a href="{{path("paciente_new")}}" class="btn btn-success btn-xs">Registar</a>';
                 pintarValidacion('error','No existe el paciente '+botonRegistarU)
                 $('.opciones > .enviar').remove();
 
               }else{
+                // pintarValidacion('success','Cedula')
+                validarTieneHistoriaPaciente(cedula)
+              }
+            }
+          });
+        }
+          function validarTieneHistoriaPaciente(cedula){
+            var rutaValidar="{{ path('tieneHistoria', {cedula:'texto'} ) }}";
+           rutaValidar=rutaValidar.replace("texto", cedula);
+
+          $.ajax({
+            url:rutaValidar,
+            method:"GET",
+            success:function(resultado){
+              //console.log(resultado);
+              if(resultado.respuesta=="Falso"){     
+
                 pintarValidacion('success','Cedula')
                 if($('.enviar').length==0){
                   $('.opciones').prepend('<button type="submit"  class="btn btn-default enviar" >Enviar</button>');
                 }
+              }else{
+                pintarValidacion('error','El paciente ya tiene Historia Médica ')
+                $('.opciones > .enviar').remove();
               }
             }
           });
-
         }
 </script>
 {% endblock%}

@@ -51,16 +51,8 @@
           </div>
   
       			{{ form_row(edit_form.numss,{'attr':{'class':'form-control'}}) }}
-      			{{ form_row(edit_form.medicopref,{'attr':{'class':'form-control'}}) }}
-            <div class="form-group">
-              {{form_label(edit_form.telfmedico)}}
-              <div class="input-group">
-                <div class="input-group-addon">
-                  <i class="fa fa-phone"></i>
-                </div>
-                {{ form_widget( edit_form.telfmedico,{'attr':{'class':'form-control','data-inputmask':"'mask':'(9999)-9999999' ",'data-mask':''}} ) }}
-              </div>
-            </div>
+      			{{ form_row(edit_form.idmedicopref,{'attr':{'class':'form-control'}}) }}
+           
     {{ form(edit_form) }}
 
     <center>

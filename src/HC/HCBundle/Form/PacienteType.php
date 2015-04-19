@@ -23,8 +23,17 @@ class PacienteType extends AbstractType
             ->add('direccion', 'textarea', array("label"=>"Dirección"))
             ->add('fechanac', 'text', array("label"=>"Fecha de nacimiento"))
             ->add('numss', 'text', array("label"=>"Número de seguro social"))
-            ->add('medicopref', 'text', array("label"=>"Medico Preferido"))
-            ->add('telfmedico', 'text', array("label"=>"Número telefonico"))
+            ->add('idmedicopref', 'entity',
+                    array(
+                        'class'=>'HCHCBundle:Usuario',
+                        "label"=>"Medico Preferido",
+                        'query_builder' => function(\Doctrine\ORM\EntityRepository  $er) {
+                                        return $er->createQueryBuilder('u')
+                                        ->where('u.idrol = 2');
+                                        },
+
+                    )
+             )
         ;
         $builder
             ->add('telefonosPersonales','collection', 

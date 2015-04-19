@@ -27,3 +27,6 @@ hci_delete:
     path:     /{id}/delete
     defaults: { _controller: "HCHCBundle:Hci:delete" }
     requirements: { _method: post|delete }
+tieneHistoria:
+    path:     /{cedula}/tieneHistoria
+    defaults: { _controller: "HCHCBundle:Hci:tieneHistoria" }

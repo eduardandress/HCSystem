@@ -1,0 +1,73 @@
+{% extends 'HCHCBundle::layout.html.twig' %}
+
+
+{% block content_header %}
+  <section class="content-header">
+    <h1>
+      Visitas
+      <small>Visitas de los pacientes</small>
+    </h1>
+    <ol class="breadcrumb">
+      <li><a href="#"><i class="fa fa-dashboard"></i>  Visitas</a></li>
+      <li class="active">aqui</li>
+    </ol>
+  </section>
+
+{% endblock %}
+
+
+
+{% block content %}
+<style >
+    .small-btn{
+        width:40px;
+        height:40px;
+        padding:0px;
+    }
+</style>
+<div class="box">
+    <div class="box-header">
+      <h3 class="box-title">Citas</h3>
+  </div><!-- /.box-header -->
+  <div class="box-body">
+      <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Paciente</th>
+                <th>Médico encargado</th>
+                <th>Enfermera encargada</th>
+                <th>Fecha</th>
+                <th>Hora</th>
+
+                <th style="width:20%">Acciones</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            {% for entity in entities %}
+            <tr>
+                <td>{{entity.idpaciente.nombre}} {{entity.idpaciente.apellido}}</td>
+                <td>{{entity.idmedico.nombre}}</td>
+                <td>{{entity.idenfermera.nombre}}</td>
+                <td>{% if entity.fecha %}{{ entity.fecha|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if entity.fecha %}{{ entity.fecha|date('H:i') }}{% endif %}</td>
+
+
+                <td>
+
+                <a href="{{ path('gestionarvisitas_show', { 'id': entity.idvisita }) }}" class="btn btn-app small-btn"><i class="fa fa-eye"></i>Ver</a>
+
+                    <a href="{{ path('gestionarvisitas_edit', { 'id': entity.idvisita }) }}" class="btn btn-app small-btn"> <i class="fa fa-edit"></i>Editar</a>
+
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+  
+            <a href="{{ path('gestionarvisitas_new') }}" class="btn btn-block btn-primary btn-lg">
+                Registar Nueva Vista
+            </a>
+ 
+    {% endblock %}
