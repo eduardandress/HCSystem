@@ -5,7 +5,8 @@ namespace HC\HCBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-
+use HC\HCBundle\Entity\cambiarFormularioHci;
+;
 class HciType extends AbstractType
 {
     /**
@@ -15,6 +16,7 @@ class HciType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            
             ->add("idpaciente",null, array('label'=>false,'attr'=>array('class'=>'hidden')))
             ->add('cedula','text',array('label'=>'Paciente','mapped'=>false))
             ->add("alergia", "collection", 
@@ -24,6 +26,7 @@ class HciType extends AbstractType
                         'allow_delete' => true,
                     )
                  )
+
             ->add("consumo", "collection", 
                     array(
                         "type"=> new PhciconsumoType(), 

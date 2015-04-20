@@ -7,7 +7,7 @@
   <section class="content-header">
     <h1>
       Nueva Visita
-      <small>Registar visita del paciente</small>
+      <small>Registar visita {% if  citaEmergencia %} de emergencia      {% endif %} del paciente</small>
     </h1>
     <ol class="breadcrumb">
       <li><a href="#"><i class="fa fa-dashboard"></i> visitas</a></li>
@@ -28,9 +28,11 @@
                         <div class="box-body no-padding">
                           <table class="table table-condensed">
                             <tbody>
+                        {% if  citaEmergencia %}
                         <tr>
                             <th class="cedularow">{{ form_row(form.idpaciente,{'attr': {'class': 'form-control inputcedula', 'onchange':'validarCedulaPaciente(this.value)'}}) }}</th>
                         </tr>
+                         {% endif %}
                       <!--   <tr>
                             <th>{{ form_row(form.idcita,{'attr': {'class': 'form-control'}}) }}</th>
 
@@ -50,7 +52,7 @@
 
        
 
-    {{ form(form) }}
+    {{ form_end(form, {'render_rest': false}) }}
 
 
     <center>

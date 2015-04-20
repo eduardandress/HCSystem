@@ -76,7 +76,8 @@
                                         
                                             <a href="{{ path('gestionarcitas_edit', { 'id': entity.idcita }) }}" class="btn btn-app small-btn"><i class="fa fa-edit"></i>Editar</a>
 
-                                            <a class="btn btn-app small-btn gVisitaBoton"><i class="fa fa-eye"></i>Registar Visita</a>
+                                            <a href="{{ path('gestionarvisitas_new', { 'idcita': entity.idcita }) }}"  class="btn btn-app small-btn gVisitaBoton"><i class="fa fa-eye"></i>Registar Visita</a>
+
                                        
                                     </td>
                                 </tr>

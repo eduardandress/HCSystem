@@ -7,9 +7,10 @@ gestionarvisitas_show:
     defaults: { _controller: "HCHCBundle:Visita:show" }
 
 gestionarvisitas_new:
-    path:     /new
-    defaults: { _controller: "HCHCBundle:Visita:new" }
-
+    path:     /new/{idcita}/
+    defaults: { _controller: "HCHCBundle:Visita:new",idcita:0 }
+    requirements:
+        idcita: \d+
 gestionarvisitas_create:
     path:     /create
     defaults: { _controller: "HCHCBundle:Visita:create" }

@@ -76,14 +76,30 @@ class VisitaController extends Controller
      * Displays a form to create a new Visita entity.
      *
      */
-    public function newAction()
+    public function newAction($idcita)
     {
+
+       //Se va a crear una visita de una cita de un paciente;
+
         $entity = new Visita();
         $form   = $this->createCreateForm($entity);
+        $citaEmergencia=true;
+        if($idcita!=0){
+            //Se obtiene la cita 
+            $em=$this->getDoctrine()->getManager();
+            $cita=$em->getRepository('HCHCBundle:Cita')->findOneByIdcita($idcita);
+            if($cita){
+                $paciente=$cita->getIdpaciente();
+                $form->get('idcita')->setData($cita);
+                $form->get('idpaciente')->setData($paciente);
+                $citaEmergencia=false;
+            }
+        }
 
         return $this->render('HCHCBundle:Visita:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
+            'citaEmergencia'=>$citaEmergencia,
         ));
     }
 

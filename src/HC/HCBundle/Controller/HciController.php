@@ -13,6 +13,7 @@ use HC\HCBundle\Entity\Phcicondicion;
 use HC\HCBundle\Entity\Phcimedicamento;
 use HC\HCBundle\Entity\Notacita;
 use HC\HCBundle\Entity\Hci;
+use HC\HCBundle\Entity\Paciente;
 use HC\HCBundle\Form\HciType;
 use HC\HCBundle\Form\NotacitaType;
 use HC\HCBundle\Form\PhcialergiaType;
@@ -47,11 +48,13 @@ class HciController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entities = $em->getRepository('HCHCBundle:Hci')->findAll();
-
+       
         return $this->render('HCHCBundle:Hci:index.html.twig', array(
             'entities' => $entities,
+            
         ));
     }
+ 
     /**
      * Creates a new Hci entity.
      *
@@ -60,6 +63,7 @@ class HciController extends Controller
     {
         $entity = new Hci();
         $form = $this->createCreateForm($entity);
+
         $form->handleRequest($request);
 
         //Se obtiene la cedula introducida en el formulario (campo cedula)
@@ -73,6 +77,7 @@ class HciController extends Controller
          if($pacienteConCedula==null){
                 $pacienteExiste=false;
          }
+
 
          //Solo se procede a insertar la nueva instancia si es valido el formulario y 
          //existe un paciente con la cedula dada
@@ -131,8 +136,6 @@ class HciController extends Controller
             'method' => 'POST',
         ));
 
-       
-        
         $form->add('submit', 'submit', array('label' => 'Crear'));
 
         return $form;
