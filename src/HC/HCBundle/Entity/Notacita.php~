@@ -396,4 +396,7 @@ class Notacita
     {
         $this->referencia->removeElement($referencia);
     }
+    public function getId(){
+        return $this->idnotacita;
+    }
 }

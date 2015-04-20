@@ -57,4 +57,7 @@ class Tipoconsumo
     public function __toString(){
         return $this->nombre;
     }
+    public function getId(){
+        return $this->idtipoconsumo;
+    }
 }

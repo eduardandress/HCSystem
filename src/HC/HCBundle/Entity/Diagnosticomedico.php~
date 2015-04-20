@@ -80,4 +80,7 @@ class Diagnosticomedico
     {
         return $this->idmedico;
     }
+    public function getId(){
+        return $this->iddiagnosticomed;
+    }
 }

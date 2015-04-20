@@ -19,7 +19,9 @@ class Tipoaccion
      */
     private $nombre;
 
-
+    public function __toString(){
+        return $this->nombre;
+    }
     /**
      * Get idtipoaccion
      *
@@ -51,5 +53,8 @@ class Tipoaccion
     public function getNombre()
     {
         return $this->nombre;
+    }
+    public function getId(){
+        return $this->idtipoaccion;
     }
 }

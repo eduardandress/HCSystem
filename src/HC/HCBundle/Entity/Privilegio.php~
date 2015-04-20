@@ -52,4 +52,7 @@ class Privilegio
     {
         return $this->nombre;
     }
+    public function getId(){
+        return $this->idprivilegio;
+    }
 }

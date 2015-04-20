@@ -21,7 +21,7 @@ HC\HCBundle\Entity\Cita:
     fields:
         fechacreacion:
             type: datetime
-            nullable: false
+            nullable: true
             comment: ''
             default: CURRENT_TIMESTAMP
             column: fechaCreacion
@@ -44,15 +44,6 @@ HC\HCBundle\Entity\Cita:
             fixed: false
             comment: ''
     manyToOne:
-        idusuario:
-            targetEntity: Usuario
-            cascade: {  }
-            mappedBy: null
-            inversedBy: null
-            joinColumns:
-                idUsuario:
-                    referencedColumnName: idUsuario
-            orphanRemoval: false
         idpaciente:
             targetEntity: Paciente
             cascade: {  }
@@ -61,5 +52,14 @@ HC\HCBundle\Entity\Cita:
             joinColumns:
                 idPaciente:
                     referencedColumnName: idPaciente
+            orphanRemoval: false
+        idusuario:
+            targetEntity: Usuario
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idUsuario:
+                    referencedColumnName: idUsuario
             orphanRemoval: false
     lifecycleCallbacks: {  }

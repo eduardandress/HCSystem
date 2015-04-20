@@ -164,4 +164,7 @@ class Referencia
     {
         return $this->idusuario;
     }
+    public function getId(){
+        return $this->idreferencia;
+    }
 }

@@ -109,5 +109,8 @@ class Pactelf
     {
         return $this->idpaciente;
     }
+    public function getId(){
+        return $this->idpactelf;
+    }
     
 }

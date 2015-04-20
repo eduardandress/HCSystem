@@ -54,4 +54,7 @@ class Tipotel
     {
         return $this->nombre;
     }
+    public function getId(){
+        return $this->idtipotel;
+    }
 }

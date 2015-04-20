@@ -136,4 +136,7 @@ class Diagnostico
     {
         return $this->idusuario;
     }
+    public function getId(){
+        return $this->iddiagnostico;
+    }
 }

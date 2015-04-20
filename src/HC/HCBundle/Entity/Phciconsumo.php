@@ -139,4 +139,7 @@ class Phciconsumo
     {
         return $this->idtipoestado;
     }
+    public function getId(){
+        return $this->idphciconsumo;
+    }
 }

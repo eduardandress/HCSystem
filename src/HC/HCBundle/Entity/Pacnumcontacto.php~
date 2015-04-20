@@ -192,4 +192,7 @@ class Pacnumcontacto
     {
         return $this->idpaciente;
     }
+    public function getId(){
+        return $this->idpacnumcontacto;
+    }
 }

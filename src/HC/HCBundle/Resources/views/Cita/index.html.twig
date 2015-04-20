@@ -24,12 +24,19 @@
         height:40px;
         padding:0px;
     }
+    .barraOpciones{
+      float:left;
+      margin-bottom: 10px;
+      width: 100%;
+      display: block;
+    }
 </style>
             <div class="box">
-                    <div class="box-header">
+     
+                     <div class="box-header">
                       <h3 class="box-title">Citas</h3>
                     </div><!-- /.box-header -->
-                    <div class="box-body">
+                    <div class="box-body"> 
 <table id="Citas" class="table table-striped table-bordered" cellspacing="0" width="100%">
                          <thead>
                               <tr>
@@ -52,9 +59,9 @@
                                 <th style="width: 60px">Motivo</th>
                                 <th style="width:28%; text-align:center">Acciones</th>
                               </tr>
-                              </thead>
+                             
                         </tfoot>
-                           
+                          <tbody> 
                             {% for entity in entities %}
                                 <tr>
                                    <td>{{entity.idpaciente.nombre}} {{entity.idpaciente.apellido}} </td>
@@ -87,11 +94,11 @@
                       </ul>
                     </div>
              </div>
+      
 
-            <a href="{{ path('gestionarcitas_new') }}" class="btn btn-block btn-primary btn-lg">
-                Nueva cita
-            </a>
-
+     <div class="barraOpciones">
+                      <a href="{{ path('gestionarcitas_new') }}"  style="float:right" class="btn btn-success  "><i class="fa fa-plus"></i> Nueva cita</a>
+              </div>
           
 {% endblock %}
 {% block javascripts -%}

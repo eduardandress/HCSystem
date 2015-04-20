@@ -56,4 +56,7 @@ class Rol
     {
         return $this->nombre;
     }
+    public function getId(){
+        return $this->idrol;
+    }
 }

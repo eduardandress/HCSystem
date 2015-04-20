@@ -342,4 +342,7 @@ class Usuario implements UserInterface, \Serializable
             // $this->salt
         ) = unserialize($serialized);
     }
+    public function getId(){
+        return $this->idusuario;
+    }
 }

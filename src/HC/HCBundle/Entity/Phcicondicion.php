@@ -108,4 +108,7 @@ class Phcicondicion
     {
         return $this->idhci;
     }
+    public function getId(){
+        return $this->idphcicondicion;
+    }
 }

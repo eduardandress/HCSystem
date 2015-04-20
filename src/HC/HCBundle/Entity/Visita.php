@@ -164,4 +164,7 @@ class Visita
     {
         return $this->idenfermera;
     }
+    public function getId(){
+        return $this->idvisita;
+    }
 }

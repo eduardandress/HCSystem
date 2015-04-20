@@ -10,6 +10,11 @@ use Doctrine\ORM\Mapping as ORM;
 class Cita
 {
     /**
+     * @var integer
+     */
+    private $idcita;
+
+    /**
      * @var \DateTime
      */
     private $fechacreacion;
@@ -20,7 +25,7 @@ class Cita
     private $fechaprogramada;
 
     /**
-     * @var \DateTime
+     * @var string
      */
     private $horaprogramada;
 
@@ -28,11 +33,6 @@ class Cita
      * @var string
      */
     private $motivo;
-
-    /**
-     * @var integer
-     */
-    private $idcita;
 
     /**
      * @var \HC\HCBundle\Entity\Paciente
@@ -44,9 +44,17 @@ class Cita
      */
     private $idusuario;
 
-    public function __toString(){
-        return $this->motivo;
+
+    /**
+     * Get idcita
+     *
+     * @return integer 
+     */
+    public function getIdcita()
+    {
+        return $this->idcita;
     }
+
     /**
      * Set fechacreacion
      *
@@ -96,7 +104,7 @@ class Cita
     /**
      * Set horaprogramada
      *
-     * @param \DateTime $horaprogramada
+     * @param string $horaprogramada
      * @return Cita
      */
     public function setHoraprogramada($horaprogramada)
@@ -109,7 +117,7 @@ class Cita
     /**
      * Get horaprogramada
      *
-     * @return \DateTime 
+     * @return string 
      */
     public function getHoraprogramada()
     {
@@ -137,16 +145,6 @@ class Cita
     public function getMotivo()
     {
         return $this->motivo;
-    }
-
-    /**
-     * Get idcita
-     *
-     * @return integer 
-     */
-    public function getIdcita()
-    {
-        return $this->idcita;
     }
 
     /**
@@ -193,5 +191,11 @@ class Cita
     public function getIdusuario()
     {
         return $this->idusuario;
+    }
+      public function getId(){
+        return $this->idcita;
+    }
+    public function _toString(){
+        return $this->motivo;
     }
 }

@@ -1,3 +1,7 @@
+hchc_bitacora:
+    resource: "@HCHCBundle/Resources/config/routing/bitacora.yml"
+    prefix:   /bitacora
+
 hchc_gestionarvisitas:
     resource: "@HCHCBundle/Resources/config/routing/visita.yml"
     prefix:   /gestionarvisitas

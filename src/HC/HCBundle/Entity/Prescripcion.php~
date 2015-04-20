@@ -164,4 +164,7 @@ class Prescripcion
     {
         return $this->idusuario;
     }
+    public function getId(){
+        return $this->idprescripcion;
+    }
 }

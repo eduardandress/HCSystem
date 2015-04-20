@@ -80,4 +80,7 @@ class Rolprivilegio
     {
         return $this->idprivilegio;
     }
+    public function getId(){
+        return $this->idrolprivilegio;
+    }
 }

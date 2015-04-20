@@ -54,4 +54,7 @@ class Tipoestado
     {
         return $this->nombre;
     }
+    public function getId(){
+        return $this->idtipoestado;
+    }
 }

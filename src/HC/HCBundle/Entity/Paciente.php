@@ -369,4 +369,7 @@ class Paciente
     {
         $this->telefonosEmergencia->removeElement($telefonosEmergencia);
     }
+    public function getId(){
+        return $this->idpaciente;
+    }
 }

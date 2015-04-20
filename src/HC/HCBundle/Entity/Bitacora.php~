@@ -15,7 +15,7 @@ class Bitacora
     private $idbitacora;
 
     /**
-     * @var integer
+     * @var string
      */
     private $tabla;
 
@@ -25,7 +25,7 @@ class Bitacora
     private $idtupla;
 
     /**
-     * @var integer
+     * @var string
      */
     private $descripcion;
 
@@ -35,14 +35,14 @@ class Bitacora
     private $fecha;
 
     /**
-     * @var \HC\HCBundle\Entity\Usuario
-     */
-    private $idusuario;
-
-    /**
      * @var \HC\HCBundle\Entity\Tipoaccion
      */
     private $idtipoaccion;
+
+    /**
+     * @var \HC\HCBundle\Entity\Usuario
+     */
+    private $idusuario;
 
 
     /**
@@ -58,7 +58,7 @@ class Bitacora
     /**
      * Set tabla
      *
-     * @param integer $tabla
+     * @param string $tabla
      * @return Bitacora
      */
     public function setTabla($tabla)
@@ -71,7 +71,7 @@ class Bitacora
     /**
      * Get tabla
      *
-     * @return integer 
+     * @return string 
      */
     public function getTabla()
     {
@@ -104,7 +104,7 @@ class Bitacora
     /**
      * Set descripcion
      *
-     * @param integer $descripcion
+     * @param string $descripcion
      * @return Bitacora
      */
     public function setDescripcion($descripcion)
@@ -117,7 +117,7 @@ class Bitacora
     /**
      * Get descripcion
      *
-     * @return integer 
+     * @return string 
      */
     public function getDescripcion()
     {
@@ -148,6 +148,29 @@ class Bitacora
     }
 
     /**
+     * Set idtipoaccion
+     *
+     * @param \HC\HCBundle\Entity\Tipoaccion $idtipoaccion
+     * @return Bitacora
+     */
+    public function setIdtipoaccion(\HC\HCBundle\Entity\Tipoaccion $idtipoaccion = null)
+    {
+        $this->idtipoaccion = $idtipoaccion;
+
+        return $this;
+    }
+
+    /**
+     * Get idtipoaccion
+     *
+     * @return \HC\HCBundle\Entity\Tipoaccion 
+     */
+    public function getIdtipoaccion()
+    {
+        return $this->idtipoaccion;
+    }
+
+    /**
      * Set idusuario
      *
      * @param \HC\HCBundle\Entity\Usuario $idusuario
@@ -169,27 +192,7 @@ class Bitacora
     {
         return $this->idusuario;
     }
-
-    /**
-     * Set idtipoaccion
-     *
-     * @param \HC\HCBundle\Entity\Tipoaccion $idtipoaccion
-     * @return Bitacora
-     */
-    public function setIdtipoaccion(\HC\HCBundle\Entity\Tipoaccion $idtipoaccion = null)
-    {
-        $this->idtipoaccion = $idtipoaccion;
-
-        return $this;
-    }
-
-    /**
-     * Get idtipoaccion
-     *
-     * @return \HC\HCBundle\Entity\Tipoaccion 
-     */
-    public function getIdtipoaccion()
-    {
-        return $this->idtipoaccion;
+       public function getId(){
+        return $this->idbitacora;
     }
 }

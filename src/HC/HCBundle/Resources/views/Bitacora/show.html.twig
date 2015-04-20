@@ -1,0 +1,65 @@
+{% extends 'HCHCBundle::layout.html.twig' %}
+
+
+{% block content_header %}
+  <section class="content-header">
+    <h1>
+      Detalle de la operación
+      <small>Detalle de operación seleccionada</small>
+    </h1>
+    <ol class="breadcrumb">
+      <li><a href="#"><i class="fa fa-dashboard"></i> Todas las  citas</a></li>
+      <li class="active">Detalle</li>
+    </ol>
+  </section>
+
+{% endblock %}
+
+
+
+{% block content %}
+<div class="col-md-6">
+
+            <div class="box">
+                <div class="box-header">
+                  <h3 class="box-title">Detalle de la operación</h3>
+                </div><!-- /.box-header -->
+                    <div class="box-body no-padding">
+                      <table class="table table-condensed">
+                            <tbody>
+                                <tr>
+                                    <th>Idbitacora</th>
+                                    <td>{{ entity.idbitacora }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Tabla</th>
+                                    <td>{{ entity.tabla }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Idtupla</th>
+                                    <td>{{ entity.idtupla }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Descripcion</th>
+                                    <td>{{ entity.descripcion }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Fecha</th>
+                                    <td>{{ entity.fecha|date('Y-m-d H:i:s') }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+<center>
+    <div class="btn-group">
+             <a href="{{ path('bitacora') }}" class="btn btn-default">
+                    Regresar
+                </a>
+                
+                {{ form(delete_form) }}
+            
+    </div>
+</center>  
+        
+{% endblock %}

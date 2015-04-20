@@ -20,9 +20,10 @@ HC\HCBundle\Entity\Bitacora:
                 strategy: IDENTITY
     fields:
         tabla:
-            type: integer
+            type: string
             nullable: false
-            unsigned: false
+            length: 50
+            fixed: false
             comment: ''
         idtupla:
             type: integer
@@ -31,25 +32,17 @@ HC\HCBundle\Entity\Bitacora:
             comment: ''
             column: idTupla
         descripcion:
-            type: integer
-            nullable: false
-            unsigned: false
+            type: text
+            nullable: true
+            length: null
+            fixed: false
             comment: ''
         fecha:
             type: datetime
-            nullable: false
+            nullable: true
             comment: ''
             default: CURRENT_TIMESTAMP
     manyToOne:
-        idusuario:
-            targetEntity: Usuario
-            cascade: {  }
-            mappedBy: null
-            inversedBy: null
-            joinColumns:
-                idUsuario:
-                    referencedColumnName: idUsuario
-            orphanRemoval: false
         idtipoaccion:
             targetEntity: Tipoaccion
             cascade: {  }
@@ -58,5 +51,14 @@ HC\HCBundle\Entity\Bitacora:
             joinColumns:
                 idTipoAccion:
                     referencedColumnName: idTipoAccion
+            orphanRemoval: false
+        idusuario:
+            targetEntity: Usuario
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idUsuario:
+                    referencedColumnName: idUsuario
             orphanRemoval: false
     lifecycleCallbacks: {  }

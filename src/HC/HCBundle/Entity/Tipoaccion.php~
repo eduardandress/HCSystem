@@ -52,4 +52,7 @@ class Tipoaccion
     {
         return $this->nombre;
     }
+    public function getId(){
+        return $this->idtipoaccion;
+    }
 }

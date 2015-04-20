@@ -108,4 +108,7 @@ class Phcimedicamento
     {
         return $this->idhci;
     }
+    public function getId(){
+        return $this->idphcimedicamento;
+    }
 }

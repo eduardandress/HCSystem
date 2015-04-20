@@ -108,4 +108,7 @@ class Phcialergia
     {
         return $this->idhci;
     }
+    public function getId(){
+        return $this->idphcialergia;
+    }
 }
