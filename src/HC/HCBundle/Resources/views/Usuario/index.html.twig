@@ -42,15 +42,12 @@
     </div>
     <div class="box-body">
      
-<table id="Usuarios" class="table table-striped table-bordered" cellspacing="0" width="100%">
+<table id="UsuariosT" class="table table-striped table-bordered" cellspacing="0" width="100%">
         <thead>
             <tr>
                    <th>Usuario</th>
-                    <!-- <th>Clave</th> -->
                     <th>Nombre</th>
-                   <!--  <th>Fecha de naciemiento</th> -->
                     <th>Número de seguro social</th>
-                    <!-- <th>Dirección</th> -->
                     <th>Teléfono</th>
                     <th>Fecha de inicio</th>
                     <th style="width:28%; text-align:center">Acciones</th>
@@ -60,11 +57,8 @@
         <tfoot>
             <tr>
                 <th>Usuario</th>
-                    <!-- <th>Clave</th> -->
                     <th>Nombre</th>
-                   <!--  <th>Fecha de naciemiento</th> -->
                     <th>Número de seguro social</th>
-                    <!-- <th>Dirección</th> -->
                     <th>Teléfono</th>
                     <th>Fecha de inicio</th>
                     <th style="width:28%; text-align:center">Acciones</th>
@@ -77,11 +71,8 @@
                     <tr>
             
                         <td>{{ entity.usuario }}</td>
-                        <!-- <td>{{ entity.clave }}</td> -->
                         <td>{{ entity.nombre }}</td>
-                        {# <td>{% if entity.fechanac %}{{ entity.fechanac|date('Y-m-d') }}{% endif %}</td> #}
                         <td>{{ entity.numss }}</td>
-                        <!-- <td>{{ entity.direccion }}</td> -->
                         <td>{{ entity.telefono }}</td>
                         <td>{% if entity.fechainicio %}{{ entity.fechainicio|date('Y-m-d') }}{% endif %}</td>
                         <td>
@@ -113,10 +104,8 @@
 
 
     {% javascripts
-    'bundles/hchc/Admin/plugins/input-mask/jquery.inputmask.js'
-    'bundles/hchc/Admin/plugins/input-mask/jquery.inputmask.date.extensions.js'
-    'bundles/hchc/Admin/plugins/input-mask/jquery.inputmask.extensions.js'
-    
+
+    'bundles/hchc/js/basics.js'
   
     %}
     <script type="text/javascript" src="{{ asset_url }}"></script>
@@ -124,7 +113,7 @@
     <script type="text/javascript">
         $(document).ready(function(){
 
-            $("#Usuarios").dataTable();
+            $("#UsuariosT").dataTable(DataLanguage);
         })
     </script>
 

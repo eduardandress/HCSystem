@@ -326,10 +326,6 @@
       </div><!-- /.box-body -->
     </div>
     <!-- Termina Nota citas del paciente-->
-
-{% if tieneCitaHoy and notadeCitahoyRellena==false %}
-<!--Comienza Nota cita hoy-->
-
 <!-- Macros de los estilos de Prescripcion, refrencias y diagnosticos -->
 {% macro NuevoElementoPrescripcion(prescripcion)%}
     <div>
@@ -354,84 +350,103 @@
      {{form_row(referencia.idusuario)}}
     </div>
 {% endmacro %}
+
+{% if tieneCitaHoy and notadeCitahoyRellena==false %}
+<!--Comienza Nota cita hoy-->
+
 <!-- Fin de los macros de estitolos de P,R,D -->
-    <div class="col-md-6">
-        {{form_start(notacitahoy)}}
-        {{form_row(notacitahoy._token)}}
-      
-        <div class="box">
-                    <div class="box-header">
-                      <h3 class="box-title">Nota de Cita de Hoy</h3>
-                    </div><!-- /.box-header -->
-                    <div class="box-body no-padding">
-                      <table class="table table-condensed">
-                        <tbody>
-                            <tr>
-                              <td>{{form_row(notacitahoy.idhci)}}</td>
-                            </tr>
-                            <tr>
-                              <td>{{form_row(notacitahoy.idcita)}}</td>
-                            </tr>
-                            <tr>
-                              <td>{{form_row(notacitahoy.presionarterial,{'attr':{'class':'form-control'}})}}</td>
-                            </tr>
-                            <tr>
-                              <td>{{form_row(notacitahoy.alturapaciente,{'attr':{'class':'form-control'}})}}</td>
-                            </tr>
-                            <tr>
-                              <td>{{form_row(notacitahoy.pesopaciente,{'attr':{'class':'form-control'}})}}</td>
-                            </tr>
-                            <tr>
-                              <td>{{form_row(notacitahoy.frecuenciacardiaca,{'attr':{'class':'form-control'}})}}</td>
-                            </tr>
-                            <tr>
-                              <td>{{form_row(notacitahoy.temperatura,{'attr':{'class':'form-control'}})}}</td>
-                            </tr>
+<div class="row">
+  <div class="col-md-6" >
+          {{form_start(notacitahoy)}}
+          {{form_row(notacitahoy._token)}}
+        
+          <div class="box">
+                      <div class="box-header">
+                        <h3 class="box-title">Nota de Cita de Hoy</h3>
+                      </div><!-- /.box-header -->
+                      <div class="box-body no-padding">
+                        <table class="table table-condensed">
+                          <tbody>
+                              <tr>
+                                <td>{{form_row(notacitahoy.idhci)}}</td>
+                              </tr>
+                              <tr>
+                                <td>{{form_row(notacitahoy.idcita)}}</td>
+                              </tr>
+                              <tr>
+                                <td>{{form_row(notacitahoy.presionarterial,{'attr':{'class':'form-control'}})}}</td>
+                              </tr>
+                              <tr>
+                                <td>{{form_row(notacitahoy.alturapaciente,{'attr':{'class':'form-control'}})}}</td>
+                              </tr>
+                              <tr>
+                                <td>{{form_row(notacitahoy.pesopaciente,{'attr':{'class':'form-control'}})}}</td>
+                              </tr>
+                              <tr>
+                                <td>{{form_row(notacitahoy.frecuenciacardiaca,{'attr':{'class':'form-control'}})}}</td>
+                              </tr>
+                              <tr>
+                                <td>{{form_row(notacitahoy.temperatura,{'attr':{'class':'form-control'}})}}</td>
+                              </tr>
 
-                        </tbody>
-                      </table>
+                          </tbody>
+                        </table>
+             <div style="margin-top:20px">           
 
+              <button type="button" data-nombre="Prescripcion" class="btn btn-block btn-default btn-lg anexarANC">Anexar Prescripcion</button>
+                 <div class="box  divNPrescripcion" style="display:none">
+                 
+                   <div class="box-body no-padding holderPrescripcion" data-prototype="{{ _self.NuevoElementoPrescripcion(notacitahoy.prescripcion.vars.prototype)|e }}">
+                     {%for prescripcion in notacitahoy.prescripcion %}
+                     {{ _self.NuevoElementoPrescripcion(prescripcion)}}
+                     {%endfor%}
+                   </br>
+                 </div>
+                   <a class="btn btn-block btn-default addBtnPrescripciones" href="#">Insertar</a>
+               </div> 
+               
+                                    <button type="button" data-nombre="Diagnostico" class="btn btn-block btn-default btn-lg anexarANC">Anexar Diagnostico</button>
+                 <div class="box  divNDiagnostico" style="display:none">
+                   
+                   <div class="box-body no-padding holderDiagnostico" data-prototype="{{ _self.NuevoElementoDiagnostico(notacitahoy.diagnostico.vars.prototype)|e }}">
+                     {%for diagnostico in notacitahoy.diagnostico %}
+                     {{ _self.NuevoElementoDiagnostico(diagnostico)}}
+                     {%endfor%}
+                   </br>
+                 </div>
+                   <a  class="btn btn-block btn-default addBtnDiagnostico" href="#">Insertar  </a>
+               </div> 
+                                     <button type="button" data-nombre="Referencia" class="btn btn-block btn-default btn-lg anexarANC">Anexar Referencia</button>
+                 <div class="box  divNReferencia" style="display:none">
+                   
+                   <div class="box-body no-padding holderReferencia" data-prototype="{{ _self.NuevoElementoReferencia(notacitahoy.referencia.vars.prototype)|e }}">
+                     {%for referencia in notacitahoy.referencia %}
+                     {{ _self.NuevoElementoReferencia(referencia)}}
+                     {%endfor%}
+                   </br>
+                 </div>
+                   <a  class="btn btn-block btn-default addBtnReferencia" href="#">Insertar </a>
+               </div> </div>
 
+                      </div><!-- /.box-body -->
+                    </div>
+                     
 
-                    </div><!-- /.box-body -->
-                  </div>
-                   <button type="button" data-nombre="Prescripcion" class="btn btn-block btn-default btn-lg anexarANC">Anexar Prescripcion</button>
-                        <div class="box  divNPrescripcion" style="display:none">
-                        
-                          <div class="box-body no-padding holderPrescripcion" data-prototype="{{ _self.NuevoElementoPrescripcion(notacitahoy.prescripcion.vars.prototype)|e }}">
-                            {%for prescripcion in notacitahoy.prescripcion %}
-                            {{ _self.NuevoElementoPrescripcion(prescripcion)}}
-                            {%endfor%}
-                          </br>
-                        </div>
-                          <a class="btn btn-block btn-default addBtnPrescripciones" href="#">Agregar</a>
-                      </div> 
+                        <center> 
 
-                   <button type="button" data-nombre="Diagnostico" class="btn btn-block btn-default btn-lg anexarANC">Anexar Diagnostico</button>
-                        <div class="box  divNDiagnostico" style="display:none">
                           
-                          <div class="box-body no-padding holderDiagnostico" data-prototype="{{ _self.NuevoElementoDiagnostico(notacitahoy.diagnostico.vars.prototype)|e }}">
-                            {%for diagnostico in notacitahoy.diagnostico %}
-                            {{ _self.NuevoElementoDiagnostico(diagnostico)}}
-                            {%endfor%}
-                          </br>
-                        </div>
-                          <a  class="btn btn-block btn-default addBtnDiagnostico" href="#">Agregar  </a>
-                      </div> 
-                    <button type="button" data-nombre="Referencia" class="btn btn-block btn-default btn-lg anexarANC">Anexar Referencia</button>
-                        <div class="box  divNReferencia" style="display:none">
-                          
-                          <div class="box-body no-padding holderReferencia" data-prototype="{{ _self.NuevoElementoReferencia(notacitahoy.referencia.vars.prototype)|e }}">
-                            {%for referencia in notacitahoy.referencia %}
-                            {{ _self.NuevoElementoReferencia(referencia)}}
-                            {%endfor%}
-                          </br>
-                        </div>
-                          <a  class="btn btn-block btn-default addBtnReferencia" href="#">Agregar </a>
-                      </div> 
 
-                      <center> {{form_row(notacitahoy.submit,{'render_rest':false})}}</center>
-    </div>
+                           <div class="btn-group opciones" style="margin-top:4px">
+                                {{form_row(notacitahoy.submit,{'render_rest':false})}}
+                                  <a href="{{ path('hci') }}" class="btn btn-default">Regresar</a>
+                             </div>
+
+                        </center>
+
+                          
+  </div>
+  
+</div>
 <!--Termina Nota cita hoy-->
 {% elseif(notadeCitahoyRellena) %}
 <!-- Mensaje de que ya la nota de cita se relleno y ahora puede agrgar los diagnosticos, prescripciones y referencia de esa nota -->
@@ -453,9 +468,7 @@
 {% endif %}
 
 
-   <div class="btn-group opciones" style="botton:0">
-        <a href="{{ path('hci') }}" class="btn btn-default">Regresar</a>
-   </div>
+
 
 {% endblock %}
 {% macro modal(id) %}
