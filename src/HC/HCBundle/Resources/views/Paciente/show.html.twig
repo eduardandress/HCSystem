@@ -33,9 +33,10 @@
  <div class="col-md-6 ">
         <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Información Básica del Paciente <a class="ModificarPacBtn btn btn-success btn-xs">Editar</a></h3>
+              <h3 class="box-title">Información Básica del Paciente <a class="ModificarPacBtn btn btn-success btn-xs">Editar</a> {% if entity.historiamedica %}<a href="{{path('hci_show', {'id': entity.historiamedica.idhci })}}"class="verHCI btn btn-success btn-xs">Historia Médica</a> {% endif %}</h3>
           </div><!-- /.box-header -->
           <div class="box-body">
+
               <table class="table table-bordered">
                 <tbody>
 
