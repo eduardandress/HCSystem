@@ -1,6 +1,6 @@
-{% extends 'HCHCBundle::layout.html.twig' %}
-
-
+{# {% extends 'HCHCBundle::base2.html.twig' %}
+ #}
+{# 
 {% block content_header %}
   <section class="content-header">
     <h1>
@@ -13,22 +13,22 @@
     </ol>
   </section>
 
-{% endblock %}
+{% endblock %} #}
 
 
-{% block content -%}
+{% block sinestilo -%}
 
   {{ form_start(edit_form) }}
   {{ form_row(edit_form._token) }}
   {{ form_row( edit_form.descripcion,{'attr':{'class':'form-control'}} ) }}
 
 
-    <div class="btn-group">
-      {{ form_end(edit_form) }}
-          <a href="{{app.request.headers.get('referer')}}"class="btn btn-default">
-           Regresar
-        </a>
-    </div>
+    <center>
+      <div class="btn-group" style="margin-top:5px">
+          <button type="submit" class="btn btn-success">Actualizar</button>
+    
+      </div>
+    </center>
 
-   {{ form(delete_form) }}
+   
 {% endblock %}

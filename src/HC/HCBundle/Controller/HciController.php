@@ -178,16 +178,7 @@ class HciController extends Controller
             )
         );
          $notacitaHoy=new Notacita(); // creamos una entidad de Nota de cita para realizar un formulario de la cita de hoy
-        //  //se crean variables de prescripcion, diagnostico y referencia 
-         $NuevoP = new Prescripcion();
-         $NuevoD = new Diagnostico();
-         $NuevoR = new Referencia();
      
-        // //Luego se anexan a la instacia nueva de nota cita
-        //  $notacitaHoy->addPrescripcion($NuevoP);
-        //  $notacitaHoy->addDiagnostico($NuevoD);
-        //  $notacitaHoy->addReferencia($NuevoR);
-         
          $notacitaHoyform=$this->createNotacitaform($notacitaHoy); //Creamos un formulario de Nota de cita, apartir de la entidad que se creo anteriormente
          $notacitaHoyform->get('idhci')->setData($entity); // Le asignamos que la hsitoria clinica a la que pertenece es la que esta a punto de mostrar
          $tieneCitaHoy=false;
@@ -205,17 +196,19 @@ class HciController extends Controller
                          $notadeCitahoyRellena=true;
                 }
          }
-        //Creando fomulario de eliminacion para Nota cita
-         $formDeleteNotacita= $this->createGenericDeleteForm('notacita_delete');
-         //Creando los formularios de eliminacion para Alergia, Medicamento, Condicion
-         $formDeleteAlergia= $this->createGenericDeleteForm('phcialergia_delete');
-         $formDeleteMedicamento= $this->createGenericDeleteForm('phcimedicamento_delete');
-         $formDeleteCondicion= $this->createGenericDeleteForm('phcicondicion_delete');
+
+
+    
+
 
          //Creando los formularios de nueva: Alergia, Medicamento,Condicion
          $formNuevoAlergia=$this->createGenericNewForm(new PhcialergiaType(),'phcialergia_create');
          $formNuevoMedicamento=$this->createGenericNewForm(new PhcimedicamentoType(),'phcimedicamento_create');
          $formNuevoCondicion=$this->createGenericNewForm(new PhcicondicionType(),'phcicondicion_create');
+        
+        //un formulario Generico para eliminar
+         $genericDeleteForm= $this->createGenericDeleteForm();
+         
          //Asignando los idhci( Esta Instancia ) a los formularios nuevos de Alergia, ect
          $formNuevoAlergia->get('idhci')->setData($entity); // Le asignamos que la hsitoria clinica a la que pertenece es la que esta a punto de mostrar
          $formNuevoMedicamento->get('idhci')->setData($entity); // Le asignamos que la hsitoria clinica a la que pertenece es la que esta a punto de mostrar
@@ -227,13 +220,13 @@ class HciController extends Controller
             'notacitahoy'=>$notacitaHoyform->createView(), //Pasamos a la vista el formulario 
             'tieneCitaHoy'=>$tieneCitaHoy,
             'notadeCitahoyRellena'=>$notadeCitahoyRellena,
-            'formDeleteAlergia' => $formDeleteAlergia->createView(),
-            'formDeleteMedicamento' => $formDeleteMedicamento->createView(),
-            'formDeleteCondicion' => $formDeleteCondicion->createView(),
+            
             'formNuevoAlergia'=> $formNuevoAlergia->createView(),
             'formNuevoMedicamento'=> $formNuevoMedicamento->createView(),
             'formNuevoCondicion'=> $formNuevoCondicion->createView(),
-            'formDeleteNotacita'=>$formDeleteNotacita->createView(),
+
+            'genericDeleteForm'=>$genericDeleteForm->createView(),
+            
         ));
     }
       /**
@@ -254,7 +247,7 @@ class HciController extends Controller
         return $form;
 
     }
-        //Metodo que crea un formulario nuevo para cualquier entidad
+    //Metodo que crea un formulario nuevo para cualquier entidad
     private function createGenericNewForm($entityType, $actionForm){
         $form= $this->createForm($entityType, null, 
         array(
@@ -266,14 +259,17 @@ class HciController extends Controller
         return $form;
     }
     //Metodo para crear un formulario de eliminar generico
-     private function createGenericDeleteForm($url){
+    private function createGenericDeleteForm(){
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl($url, array('id' => "texto")))
+            ->setAction("urlaction")
             ->setMethod('DELETE')
             ->add('submit', 'submit', array('label' => 'Eliminar'))
             ->getForm()
         ;
     }
+
+
+
     /**
      * Displays a form to edit an existing Hci entity.
      *

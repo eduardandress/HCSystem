@@ -1,7 +1,7 @@
-{% extends 'HCHCBundle::layout.html.twig' %}
+{# {% include 'HCHCBundle::base2.html.twig' %}
+ #}
 
-
-{% block content_header %}
+{# {% block content_header %}
   <section class="content-header">
     <h1>
      Modificar Alergia de paciente 
@@ -13,22 +13,23 @@
     </ol>
   </section>
 
-{% endblock %}
+{% endblock %} #}
+
+    {% block sinestilo -%}
+
+      {{ form_start(edit_form) }}
+      {{ form_row(edit_form._token) }}
+      {{ form_row( edit_form.descripcion,{'attr':{'class':'form-control'}} ) }}
 
 
-{% block content -%}
+        <center>
+          <div class="btn-group" style="margin-top:5px">
+              <button type="submit" class="btn btn-success">Actualizar</button>
+             
+          </div>
+        </center>
 
-  {{ form_start(edit_form) }}
-  {{ form_row(edit_form._token) }}
-  {{ form_row( edit_form.descripcion,{'attr':{'class':'form-control'}} ) }}
+    
+    {% endblock %}
+    
 
-
-    <div class="btn-group">
-      {{ form_end(edit_form) }}
-          <a href="{{app.request.headers.get('referer')}}"class="btn btn-default">
-           Regresar
-        </a>
-    </div>
-
-   {{ form(delete_form) }}
-{% endblock %}

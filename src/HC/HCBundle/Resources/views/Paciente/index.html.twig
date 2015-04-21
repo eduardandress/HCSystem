@@ -24,7 +24,19 @@
         height:40px;
         padding:0px;
     }
+    .opciones{
+        text-align: right;
+        margin-bottom: 10px;
+        margin-right:10px;
+    }
 </style>
+<div class="opciones">
+    <a href="{{ path('paciente_new') }}" class="btn btn-success">
+        <i class="fa fa-plus"></i>
+         Nuevo paciente
+    </a>
+</div>
+
         <div class="box">
                     <div class="box-header">
                       <h3 class="box-title">Pacientes</h3>
@@ -97,9 +109,7 @@
   
 
        
-       <a href="{{ path('paciente_new') }}" class="btn btn-block btn-primary btn-lg">
-               Nuevo Paciente
-            </a>
+
            
      
     {% endblock %}

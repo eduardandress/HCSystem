@@ -1,0 +1,26 @@
+{#  {% block stylesheets %}
+     {% stylesheets
+          'bundles/hchc/Admin/bootstrap/css/bootstrap.min.css'
+          'bundles/hchc/Admin/plugins/font-awesome-4.3.0/css/font-awesome.min.css'
+          'bundles/hchc/Admin/plugins/ionicons-2.0.1/css/ionicons.min.css'
+          'bundles/hchc/Admin/dist/css/AdminLTE.min.css'
+          'bundles/hchc/Admin/dist/css/skins/skin-purple.min.css' 
+          'bundles/hchc/Admin/plugins/datatables/dataTables.bootstrap.css' 
+          output='css/*.css' filter='cssrewrite' %}
+          <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}" />
+     {% endstylesheets %}
+
+{% endblock %} #}
+{% block sinestilo %}{% endblock %}
+{% block javascripts %}
+    {% javascripts
+    'bundles/hchc/Admin/plugins/jQuery/jQuery-2.1.3.min.js'
+    'bundles/hchc/Admin/bootstrap/js/bootstrap.min.js'
+    'bundles/hchc/Admin/dist/js/app.min.js'
+    'bundles/hchc/Admin/plugins/datatables/jquery.dataTables.js'
+    'bundles/hchc/Admin/plugins/datatables/dataTables.bootstrap.js'
+
+    %}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}

@@ -1,5 +1,5 @@
 {% extends 'HCHCBundle::layout.html.twig' %}
-
+{% import  'HCHCBundle::macros.html.twig' as macros %} 
 {% block stylesheets %}
 {{ parent() }}
         {% stylesheets
@@ -12,6 +12,9 @@
 {% endblock %}
 
 {% block content_header %}
+
+
+
   <section class="content-header">
     <h1>
       Detalle del Paciente
@@ -26,14 +29,11 @@
 {% endblock %}
 
 
-
-
-
 {% block content -%}
  <div class="col-md-6 ">
         <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Información Básica del Paciente <a class="btn btn-success btn-xs " href="{{ path('paciente_edit', { 'id': entity.idpaciente }) }}">Editar</a></h3>
+              <h3 class="box-title">Información Básica del Paciente <a class="ModificarPacBtn btn btn-success btn-xs">Editar</a></h3>
           </div><!-- /.box-header -->
           <div class="box-body">
               <table class="table table-bordered">
@@ -76,52 +76,115 @@
 </div>
         
         
-        <div class="box">
-            <div class="box-header">
-              <h3 class="box-title">Teléfonos Personales <a class="nuevoTP btn btn-success btn-xs"  href="">Nuevo</a></h3>
-          </div><!-- /.box-header -->
-          <div class="box-body">
-            <table class="table table-hover">
-                <thead>
-                    <tr>
+<div class="box">
+      <div class="box-header">
+        <h3 class="box-title">Teléfonos Personales <a class="nuevoTP btn btn-success btn-xs"  href="">Nuevo</a></h3>
+    </div><!-- /.box-header -->
+    <div class="box-body">
+          <table class="table table-hover">
+              <thead>
+                  <tr>
 
-                        <th>
-                            Tipo de teléfono
+                      <th>
+                          Tipo de teléfono
 
-                        </th>
-                        <th>
-                         Número
-                     </th>
+                      </th>
+                      <th>
+                       Número
+                   </th>
+                   <th>
+                       Acciones
+                   </th>
+               </tr>
+           </thead>
+           <tbody>
+              {% for telefonoPersonal in entity.telefonosPersonales %}
+              <tr class="rowTelfP" id="tp_{{telefonoPersonal.idpactelf}}">
+
+                  <td>{{telefonoPersonal.idTipotel}}</td>
+                  <td>{{telefonoPersonal.numero}}</td>
+                  <td> 
+                      <button class="modificarTP btn btn-default btn-xs">
+                          Modificar
+                      </button>
+                      <button class="eliminarTP btn btn-danger btn-xs">
+                          Eliminar
+                      </button>
+                  </td>
+              </tr>
+              {% endfor %}
+          </tbody>
+        </table>
+    </div>
+</div>
+
+        
+
+
+   
+<div class="box">
+        <div class="box-header">
+          <h3 class="box-title">Teléfonos en caso de emergencia <a class="nuevoTE btn btn-success btn-xs" href="">Nuevo</a></h3>
+      </div><!-- /.box-header -->
+      <div class="box-body">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>
+                       Nombre 
+                    </th>
+                    <th>
+                        Apellido 
+                    </th>
+                    <th>
+                       Número
+                    </th>
+                    <th>
+                        Parentesco
+                    </th>
                      <th>
-                         Acciones
-                     </th>
-                 </tr>
-             </thead>
-             <tbody>
-                {% for telefonoPersonal in entity.telefonosPersonales %}
-                <tr class="rowTelfP" id="tp_{{telefonoPersonal.idpactelf}}">
-
-                    <td>{{telefonoPersonal.idTipotel}}</td>
-                    <td>{{telefonoPersonal.numero}}</td>
-                    <td> 
-                        <button class="modificarTP btn btn-default btn-xs">
+                           Acciones
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for telefonoEmergencia in entity.telefonosEmergencia %}
+                <tr class="rowTelfE" id="te_{{telefonoEmergencia.idpacnumcontacto}}">
+                    <td>{{telefonoEmergencia.nombrecontacto}}</td>
+                    <td>{{telefonoEmergencia.apellidocontacto}}</td>
+                    <td>{{telefonoEmergencia.numero}}</td>
+                    <td>{{telefonoEmergencia.relacion}}</td>
+                     <td> 
+                        <button class="modificarTE btn btn-default btn-xs">
                             Modificar
                         </button>
-                        <button class="eliminarTP btn btn-danger btn-xs">
+                        <button class="eliminarTE btn btn-danger btn-xs">
                             Eliminar
                         </button>
-                    </td>
+                     </td>
+                    
                 </tr>
-                {% endfor %}
+            {% endfor %}
             </tbody>
         </table>
-        </div>
-        </div>
+      </div>
+</div>
 
-        <div class="nuevosTPForm box box-success " style="display:none">
-                  <div class="box-header">
-                    <h4 class="box-title">Nuevo Teléfono Personal </h4>
-                </div>
+  
+ <center>
+
+      <div class="btn-group">
+
+        <a href="{{ app.request.headers.get('referer') }}" class="btn btn-default">
+            Regresar
+        </a>
+        {{ form(delete_form) }}
+
+    </div>
+</center> 
+
+<div class="nuevosTPForm box box-success " style="display:none">
+
                 <div class="box-body">
                 {{form_start(FormNuevoTelPersonal)}}
                 {{form_row(FormNuevoTelPersonal._token)}}
@@ -134,74 +197,27 @@
                                         <div class="input-group-addon">
                                           <i class="fa fa-phone"></i>
                                       </div>
-                                      {{ form_widget( FormNuevoTelPersonal.numero,{'attr':{'class':'form-control','data-inputmask':"'mask':'(9999)-9999999' ",'data-mask':''}} ) }}
+                                      {{ form_widget( FormNuevoTelPersonal.numero,{'attr':{'class':'form-control inputmask','data-inputmask':"'mask':'(9999)-9999999' ",'data-mask':''}} ) }}
                                       </div>
                                   </div>
                              </div>  
                       </div>
-                    </br>
-                          {{ form( FormNuevoTelPersonal ) }}
+                      <center>
+                          <div class="btn-group" style="margin-top:5px">
+                            <div style="display:none">
+                               {{ form_end(FormNuevoTelPersonal) }} 
+                            </div>
+                             
+                              <button type="submit" class="btn btn-success">Agregar</button>
+                             
+                          </div>
+                        </center>
                  <!--    <button type="submit" class="btn btn-block btn-success" href="#">Agregar nuevo teléfono</button> -->
                 </div>
-        </div>
-
-
-   
-    <div class="box">
-        <div class="box-header">
-          <h3 class="box-title">Teléfonos en caso de emergencia <a class="nuevoTE btn btn-success btn-xs" href="">Nuevo</a></h3>
-      </div><!-- /.box-header -->
-      <div class="box-body">
-        <table class="table table-hover">
-            <thead>
-            <tr>
-                <th>
-                   Nombre 
-                </th>
-                <th>
-                    Apellido 
-                </th>
-                <th>
-                   Número
-                </th>
-                <th>
-                    Parentesco
-                </th>
-                 <th>
-                       Acciones
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for telefonoEmergencia in entity.telefonosEmergencia %}
-            <tr class="rowTelfE" id="te_{{telefonoEmergencia.idpacnumcontacto}}">
-                <td>{{telefonoEmergencia.nombrecontacto}}</td>
-                <td>{{telefonoEmergencia.apellidocontacto}}</td>
-                <td>{{telefonoEmergencia.numero}}</td>
-                <td>{{telefonoEmergencia.relacion}}</td>
-                 <td> 
-                    <button class="modificarTE btn btn-default btn-xs">
-                        Modificar
-                    </button>
-                    <button class="eliminarTE btn btn-danger btn-xs">
-                        Eliminar
-                    </button>
-                 </td>
-                
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
 </div>
-</div>
-
-  
-
 <div class="nuevosTEForm box box-success " style="display:none">
-                  <div class="box-header">
-                    <h4 class="box-title">Nuevo Teléfono de Emergencia </h4>
-                </div>
-                <div class="box-body">
+                  
+        <div class="box-body">
                 {{form_start(FormNuevoTelEmergencia)}}
                 {{form_row(FormNuevoTelEmergencia._token)}}
                     <div class="telfE">
@@ -215,33 +231,29 @@
                                         <div class="input-group-addon">
                                           <i class="fa fa-phone"></i>
                                       </div>
-                                      {{ form_widget( FormNuevoTelEmergencia.numero,{'attr':{'class':'form-control','data-inputmask':"'mask':'(9999)-9999999' ",'data-mask':''}} ) }}
+                                      {{ form_widget( FormNuevoTelEmergencia.numero,{'attr':{'class':'form-control inputmask','data-inputmask':"'mask':'(9999)-9999999' ",'data-mask':''}} ) }}
                                       </div>
                                   </div>
                          {{ form_row( FormNuevoTelEmergencia.relacion ,{'attr':{'class':'form-control'}}) }}
                              </div>  
                       </div>
-
-                    </br>
-                          {{ form( FormNuevoTelEmergencia ) }}
+               
+                    <center>
+                       <div style="display:none">
+                                {{ form_end(FormNuevoTelEmergencia) }} 
+                            </div>
+                      <div class="btn-group" style="margin-top:5px">
+                          <button type="submit" class="btn btn-success">Agregar</button>
+                         
+                      </div>
+                    </center>
                  <!--    <button type="submit" class="btn btn-block btn-success" href="#">Agregar nuevo teléfono</button> -->
                 </div>
-        </div>
+</div>
 
 
-
- <center>
-      <div class="btn-group">
-
-        <a href="{{ app.request.headers.get('referer') }}" class="btn btn-default">
-            Regresar
-        </a>
-        {{ form(delete_form) }}
-
-    </div>
-</center>  
-
-{% macro modal(id, header, body, footer) %}
+</div>
+{% macro modal(id) %}
 
     <div id="{{id}}" class="modal fade">
         <div class="modal-dialog">
@@ -250,14 +262,14 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"> &times; </button>
                     <h4 class="modal-title">
                       
-                      {{ header }}
+                     
                     </h4>
                 </div>
                 <div class="modal-body">
-                    {{ body }}
+               
                 </div>
                 <div class="modal-footer">
-                  {{ footer }}
+                
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
                     <button type="button" class="confirm btn btn-primary">Si</button>
                 </div>
@@ -267,36 +279,21 @@
     
 
 {% endmacro %}
-
-
-
-
-
-
-
-</div>
-
 {% endblock %}
 {% block javascripts -%}
     {{ parent() }}
             {% javascripts
+
             'bundles/hchc/Admin/plugins/input-mask/jquery.inputmask.js'
             'bundles/hchc/Admin/plugins/input-mask/jquery.inputmask.date.extensions.js'
             'bundles/hchc/Admin/plugins/input-mask/jquery.inputmask.extensions.js'
-            
+            'bundles/hchc/Admin/plugins/input-mask/jquery.inputmask.extensions.js'
+            'bundles/hchc/js/basics.js'
 
             %}
             <script type="text/javascript" src="{{ asset_url }}"></script>
 
-            <script type="text/javascript">
-
-             
-             $(function () {
-                 $("[data-mask]").inputmask();
-
-           });
-         </script>
-
+          
 
 
          {% endjavascripts %}
@@ -304,25 +301,20 @@
     var FormEliminarTelPersonal= '{{ form(FormEliminarTelPersonal) }}';
     var FormEliminarTelEmergencia= '{{ form(FormEliminarTelEmergencia) }}';
 
-
+    
     var EditarTelPersonalRuta="{{ path('pactelf_edit', {id:'texto'} ) }}";
     var EditarTelEmergenciaRuta="{{ path('pacnumcontacto_edit', {id:'texto'} ) }}";
 
-    
 
-
-   
-
-
-    function ModificarTelefonoPersonal(id){
+    function getRutaModTelPersonal(id){
         var ruta= EditarTelPersonalRuta;
         ruta=ruta.replace("texto", id);
-        window.location=ruta;
+        return ruta;
     }
-    function ModificarTelefonoEmergencia(id){
+    function getRutaModContactoEmergencia(id){
       var ruta= EditarTelEmergenciaRuta;
       ruta=ruta.replace("texto", id);
-      window.location=ruta;
+      return ruta;
     }
     function EliminarTelefonoPersonal(id){
 
@@ -340,114 +332,125 @@
        $("#dTelf").find("form").submit();
         
     }
-
     function CrearModal(datos){
 
-        var s="{% import _self as modales %}";
-        var Modal= "{{ modales.modal('IdModal','ModalHeader','ModalBody','ModalFooter')|e('js') }} ";
-        Modal= Modal.replace("IdModal",datos.IdModal);
-        Modal= Modal.replace("ModalHeader",datos.ModalHeader);
-        Modal= Modal.replace("ModalBody",datos.ModalBody);
-        Modal= Modal.replace("ModalFooter",datos.ModalFooter);
+        if( $("#"+datos.IdModal).length<=0 ){
+     
+          var Modal= "{{ _self.modal('IdModal')|e('js') }} ";
+          Modal= Modal.replace("IdModal",datos.IdModal);
 
+          $("body").append(Modal);
+        }
+        $("#"+datos.IdModal).find(".modal-title").html(datos.ModalHeader)
+        $("#"+datos.IdModal).find(".modal-body").html(datos.ModalBody)
+        //si se quiere usar los botones de cancelar y confirm.
+        if(datos.ModalFooter){
 
-        $("body").append(Modal);
+            $("#"+datos.IdModal).find(".modal-footer").prepend('');
+            $("#"+ datos.IdModal+" .confirm").on("click", function(){
+              datos.AccionModal();
+            })
+
+        }else{
+            $("#"+datos.IdModal).find(".modal-footer").empty();
+        }
         $("#"+datos.IdModal).modal("show");
+    }
 
-        $("#"+ datos.IdModal+" .confirm").on("click", function(){
-            datos.AccionModal();
-
-        })
-
-
-     }
+    
 
         $(document).ready(function(){
 
-            
+            $("body").on("focus", ".inputmask", function(){
+                $("[data-mask]").inputmask();
+            })
 
 
-           
+         
             $(".nuevoTP").on('click', function(e) {
                 e.preventDefault();
-                if($(this).text()=="Nuevo"){
-                    $(this).text("Cancelar");
-                }else{
-                    $(this).text("Nuevo");
-                }
-                $(".nuevosTPForm").fadeToggle();
+                datosModal.ModalHeader="Nuevo Teléfono Personal";
+                datosModal.ModalBody=$(".nuevosTPForm").html(),
+                CrearModal(datosModal);
+               
             })
 
             $(".nuevoTE").on('click', function(e) {
                 e.preventDefault();
-                 if($(this).text()=="Nuevo"){
-                    $(this).text("Cancelar");     
-                }else{
-                    $(this).text("Nuevo");
-                }
-                $(".nuevosTEForm").fadeToggle();
-
-              
+                datosModal.ModalHeader="Nuevo Contácto de Emergencia";
+                datosModal.ModalBody=$(".nuevosTEForm").html();
+                CrearModal(datosModal);
             })
             $(".eliminarTP").on("click", function(e){
                 e.preventDefault();
 
                 var idtel= $(this).parents(".rowTelfP").attr("id");
                 idtel= idtel.replace("tp_",""); 
-
-               
-                var datosModal={
-                  "IdModal": "modal_"+idtel,
-                  "ModalHeader": "Eliminar",
-                  "ModalBody": "¿ Esta seguro de eliminar el Telefono Personal ?",
-                  "ModalFooter": " ",
-                  AccionModal: function(){
+                datosModal.ModalHeader="Eliminar Teléfono Personal";
+                datosModal.ModalBody="¿ Esta seguro de eliminar el Telefono Personal ?";
+                datosModal.ModalFooter=true;
+                datosModal.AccionModal= function(){
                     EliminarTelefonoPersonal(idtel);
-                  }
                 }
                 CrearModal(datosModal);
 
             })
             $(".eliminarTE").on("click", function(e){
-
                 e.preventDefault();
-
                 var idtel= $(this).parents(".rowTelfE").attr("id");
                 idtel= idtel.replace("te_","");
-
-
-                var datosModal={
-                  "IdModal": "modal_"+idtel,
-                  "ModalHeader": "Eliminar",
-                  "ModalBody": "¿ Esta seguro de eliminar el contácto de emergencia ?",
-                  "ModalFooter": " ",
-                  AccionModal: function(){
-                    EliminarTelefonoEmergencia(idtel);
-                  }
+                datosModal.ModalHeader="Eliminar Contácto de emergencia";
+                datosModal.ModalBody="¿ Esta seguro de eliminar el contácto ?";
+                datosModal.ModalFooter=true;
+                datosModal.AccionModal= function(){
+                     EliminarTelefonoEmergencia(idtel);
                 }
                 CrearModal(datosModal);
-
-                
 
             })
 
             $(".modificarTP").on("click", function(e){
                 e.preventDefault();
-
                 var idtel= $(this).parents(".rowTelfP").attr("id");
                 idtel= idtel.replace("tp_","");
                
-                ModificarTelefonoPersonal(idtel);
+                var ruta= getRutaModTelPersonal(idtel)
+                datosModal.ModalHeader="Modificar Teléfono Personal";
+                datosAjax.url= ruta;
+                datosAjax.accionSuccess= function(data){
+                      datosModal.ModalBody=data;
+                      CrearModal(datosModal);
+                }
+                CargarDatosAjax(datosAjax);
 
             })
             $(".modificarTE").on("click", function(e){
-                e.preventDefault();
 
+                e.preventDefault();
                 var idtel= $(this).parents(".rowTelfE").attr("id");
                 idtel= idtel.replace("te_","");
                
-                ModificarTelefonoEmergencia(idtel);
+                var ruta= getRutaModContactoEmergencia(idtel)
+                datosModal.ModalHeader="Modificar Teléfono Emergencia";
+                datosAjax.url= ruta;
+                datosAjax.accionSuccess= function(data){
+                      datosModal.ModalBody=data;
+                      CrearModal(datosModal);
+                }
+                CargarDatosAjax(datosAjax);
 
+            })
+             $(".ModificarPacBtn").on("click", function(e){
+                e.preventDefault();
+                
+                var ruta= "{{ path('paciente_edit', { 'id': entity.idpaciente }) }}";
+                datosModal.ModalHeader="Modificar datos del Paciente";
+                datosAjax.url= ruta;
+                datosAjax.accionSuccess= function(data){
+                      datosModal.ModalBody=data;
+                      CrearModal(datosModal);
+                }
+                CargarDatosAjax(datosAjax);
             })
 
 

@@ -1,7 +1,7 @@
 
-{% extends 'HCHCBundle::layout.html.twig' %}
+{# {% extends 'HCHCBundle::base2.html.twig' %} #}
 
-{% block stylesheets %}
+{# {% block stylesheets %}
 {{ parent() }}
         {% stylesheets
         'bundles/hchc/Admin/plugins/daterangepicker/daterangepicker-bs3.css'
@@ -10,8 +10,8 @@
         output='css/*.css' filter='cssrewrite' %}
         <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}" />
     {% endstylesheets %}
-{% endblock %}
-{% block content_header %}
+{% endblock %} #}
+{# {% block content_header %}
   <section class="content-header">
     <h1>
       Modificar de Emergencia 
@@ -23,41 +23,46 @@
     </ol>
   </section>
 
-{% endblock %}
+{% endblock %} #}
 
 
-
+{# 
 {% block content %}
-<div class="col-md-6">
-
-     {{ form_start(edit_form) }}
-          {{ form_row(edit_form._token) }}
-     {{ form_row( edit_form.nombrecontacto,{'attr':{'class':'form-control'}} ) }}
-     {{ form_row( edit_form.apellidocontacto,{'attr':{'class':'form-control'}} ) }}
-     
-       <div class="form-group">
-        {{form_label(edit_form.numero)}}
-        <div class="input-group">
-          <div class="input-group-addon">
-            <i class="fa fa-phone"></i>
+<div class="col-md-6"> #}
+{% block sinestilo %}
+  
+       {{ form_start(edit_form) }}
+            {{ form_row(edit_form._token) }}
+       {{ form_row( edit_form.nombrecontacto,{'attr':{'class':'form-control'}} ) }}
+       {{ form_row( edit_form.apellidocontacto,{'attr':{'class':'form-control'}} ) }}
+       
+         <div class="form-group">
+          {{form_label(edit_form.numero)}}
+          <div class="input-group">
+            <div class="input-group-addon">
+              <i class="fa fa-phone"></i>
+            </div>
+            {{ form_widget( edit_form.numero,{'attr':{'class':'form-control inputmask','data-inputmask':"'mask':'(9999)-9999999' ",'data-mask':''}} ) }}
           </div>
-          {{ form_widget( edit_form.numero,{'attr':{'class':'form-control','data-inputmask':"'mask':'(9999)-9999999' ",'data-mask':''}} ) }}
         </div>
-      </div>
-      {{ form_row( edit_form.relacion ,{'attr':{'class':'form-control'}}) }}
+        {{ form_row( edit_form.relacion ,{'attr':{'class':'form-control'}}) }}
 
- <center>
-    <div class="btn-group">
-   {{ form(edit_form) }}
-        <a href="{{app.request.headers.get('referer')}} "class="btn btn-default">
-           Regresar
-        </a>
-   {{ form(delete_form) }}
-    </div>
-  </center>
-</div> 
+      <center>
+          <div class="btn-group" style="margin-top:5px">
+            <div style="display:none">
+              {{form_end(edit_form)}}
+            </div>
+              
+              <button type="submit" class="btn btn-success">Actualizar</button>
+          </div>
+        </center>
+  </div> 
+
 {% endblock %}
-{% block javascripts -%}
+{# 
+{% endblock %} #}
+
+{# {% block javascripts -%}
   {{ parent() }}
 
 
@@ -81,4 +86,4 @@
 
     {% endjavascripts %}
 
-{% endblock %}
+{% endblock %} #}
