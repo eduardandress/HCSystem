@@ -192,7 +192,7 @@ class Bitacora
     {
         return $this->idusuario;
     }
-       public function getId(){
+    public function getId(){
         return $this->idbitacora;
     }
 }

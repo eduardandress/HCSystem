@@ -24,6 +24,7 @@ class HciType extends AbstractType
                         "type"=> new PhcialergiaType(), 
                         'allow_add'    => true,
                         'allow_delete' => true,
+                        
                     )
                  )
 

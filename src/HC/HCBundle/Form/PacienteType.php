@@ -29,7 +29,7 @@ class PacienteType extends AbstractType
                         "label"=>"Medico Preferido",
                         'query_builder' => function(\Doctrine\ORM\EntityRepository  $er) {
                                         return $er->createQueryBuilder('u')
-                                        ->where('u.idrol = 2');
+                                        ->where('u.idrol = 2 or u.idrol = 1');
                                         },
 
                     )

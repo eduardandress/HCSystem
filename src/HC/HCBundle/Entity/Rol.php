@@ -3,11 +3,11 @@
 namespace HC\HCBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Component\Security\Core\Role\RoleInterface;
 /**
  * Rol
  */
-class Rol
+class Rol implements RoleInterface
 {
     /**
      * @var integer
@@ -59,4 +59,9 @@ class Rol
     public function getId(){
         return $this->idrol;
     }
+     public function getRole() {
+        return $this->getNombre();
+    }
+ 
+   
 }

@@ -35,6 +35,7 @@
         <thead>
             <tr>
        {#          <th>Idbitacora</th> #}
+                <th>Usuario</th>
                 <th>Tabla</th>
                 <th>Idtupla</th>
                 <th>Descripcion</th>
@@ -46,6 +47,7 @@
         {% for entity in entities %}
             <tr>
                 {# <td><a href="{{ path('bitacora_show', { 'id': entity.idbitacora }) }}">{{ entity.idbitacora }}</a></td> #}
+                <td>{{ entity.idusuario.usuario }}</td>
                 <td>{{ entity.tabla }}</td>
                 <td>{{ entity.idtupla }}</td>
                 <td>{{ entity.descripcion }}</td>

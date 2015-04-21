@@ -55,6 +55,11 @@ class Hci
      *
      * @return integer 
      */
+     public function getId()
+    {
+        return $this->idhci;
+    }
+
     public function getIdhci()
     {
         return $this->idhci;

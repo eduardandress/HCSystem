@@ -47,7 +47,7 @@ security:
             #http_basic:
             #    realm: "Secured Demo Area"
         secured_area:
-            pattern:    ^/
+            pattern: ^/
             http_basic: ~
             anonymous: true
             provider: usuarios_bd
@@ -58,8 +58,11 @@ security:
                 path:   /logout
                 target: /login
 
+
     # with these settings you can restrict or allow access for different parts
     # of your application based on roles, ip, host or methods
     # http://symfony.com/doc/current/cookbook/security/access_control.html
     access_control:
-        #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
+      - { path: ^/gestionarusuarios, roles: ROLE_Admin-Medico }
+      - { path: ^/hci, roles: [ROLE_Admin-Medico,ROLE_Medico, ROLE_Enfermera]}
+      - { path: ^/bitacora, roles: ROLE_Admin-Medico }

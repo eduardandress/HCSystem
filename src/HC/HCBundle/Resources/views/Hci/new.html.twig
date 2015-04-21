@@ -38,7 +38,7 @@
                 </div>
                 <div class="box-body alergias" data-prototype="{{ form_widget(form.alergia.vars.prototype)|e }}">
                     {% for alergia in form.alergia %}
-                       {{ form_row(alergia.descripcion,{'attr':{'class':'form-control'}}) }}
+                       {# {{ form_row(alergia.descripcion,{'attr':{'class':'form-control'}}) }} #}
                     {% endfor %}
                 </div>
                  </br>
@@ -50,7 +50,7 @@
                 </div>
                 <div class="box-body condiciones" data-prototype="{{ form_widget(form.condicion.vars.prototype)|e }}">
                      {% for condicion in form.condicion %}
-                        {{ form_row(condicion.descripcion,{'attr':{'class':'form-control'}}) }}
+                        {# {{ form_row(condicion.descripcion,{'attr':{'class':'form-control'}}) }} #}
                      {% endfor %}
                 </div>
                  </br>
@@ -63,7 +63,7 @@
                 </div>
                 <div class="box-body medicamentos" data-prototype="{{ form_widget(form.medicamento.vars.prototype)|e }}">
                        {% for medicamento in form.medicamento %}
-                        {{ form_row(medicamento.descripcion,{'attr':{'class':'form-control'}}) }}
+                        {# {{ form_row(medicamento.descripcion,{'attr':{'class':'form-control'}}) }} #}
                       {% endfor %}
                 </div>
                  </br>

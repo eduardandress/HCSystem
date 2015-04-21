@@ -190,19 +190,25 @@
                 <li class="header">MENÚ</li>
                 <!-- Optionally, you can add icons to the links -->
                 <li class="active"><a href="#"><span>Inicio</span></a></li>
+                {% if is_granted('ROLE_Admin-Medico') %}
                 <li><a href="{{ path('gestionarusuarios')}}"><span>Usuarios</span></a></li>
+                {% endif %}
                 <li><a href="{{ path('paciente')}}"><span>Pacientes</span></a></li>
                 <li><a href="{{ path('gestionarcitas')}}"><span>Citas</span></a></li>
+                 {% if is_granted('ROLE_Medico') or is_granted('ROLE_Enfermera')or is_granted('ROLE_Admin-Medico') %}
                 <li><a href="{{ path('hci')}}"><span>Historias Médicas</span></a></li>
+                  {% endif %}
+                   {% if is_granted('ROLE_Admin-Medico') %}
                 <li><a href="{{ path('bitacora')}}"><span>Bitácora</span></a></li>
+                 {% endif %}
                 <li><a href="{{ path('gestionarvisitas')}}"><span>Visitas</span></a></li>
-                <li class="treeview">
+            {#     <li class="treeview">
                   <a href="#"><span>Multilevel</span> <i class="fa fa-angle-left pull-right"></i></a>
                   <ul class="treeview-menu">
                     <li><a href="#">Link in level 2</a></li>
                     <li><a href="#">Link in level 2</a></li>
                   </ul>
-                </li>
+                </li> #}
               </ul><!-- /.sidebar-menu -->
             </section>
             <!-- /.sidebar -->

@@ -148,6 +148,7 @@ class HciController extends Controller
     public function newAction()
     {
         $entity = new Hci();
+        
         $form   = $this->createCreateForm($entity);
 
         return $this->render('HCHCBundle:Hci:new.html.twig', array(
