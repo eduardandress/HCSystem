@@ -1,7 +1,7 @@
-{% extends 'HCHCBundle::layout.html.twig' %}
+{# {% extends 'HCHCBundle::base2.html.twig' %}
+ #}
 
-
-{% block content_header %}
+{# {% block content_header %}
   <section class="content-header">
     <h1>
      Modificar consumo de paciente 
@@ -13,23 +13,42 @@
     </ol>
   </section>
 
-{% endblock %}
+{% endblock %} #}
 
 
-{% block content -%}
-
+{# {% block content -%} #}
+{% block sinestilo -%}
   {{ form_start(edit_form) }}
   {{ form_row(edit_form._token) }}
-  {{ form_row( edit_form.idtipoconsumo) }}
+ {{ form_row( edit_form.idtipoconsumo, {"attr":{"class":"hidden"}}) }}
+  <label class="nombre_atributo" ></label>
   {{ form_row( edit_form.idtipoestado,{'attr':{'class':'form-control'}} ) }}
 
 
-    <div class="btn-group">
-      {{ form_end(edit_form) }}
-          <a href="{{app.request.headers.get('referer')}}"class="btn btn-default">
-           Regresar
-        </a>
-    </div>
+    <center>
+      <div class="btn-group" style="margin-top:5px">
+          <button type="submit" class="btn btn-success">Actualizar</button>
+          {# <a href="{{app.request.headers.get('referer')}}" class="btn btn-default">
+             Regresar
+          </a> #}
+      </div>
+    </center>
 
-   {{ form(delete_form) }}
+   {# {{ form(delete_form) }} #}
+
+{% endblock %}
+{# {% endblock %}
+ #}
+
+{% block javascripts %}
+  {# {{ parent() }} #}
+
+  <script>
+
+ 
+      var valor= $("#hc_hcbundle_phciconsumo_idtipoconsumo").find(":selected").text();
+      $(".nombre_atributo").html(valor);
+   
+      
+  </script>
 {% endblock %}

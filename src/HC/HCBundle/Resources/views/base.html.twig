@@ -1,8 +1,33 @@
+{% block all %}
 <!DOCTYPE html>
 <html>
 <head>
-    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
-    <title>{% block title %}Bienvenido al Sistema de Gestión de Historias Médicas{% endblock %}</title>
+
+
+       
+            <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+            <title>
+
+            {% block title %}Bienvenido al Sistema de Gestión de Historias Médicas{% endblock %}</title>
+
+            {% block stylesheets %}
+                    {% stylesheets
+                    'bundles/hchc/Admin/bootstrap/css/bootstrap.min.css'
+                    'bundles/hchc/Admin/plugins/font-awesome-4.3.0/css/font-awesome.min.css'
+                    'bundles/hchc/Admin/plugins/ionicons-2.0.1/css/ionicons.min.css'
+                    'bundles/hchc/Admin/dist/css/AdminLTE.min.css'
+                    'bundles/hchc/Admin/dist/css/skins/skin-purple.min.css' 
+                    'bundles/hchc/Admin/plugins/datatables/dataTables.bootstrap.css' 
+                    output='css/*.css' filter='cssrewrite' %}
+                    <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}" />
+               
+
+                    {% endstylesheets %}
+                    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+            {% endblock %}
+        
+        
+ 
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -11,22 +36,7 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-    {% block stylesheets %}
-        {% stylesheets
-        'bundles/hchc/Admin/bootstrap/css/bootstrap.min.css'
-        'bundles/hchc/Admin/plugins/font-awesome-4.3.0/css/font-awesome.min.css'
-        'bundles/hchc/Admin/plugins/ionicons-2.0.1/css/ionicons.min.css'
-        'bundles/hchc/Admin/dist/css/AdminLTE.min.css'
-        'bundles/hchc/Admin/dist/css/skins/skin-purple.min.css' 
-        'bundles/hchc/Admin/plugins/datatables/dataTables.bootstrap.css' 
-        output='css/*.css' filter='cssrewrite' %}
-        <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}" />
-   
 
-        {% endstylesheets %}
-
-    {% endblock %}
-    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
 </head>
 <body class="skin-purple">
 <div class="wrapper">
@@ -47,3 +57,5 @@
 
 </body>
 </html>
+
+{% endblock %}

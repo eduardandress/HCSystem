@@ -1,6 +1,6 @@
-{% extends 'HCHCBundle::layout.html.twig' %}
-
-{% block stylesheets %}
+{# {% extends 'HCHCBundle::base2.html.twig' %}
+ #}
+{# {% block stylesheets %}
 {{ parent() }}
         {% stylesheets
         'bundles/hchc/Admin/plugins/daterangepicker/daterangepicker-bs3.css'
@@ -25,15 +25,16 @@
 
 {% endblock %}
 
+ #}
 
-
-
+{# 
 
 {% block content -%}
- <div class="col-md-6 ">
+ <div class="col-md-6 "> #}
+{% block sinestilo %}
      {{ form_start(edit_form) }}
       		{{ form_row(edit_form._token) }}
-				{{ form_row(edit_form.cedula,{'attr':{'class':'form-control'}}) }}
+				{{ form_row(edit_form.cedula,{"label":false,'attr':{'class':'hidden'}}) }}
       			{{ form_row(edit_form.nombre,{'attr':{'class':'form-control'}}) }}
       			{{ form_row(edit_form.apellido,{'attr':{'class':'form-control'}}) }}
       			{{ form_row(edit_form.direccion,{'attr':{'class':'form-control'}}) }}
@@ -46,28 +47,23 @@
               <div class="input-group-addon">
                 <i class="fa fa-calendar"></i>
               </div>
-              {{ form_widget(edit_form.fechanac,{'attr': {'class': 'form-control','data-inputmask':"'alias': 'yyyy-mm-dd' ",'data-mask':''}}) }}
+              {{ form_widget(edit_form.fechanac,{'attr': {'class': 'form-control inputmask','data-inputmask':"'alias': 'yyyy-mm-dd' ",'data-mask':''}}) }}
             </div><!-- /.input group -->
           </div>
   
       			{{ form_row(edit_form.numss,{'attr':{'class':'form-control'}}) }}
       			{{ form_row(edit_form.idmedicopref,{'attr':{'class':'form-control'}}) }}
            
-    {{ form(edit_form) }}
-
-    <center>
-    	<div class="btn-group">
-
-							<a href="{{app.request.headers.get('referer')}}" class="btn btn-default">
-							Regresar
-							</a>
-						{{ form(delete_form) }}
-    	</div>
-    </center>  
-					
-</div>
-{% endblock %}
-{% block javascripts -%}
+       <center>
+            <div class="btn-group" style="margin-top:5px">
+                <button type="submit" class="btn btn-success">Actualizar</button>
+               
+            </div>
+          </center>
+{% endblock %}					
+{# </div>
+{% endblock %} #}
+{# {% block javascripts -%}
 	{{ parent() }}
 
 
@@ -92,4 +88,4 @@
     {% endjavascripts %}
 
 {% endblock %}
-
+ #}

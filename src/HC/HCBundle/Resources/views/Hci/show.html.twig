@@ -20,6 +20,12 @@
 
 
 {% block content -%}
+
+  <style>
+    .table-condensed{
+
+    }
+  </style>
     <div class="box box-default box-solid collapsed-box">
       <div class="box-header with-border">
         <h3 class="box-title">Historia Medica Inicial</h3>
@@ -35,88 +41,88 @@
                   <h3 class="box-title">Historia Médica Inicial</h3>
                 </div><!-- /.box-header -->
                 <div class="box-body no-padding">
+        
                   <table class="table table-condensed">
                     <tr>
                       <th style="width:60%" >Paciente</th>
                       <td>{{ entity.idpaciente.nombre}} {{entity.idpaciente.apellido}}</td>
-                      <td> <a href="{{ path('paciente_show', { 'id': entity.idpaciente.idpaciente }) }}" class="btn btn-default btn-xs">
+                      <td> 
+                          <a href="{{ path('paciente_show', { 'id': entity.idpaciente.idpaciente }) }}" class="btn btn-default btn-xs pull-right">
                                             Ver paciente
-                                          </a>
+                          </a>
                       </td>
                     </tr>
                     <tr>
                       <th>Fecha de Creación</th>
                       <td>{{ entity.fechacreacion|date('Y-m-d') }}</td>
                     </tr>
+                  </table>
 
-                    <tr>
+                    
                       <!-- Comienza Las alergias del paciente -->
-                        <table class="table table-condensed"  >
-                         <h4>Alergias del paciente <a data-nombre="Alergia" class="nuevo btn btn-success btn-xs"  href="">Nuevo</a></h4>
-                                <tbody>
-                                     <thead>
-                                     <tr>
-                                        <th style="width:60%">
-                                          Descripción
+                 
+                      <table class="table table-condensed"  >
+                          <h4>Alergias del paciente <a data-nombre="Alergia" class="nuevo btn btn-success btn-xs"  href="">Nuevo</a></h4>
+                                
+                                      <thead>
+                                      <tr>
+                                         <th style="width:60%">
+                                           Descripción
+                                         </th>
+                                          <th>
+                                           Fecha de Actualización
+                                         </th>
+                                        <th>
+                                          Acciones
                                         </th>
-                                         <th>
-                                          Fecha de Actualización
-                                        </th>
-                                       <th>
-                                         Acciones
-                                       </th>
-                                     </tr>
-                                   </thead>
-                                {% for alergia in entity.alergia %}
-                                       <tr class="rowAlergia" id="al_{{alergia.idphcialergia}}">
-                                   
-
-                                        <td>{{alergia.descripcion}}</td>
-                                        <td>{{alergia.fechaactualizacion|date('Y-m-d')}}</td>
-                                        <td> 
-                                          <button class="modificarAlergia btn btn-default btn-xs">
-                                            Modificar
-                                          </button>
-                                          <button class="eliminarAlergia btn btn-danger btn-xs">
-                                            Eliminar
-                                          </button>
-                                        </td>
                                       </tr>
-                                {% endfor %}
-
-                                </tbody>
-                          </table>
+                                    </thead>
+                                <tbody>
+                                 {% for alergia in entity.alergia %}
+                                        <tr class="rowAlergia" id="al_{{alergia.idphcialergia}}">
+                                    
+                     
+                                         <td>{{alergia.descripcion}}</td>
+                                         <td>{{alergia.fechaactualizacion|date('Y-m-d')}}</td>
+                                         <td> 
+                                           <button class="modificarAlergia btn btn-default btn-xs">
+                                             Modificar
+                                           </button>
+                                           <button class="eliminarAlergia btn btn-danger btn-xs">
+                                             Eliminar
+                                           </button>
+                                         </td>
+                                       </tr>
+                                 {% endfor %}
+                     
+                                 </tbody>
+                       </table>
+               
                       <!-- Termina Las alergias del paciente -->
                       <!-- Comienza Nueva alergia del paciente -->
                             <div class="box box-success nuevoformAlergia" style="display:none" >
-                              <div class="box-header">
-                                <h3 class="box-title">Nueva Alergia del paciente</h3>
-                              </div><!-- /.box-header -->
-                              <div class="box-body no-padding">
-                                <table class="table table-condensed">
-                                      <tbody>
+     
                                       {{form_start(formNuevoAlergia)}}
                                       {{form_row(formNuevoAlergia._token)}}
-                                        <tr>
-                                          <td>{{form_row(formNuevoAlergia.descripcion,{'attr':{'class':'form-control'}})}}</td>
-                                        </tr>
-                                        <tr>
-                                          <td>
-                                             {{form(formNuevoAlergia)}}
-                                           </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                              </div><!-- /.box-body -->
+                                      {{form_row(formNuevoAlergia.descripcion,{'attr':{'class':'form-control'}})}}
+                                      
+                                     <center>
+                                      <div class="btn-group" style="margin-top:5px">
+                                          <button type="submit" class="btn btn-success">Agregar</button>
+                                         
+                                      </div>
+                                    </center>
+                                      
+
                             </div>
                       <!-- Termina Nueva alergia del paciente -->
 
-                    </tr>
-                      <tr>
-                      <!-- Comienza Las Condiciones del paciente -->
+
+                       <!-- Comienza Las Condiciones del paciente -->
+                  
                         <table  class="table table-condensed" >
                          <h4>Condiciones del paciente <a  data-nombre="Condicion" class="nuevo btn btn-success btn-xs"  href="">Nuevo</a></h4>
-                                <tbody>
+                               
                                      <thead>
                                      <tr>
                                         <th style="width:60%">
@@ -130,6 +136,7 @@
                                        </th>
                                      </tr>
                                    </thead>
+                                    <tbody>
                                 {% for condicion in entity.condicion %}
                                        <tr class="rowCondicion" id="con_{{condicion.idphcicondicion}}" >
                                    
@@ -151,33 +158,27 @@
                       <!-- Termina Las Condiciones del paciente -->
                       <!-- Comienza Nueva condicion del paciente -->
                             <div class="box box-success nuevoformCondicion" style="display:none" >
-                              <div class="box-header">
-                                <h3 class="box-title">Nueva Condición del paciente</h3>
-                              </div><!-- /.box-header -->
-                              <div class="box-body no-padding">
-                                <table class="table table-condensed">
-                                      <tbody>
+
+                               
                                       {{form_start(formNuevoCondicion)}}
                                       {{form_row(formNuevoCondicion._token)}}
-                                        <tr>
-                                          <td>{{form_row(formNuevoCondicion.descripcion,{'attr':{'class':'form-control'}})}}</td>
-                                        </tr>
-                                        <tr>
-                                          <td>
-                                              {{form_end(formNuevoCondicion)}}
-                                          </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                              </div><!-- /.box-body -->
+                                      {{form_row(formNuevoCondicion.descripcion,{'attr':{'class':'form-control'}})}}
+                                     <center>
+                                      <div class="btn-group" style="margin-top:5px">
+                                          <button type="submit" class="btn btn-success">Agregar</button>
+                                         
+                                      </div>
+                                    </center>
+                                       
+                                 
+
                             </div>
                       <!-- Termina Nueva condicion del paciente -->
-                    </tr>
-                    <tr>
+
                       <!-- Comienza Los Medicamentos del paciente -->
                         <table  class="table table-condensed">
                          <h4>Medicamentos del paciente <a data-nombre="Medicamento" class="nuevo btn btn-success btn-xs"  href="">Nuevo</a></h4>
-                                <tbody>
+                               
                                      <thead>
                                      <tr>
                                         <th style="width:60%">
@@ -191,6 +192,7 @@
                                        </th>
                                      </tr>
                                    </thead>
+                                    <tbody>
                                 {% for medicamento in entity.medicamento %}
                                        <tr class="rowMedicamento" id="me_{{medicamento.idphcimedicamento}}" >
 
@@ -212,34 +214,26 @@
                       <!-- Comienza Los Medicamentos del paciente -->
                       <!-- Comienza Nuevo Medicamento del paciente -->
                             <div class="box box-success nuevoformMedicamento" style="display:none" >
-                              <div class="box-header">
-                                <h3 class="box-title">Nuevo Medicamento del paciente</h3>
-                              </div><!-- /.box-header -->
-                              <div class="box-body no-padding">
-                                <table class="table table-condensed">
-                                      <tbody>
-                                        {{form_start(formNuevoMedicamento)}}
+                                              
+
+                                      {{form_start(formNuevoMedicamento)}}
                                       {{form_row(formNuevoAlergia._token)}}
-                                        <tr>
-                                          <td>{{form_row(formNuevoMedicamento.descripcion,{'attr':{'class':'form-control'}})}}</td>
-                                        </tr>
-                                        <tr>
-                                          <td>
-                                              {{form_end(formNuevoMedicamento)}}
-                                          </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                              </div><!-- /.box-body -->
-                            </div>
+                                      {{form_row(formNuevoMedicamento.descripcion,{'attr':{'class':'form-control'}})}}
+                                       <center>
+                                      <div class="btn-group" style="margin-top:5px">
+                                          <button type="submit" class="btn btn-success">Agregar</button>
+                                         
+                                      </div>
+                                    </center>
+                                          
+                          
+                              </div>
                       <!-- Termina Nueva Medicamento del paciente -->
 
-                    </tr>
-                       <tr>
                       <!-- Comienza Los consumos del paciente -->
                         <table  class="table table-condensed ">
                          <h4>Consumos del paciente</h4>
-                                <tbody>
+                                
                                      <thead>
                                      <tr>
                                          <th style="width:50%">
@@ -256,6 +250,7 @@
                                        </th>
                                      </tr>
                                    </thead>
+                                   <tbody>
                                 {% for consumo in entity.consumo %}
                                        <tr class="rowConsumo" id="co_{{consumo.idphciconsumo}}" >
                                    
@@ -275,8 +270,6 @@
                           </table>
                       <!-- Termina Los consumos del paciente -->
                      
-                    </tr>
-                  </table>
                 </div><!-- /.box-body -->
               </div>
               
@@ -465,7 +458,7 @@
    </div>
 
 {% endblock %}
-{% macro modal(id, header, body, footer) %}
+{% macro modal(id) %}
 
     <div id="{{id}}" class="modal fade">
         <div class="modal-dialog">
@@ -474,57 +467,76 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"> &times; </button>
                     <h4 class="modal-title">
                       
-                      {{ header }}
+                     
                     </h4>
                 </div>
                 <div class="modal-body">
-                    {{ body }}
+               
                 </div>
                 <div class="modal-footer">
-                  {{ footer }}
+                
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
                     <button type="button" class="confirm btn btn-primary">Si</button>
                 </div>
             </div>
         </div>
     </div>
+    
+
 {% endmacro %}
 {% block javascripts %}
 {{ parent() }}
+          {% javascripts
+            'bundles/hchc/js/basics.js'
+            %}
+            <script type="text/javascript" src="{{ asset_url }}"></script>
+
+          
+
+
+         {% endjavascripts %}
 
 <script >
   //Variables que guardan los formularios de eliminacion para cada uno de los items de la HMI(Historia Medica Inical)
-  var formDeleteAlergia='{{form(formDeleteAlergia)}}'
-  var formDeleteCondicion='{{form(formDeleteCondicion)}}'
-  var formDeleteMedicamento='{{form(formDeleteMedicamento)}}'
+
+  var GenericformDelete= "{{form(genericDeleteForm)|e('js') }}";
+
+
+
 // Variables que guardan Las rutas para la modificar cada uno de los items de la HMI
    var EditarAlergiaRuta="{{ path('phcialergia_edit', {id:'texto'} ) }}";
    var EditarCondicionRuta="{{ path('phcicondicion_edit', {id:'texto'} ) }}";
    var EditarMedicamentoRuta="{{ path('phcimedicamento_edit', {id:'texto'} ) }}";
    var EditarConsumoRuta="{{ path('phciconsumo_edit', {id:'texto'} ) }}";
 
-//Variable que guarda el formulario de eliminacion para las notas de cita
-  var formDeleteNotacita='{{form(formDeleteNotacita)}}'
+
   //Variable que guarda la ruta de ver  un item de la lista de nota de citas
    var VerNotacitaRuta="{{ path('notacita_show', {id:'texto'} ) }}";
 
-          function CrearModal(datos){ // Fue copy and paste, se debe organizar generalizar para usarlo en todas partes
-              var s="{% import _self as modales %}";
-              var Modal= "{{ modales.modal('IdModal','ModalHeader','ModalBody','ModalFooter')|e('js') }} ";
-              Modal= Modal.replace("IdModal",datos.IdModal);
-              Modal= Modal.replace("ModalHeader",datos.ModalHeader);
-              Modal= Modal.replace("ModalBody",datos.ModalBody);
-              Modal= Modal.replace("ModalFooter",datos.ModalFooter);
+   function CrearModal(datos){
 
+        if( $("#"+datos.IdModal).length<=0 ){
+     
+          var Modal= "{{ _self.modal('IdModal')|e('js') }} ";
+          Modal= Modal.replace("IdModal",datos.IdModal);
 
-              $("body").append(Modal);
-              $("#"+datos.IdModal).modal("show");
+          $("body").append(Modal);
+        }
+        $("#"+datos.IdModal).find(".modal-title").html(datos.ModalHeader)
+        $("#"+datos.IdModal).find(".modal-body").html(datos.ModalBody)
+        //si se quiere usar los botones de cancelar y confirm.
+        if(datos.ModalFooter){
 
-              $("#"+ datos.IdModal+" .confirm").on("click", function(){
-                  datos.AccionModal();
+            $("#"+datos.IdModal).find(".modal-footer").prepend('');
+            $("#"+ datos.IdModal+" .confirm").on("click", function(){
+              datos.AccionModal();
+            })
 
-              })
-           }
+        }else{
+            $("#"+datos.IdModal).find(".modal-footer").empty();
+        }
+        $("#"+datos.IdModal).modal("show");
+    }
   //Funcion que elimina cuaquier campo de cualquier entidad(dado un formulario de eliminacion y el id del elemento) :D
   function eliminarItem(formularioEliminar, id){
        formularioEliminar=formularioEliminar.replace("texto", id);
@@ -534,11 +546,10 @@
         $("#dTelf").remove()
   }
   //funcion que generica que redirecciona a la ruta de eliminar de cualquier entidad
-   function modificarItem(rutam, id){
+    function ObtenerRuta(rutam, id){
         var ruta= rutam;
-        console.log(ruta);
         ruta=ruta.replace("texto", id);
-        window.location=ruta;
+       return ruta;
     }
     //Agrega un nuevo item de (prescripcion, diagnostico o refreencia) de la nota de cita
     function addNotaCitaItem($collectionHolder) {
@@ -560,6 +571,7 @@
 
         $('.eliminarAlergia').on('click', function(e){
             e.preventDefault();
+
             var idphcialergia=$(this).parents(".rowAlergia").attr("id");
             idphcialergia= idphcialergia.replace("al_","");
 
@@ -569,7 +581,9 @@
                "ModalBody": "¿ Esta seguro de eliminar la alergia del paciente ?",
                "ModalFooter": " ",
                 AccionModal: function(){
-                  eliminarItem(formDeleteAlergia,idphcialergia);
+                  GenericformDelete=GenericformDelete.replace("urlaction", "{{ path('phcialergia_delete', {'id': 'texto'} ) }}")
+
+                  eliminarItem(GenericformDelete,idphcialergia);
                 }
               }
               CrearModal(datosModal);
@@ -585,7 +599,8 @@
                  "ModalBody": "¿ Esta seguro de eliminar el medicamento del paciente ?",
                  "ModalFooter": " ",
                   AccionModal: function(){
-                    eliminarItem(formDeleteMedicamento,idphcimedicamento);
+                    GenericformDelete=GenericformDelete.replace("urlaction", "{{ path('phcimedicamento_delete', {'id': 'texto'} ) }}")
+                      eliminarItem(GenericformDelete,idphcimedicamento);
                   }
                 }
                 CrearModal(datosModal);
@@ -601,7 +616,8 @@
                    "ModalBody": "¿ Esta seguro de eliminar la condicion del paciente ?",
                    "ModalFooter": " ",
                     AccionModal: function(){
-                      eliminarItem(formDeleteCondicion,idphcicondicion);
+                      GenericformDelete=GenericformDelete.replace("urlaction", "{{ path('phcicondicion_delete', {'id': 'texto'} ) }}")
+                      eliminarItem(GenericformDelete,idphcicondicion);
                     }
                   }
                   CrearModal(datosModal);
@@ -619,7 +635,8 @@
                    "ModalBody": "¿ Esta seguro de eliminar esta Nota de cita ?",
                    "ModalFooter": " ",
                     AccionModal: function(){
-                      eliminarItem(formDeleteNotacita,idnotacita);
+                      GenericformDelete=GenericformDelete.replace("urlaction", "{{ path('notacita_delete', {'id': 'texto'} ) }}")
+                      eliminarItem(GenericformDelete,idnotacita);
                     }
                   }
                   CrearModal(datosModal);
@@ -629,7 +646,8 @@
           e.preventDefault();
           var idnotacita=$(this).parents(".rowNotacita").attr("id");
           idnotacita= idnotacita.replace("nc_","");
-          modificarItem(VerNotacitaRuta,idnotacita);
+          var ruta= ObtenerRuta(VerNotacitaRuta,idnotacita);
+          window.location= ruta;
         })
         //  Eventos Botones modificar
         $(".modificarAlergia").on("click", function(e){
@@ -637,17 +655,30 @@
 
           var idphcialergia=$(this).parents(".rowAlergia").attr("id");
           idphcialergia= idphcialergia.replace("al_","");
-          modificarItem(EditarAlergiaRuta,idphcialergia);
+          var ruta= ObtenerRuta(EditarAlergiaRuta,idphcialergia);
 
+          datosModal.ModalHeader="Modificar Alergia";
+          datosAjax.url= ruta;
+          datosAjax.accionSuccess= function(data){
+                datosModal.ModalBody=data;
+                CrearModal(datosModal);
+          }
+          CargarDatosAjax(datosAjax);
         })
         $(".modificarCondicion").on("click", function(e){
           e.preventDefault();
 
           var idphcicondicion=$(this).parents(".rowCondicion").attr("id");
           idphcicondicion= idphcicondicion.replace("con_","");
+          var ruta= ObtenerRuta(EditarCondicionRuta,idphcicondicion);
+          datosModal.ModalHeader="Modificar condición";
+          datosAjax.url= ruta;
+          datosAjax.accionSuccess= function(data){
+                datosModal.ModalBody=data;
+                CrearModal(datosModal);
+          }
+          CargarDatosAjax(datosAjax);
 
-
-          modificarItem(EditarCondicionRuta,idphcicondicion);
 
         })
         $(".modificarMedicamento").on("click", function(e){
@@ -656,9 +687,14 @@
           var idphcimedicamento=$(this).parents(".rowMedicamento").attr("id");
           idphcimedicamento= idphcimedicamento.replace("me_","");
 
-
-          modificarItem(EditarMedicamentoRuta,idphcimedicamento);
-
+          var ruta= ObtenerRuta(EditarMedicamentoRuta,idphcimedicamento);
+          datosModal.ModalHeader="Modificar medicamento";
+          datosAjax.url= ruta;
+          datosAjax.accionSuccess= function(data){
+                datosModal.ModalBody=data;
+                CrearModal(datosModal);
+          }
+          CargarDatosAjax(datosAjax);
         })
         $(".modificarConsumo").on("click", function(e){
           e.preventDefault();
@@ -667,22 +703,28 @@
           idphciconsumo= idphciconsumo.replace("co_","");
 
 
-          modificarItem(EditarConsumoRuta,idphciconsumo);
-
+          var ruta= ObtenerRuta(EditarConsumoRuta,idphciconsumo);
+          datosModal.ModalHeader="Modificar consumo";
+          datosAjax.url= ruta;
+          datosAjax.accionSuccess= function(data){
+                datosModal.ModalBody=data;
+                CrearModal(datosModal);
+          }
+          CargarDatosAjax(datosAjax);
         })
         //Eventos Botones Nuevo
 
         $('.nuevo').on('click',function(e){
               e.preventDefault();
-                 if($(this).text()=="Nuevo"){
-                    $(this).text("Cancelar");     
-                }else{
-                    $(this).text("Nuevo");
-                }
                 //Se obtiene el tipo de item (Alergia, Condicion o Medicamento)
                 var nombreItem=$(this).data('nombre');
+                datosModal.ModalHeader="Agregar "+ nombreItem + " del Paciente";
+
+              
+                datosModal.ModalBody=$(".nuevoform"+nombreItem).html(),
+               CrearModal(datosModal);
                  
-                $(".nuevoform"+nombreItem).fadeToggle();
+               
         })
         //Evento de los botones de nuevo prescripcion, diagnostico, referencia
          $('.anexarANC').on('click',function(e){
@@ -712,7 +754,7 @@
                );
 
 
-        $(".addBtnPrescripciones").on('click', function(e) {
+          $(".addBtnPrescripciones").on('click', function(e) {
             e.preventDefault();
             addNotaCitaItem(ListaDePrescripciones);
          })

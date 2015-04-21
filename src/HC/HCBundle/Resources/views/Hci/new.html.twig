@@ -38,7 +38,7 @@
                 </div>
                 <div class="box-body alergias" data-prototype="{{ form_widget(form.alergia.vars.prototype)|e }}">
                     {% for alergia in form.alergia %}
-                       {{ form_row(alergia.descripcion,{'attr':{'class':'form-control'}}) }}
+                     {#   {{ form_row(alergia.descripcion,{'attr':{'class':'form-control'}}) }} #}
                     {% endfor %}
                 </div>
                  </br>
@@ -50,7 +50,7 @@
                 </div>
                 <div class="box-body condiciones" data-prototype="{{ form_widget(form.condicion.vars.prototype)|e }}">
                      {% for condicion in form.condicion %}
-                        {{ form_row(condicion.descripcion,{'attr':{'class':'form-control'}}) }}
+                        {# {{ form_row(condicion.descripcion,{'attr':{'class':'form-control'}}) }} #}
                      {% endfor %}
                 </div>
                  </br>
@@ -63,7 +63,7 @@
                 </div>
                 <div class="box-body medicamentos" data-prototype="{{ form_widget(form.medicamento.vars.prototype)|e }}">
                        {% for medicamento in form.medicamento %}
-                        {{ form_row(medicamento.descripcion,{'attr':{'class':'form-control'}}) }}
+                        {# {{ form_row(medicamento.descripcion,{'attr':{'class':'form-control'}}) }} #}
                       {% endfor %}
                 </div>
                  </br>
@@ -75,7 +75,9 @@
                 </div>
                 <div class="box-body consumos" data-prototype="{{ form_widget(form.consumo.vars.prototype)|e }}">
                        {% for consumo in form.consumo %}
-                        <h4>Consumo de {{form_row(consumo.idtipoconsumo) }}</h4>
+
+                        {{ form_row(consumo.idtipoconsumo, {"attr":{"class":"hidden"}}) }}
+                        <h4>Consumo de <span id="consumoLabel{{loop.index}}"></span></h4>
                       {{ form_row(consumo.idtipoestado,{'attr':{'class':'form-control'}}) }}
                        {% endfor %}
                 </div>
@@ -107,7 +109,11 @@
 {{parent()}}
 
 <script type="text/javascript">
-  
+    var consumo1= $("#hc_hcbundle_hci_consumo_0_idtipoconsumo").find(":selected").text();
+    var consumo2= $("#hc_hcbundle_hci_consumo_1_idtipoconsumo").find(":selected").text();
+
+    $("#consumoLabel1").html(consumo1);
+    $("#consumoLabel2").html(consumo2);
     function addItem($collectionHolder) {
 
         var prototype = $collectionHolder.data('prototype');

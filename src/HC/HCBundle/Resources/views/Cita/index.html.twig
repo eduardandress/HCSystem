@@ -23,14 +23,20 @@
         width:40px;
         height:40px;
         padding:0px;
+        margin:0px;
     }
-    .barraOpciones{
-      float:left;
-      margin-bottom: 10px;
-      width: 100%;
-      display: block;
+     .opciones{
+        text-align: right;
+        margin-bottom: 10px;
+        margin-right:10px;
     }
 </style>
+<div class="opciones">
+    <a href="{{ path('gestionarcitas_new') }}" class="btn btn-success">
+        <i class="fa fa-plus"></i>
+         Nueva cita
+    </a>
+</div>
             <div class="box">
      
                      <div class="box-header">
@@ -71,12 +77,12 @@
                                     <!-- <td>{% if entity.fechacreacion %}{{ entity.fechacreacion|date('Y-m-d H:i:s') }}{% endif %}</td> -->
                                     <td>{{ entity.motivo }}</td>
                                     <td>
+
+                                            <a href="{{ path('gestionarvisitas_new', { 'idcita': entity.idcita }) }}"  class="btn btn-app  small-btn gVisitaBoton"><i class="fa  fa-book"></i>Registar Visita</a>
                                     
                                             <a href="{{ path('gestionarcitas_show', { 'id': entity.idcita }) }}"class="btn btn-app small-btn"><i class="fa fa-eye"></i>Ver</a>
                                         
                                             <a href="{{ path('gestionarcitas_edit', { 'id': entity.idcita }) }}" class="btn btn-app small-btn"><i class="fa fa-edit"></i>Editar</a>
-
-                                            <a href="{{ path('gestionarvisitas_new', { 'idcita': entity.idcita }) }}"  class="btn btn-app small-btn gVisitaBoton"><i class="fa fa-eye"></i>Registar Visita</a>
 
                                        
                                     </td>
@@ -97,9 +103,7 @@
              </div>
       
 
-     <div class="barraOpciones">
-                      <a href="{{ path('gestionarcitas_new') }}"  style="float:right" class="btn btn-success  "><i class="fa fa-plus"></i> Nueva cita</a>
-              </div>
+    
           
 {% endblock %}
 {% block javascripts -%}

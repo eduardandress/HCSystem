@@ -1,0 +1,56 @@
+
+{% macro modal(id) %}
+
+    <div id="{{id}}" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"> &times; </button>
+                    <h4 class="modal-title">
+                      
+                     
+                    </h4>
+                </div>
+                <div class="modal-body">
+               
+                </div>
+                <div class="modal-footer">
+                
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="confirm btn btn-primary">Si</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+{% endmacro %}
+
+<script>
+    
+function CrearModal(datos){
+alert("entro");
+    if( $("#"+datos.IdModal).length<=0 ){
+ 
+      var Modal= "{{ macros.modal('IdModal')|e('js') }} ";
+      Modal= Modal.replace("IdModal",datos.IdModal);
+
+      $("body").append(Modal);
+    }
+    $("#"+datos.IdModal).find(".modal-title").html(datos.ModalHeader)
+    $("#"+datos.IdModal).find(".modal-body").html(datos.ModalBody)
+    //si se quiere usar los botones de cancelar y confirm.
+    if(datos.ModalFooter){
+
+    $("#"+datos.IdModal).find(".modal-footer").prepend('');
+
+    $("#"+ datos.IdModal+" .confirm").on("click", function(){
+      datos.AccionModal();
+    })
+
+    }else{
+     $("#"+datos.IdModal).find(".modal-footer").empty();
+    }
+    $("#"+datos.IdModal).modal("show");
+}
+</script>
