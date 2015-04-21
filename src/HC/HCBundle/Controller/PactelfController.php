@@ -176,7 +176,8 @@ class PactelfController extends Controller
             $em->flush();
 
             //return $this->redirect($this->generateUrl('pactelf_edit', array('id' => $id)));
-            $this->redirect($this->getRequest()->headers->get('referer'));
+        
+            return $this->redirect($this->getRequest()->headers->get('referer'));
         }
 
         return $this->render('HCHCBundle:Pactelf:edit.html.twig', array(

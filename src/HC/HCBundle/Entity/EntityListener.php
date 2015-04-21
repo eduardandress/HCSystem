@@ -99,9 +99,9 @@ class EntityListener
                        $descripcion=" para el paciente ".$pacienteNombre." ".$pacienteApellido." a su cita programada para el dia: ".$cita ;
                 break;
                 case "Notacita":
-                        $pacienteNombre=$entity->getIdnotacita()->getIdhci()->getIdpaciente()->getNombre();
-                    $pacienteApellido=$entity->getIdnotacita()->getIdhci()->getIdpaciente()->getApellido();
-                     $cita=$entity->getIdnotacita()->getIdcita()->getFechaprogramada()->format('Y-m-d');
+                        $pacienteNombre=$entity->getIdhci()->getIdpaciente()->getNombre();
+                    $pacienteApellido=$entity->getIdhci()->getIdpaciente()->getApellido();
+                     $cita=$entity->getIdcita()->getFechaprogramada()->format('Y-m-d');
                      $descripcion=" para el paciente ".$pacienteNombre." ".$pacienteApellido." a su cita programada para el dia: ".$cita ;
                 break;
                 case "Phcialergia":

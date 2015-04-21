@@ -175,7 +175,7 @@ class PacnumcontactoController extends Controller
         if ($editForm->isValid()) {
             $em->flush();
 
-            //return $this->redirect($this->generateUrl('pacnumcontacto_edit', array('id' => $id)));
+   
             return $this->redirect($this->getRequest()->headers->get('referer'));
             
         }

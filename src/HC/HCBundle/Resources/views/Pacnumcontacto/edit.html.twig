@@ -1,34 +1,4 @@
 
-{# {% extends 'HCHCBundle::base2.html.twig' %} #}
-
-{# {% block stylesheets %}
-{{ parent() }}
-        {% stylesheets
-        'bundles/hchc/Admin/plugins/daterangepicker/daterangepicker-bs3.css'
-        'bundles/hchc/Admin/plugins/timepicker/bootstrap-timepicker.min.css'
-        
-        output='css/*.css' filter='cssrewrite' %}
-        <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}" />
-    {% endstylesheets %}
-{% endblock %} #}
-{# {% block content_header %}
-  <section class="content-header">
-    <h1>
-      Modificar de Emergencia 
-      <small>Modificar Teléfono de Emergencia seleccionado</small>
-    </h1>
-    <ol class="breadcrumb">
-      <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
-      <li class="active">Here</li>
-    </ol>
-  </section>
-
-{% endblock %} #}
-
-
-{# 
-{% block content %}
-<div class="col-md-6"> #}
 {% block sinestilo %}
   
        {{ form_start(edit_form) }}
@@ -59,31 +29,3 @@
   </div> 
 
 {% endblock %}
-{# 
-{% endblock %} #}
-
-{# {% block javascripts -%}
-  {{ parent() }}
-
-
-    {% javascripts
-    'bundles/hchc/Admin/plugins/input-mask/jquery.inputmask.js'
-    'bundles/hchc/Admin/plugins/input-mask/jquery.inputmask.date.extensions.js'
-    'bundles/hchc/Admin/plugins/input-mask/jquery.inputmask.extensions.js'
-    
-  
-    %}
-    <script type="text/javascript" src="{{ asset_url }}"></script>
-
-     <script type="text/javascript">
-       $(function () {
-         $("[data-mask]").inputmask();
-
-      });
-    </script>
-    
-
-
-    {% endjavascripts %}
-
-{% endblock %} #}

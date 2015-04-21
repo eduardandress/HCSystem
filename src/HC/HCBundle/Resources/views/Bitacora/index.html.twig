@@ -24,14 +24,24 @@
         height:40px;
         padding:0px;
     }
+    .opciones{
+        text-align: right;
+        margin-bottom: 10px;
+        margin-right:10px;
+    }
 </style>
+<div class="opciones">
+    <a class="btn btn-danger">
+        <i class="fa  fa-trash-o"></i>
+         Vaciar Bitacora
+    </a>
+</div>
             <div class="box">
                     <div class="box-header">
                       <h3 class="box-title">Bitácora del sistema</h3>
                     </div><!-- /.box-header -->
                     <div class="box-body">
-
-    <table class="table table-condensed">
+<table id="Bitacora" class="table table-striped table-bordered" cellspacing="0" width="100%">
         <thead>
             <tr>
        {#          <th>Idbitacora</th> #}
@@ -63,6 +73,26 @@
     </table>
 </div>
 </div>
-<button type="button" class="btn btn-danger">Vaciar bitacora</button>
+
 
     {% endblock %}
+{% block javascripts -%}
+    {{ parent() }}
+      {% javascripts
+            'bundles/hchc/js/basics.js'
+            %}
+            <script type="text/javascript" src="{{ asset_url }}"></script>
+
+         {% endjavascripts %}
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+
+            $("#Bitacora").dataTable(DataLanguage);
+        })
+       
+    </script>
+
+
+   
+{% endblock %}
