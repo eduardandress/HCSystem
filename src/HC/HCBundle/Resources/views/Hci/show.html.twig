@@ -426,7 +426,9 @@
                    </br>
                  </div>
                    <a  class="btn btn-block btn-default addBtnReferencia" href="#">Insertar </a>
-               </div> </div>
+               </div> 
+
+             {# </div> #}
 
                       </div><!-- /.box-body -->
                     </div>
@@ -437,8 +439,11 @@
                           
 
                            <div class="btn-group opciones" style="margin-top:4px">
-                                {{form_row(notacitahoy.submit,{'render_rest':false})}}
+                                {# {{form_row(notacitahoy.submit)}} #}
+
+                                  {{form_end(notacitahoy)}}
                                   <a href="{{ path('hci') }}" class="btn btn-default">Regresar</a>
+
                              </div>
 
                         </center>
