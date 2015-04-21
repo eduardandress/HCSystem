@@ -115,12 +115,17 @@
     {% endblock %}
 {% block javascripts -%}
     {{ parent() }}
+      {% javascripts
+            'bundles/hchc/js/basics.js'
+            %}
+            <script type="text/javascript" src="{{ asset_url }}"></script>
 
+         {% endjavascripts %}
 
     <script type="text/javascript">
         $(document).ready(function(){
 
-            $("#Pacientes").dataTable();
+            $("#Pacientes").dataTable(DataLanguage);
         })
     </script>
 

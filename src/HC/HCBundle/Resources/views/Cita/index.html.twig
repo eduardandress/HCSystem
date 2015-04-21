@@ -108,6 +108,15 @@
 {% endblock %}
 {% block javascripts -%}
   {{ parent() }}
+         {% javascripts
+            'bundles/hchc/js/basics.js'
+            %}
+            <script type="text/javascript" src="{{ asset_url }}"></script>
+
+          
+
+
+         {% endjavascripts %}
 
 
   <script>
@@ -115,7 +124,7 @@
 
     $(document).ready(function(){
 
-         $("#Citas").dataTable();
+         $("#Citas").dataTable(DataLanguage);
 
         
      });

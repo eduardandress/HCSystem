@@ -42,7 +42,7 @@
       <h3 class="box-title">Visitas</h3>
   </div><!-- /.box-header -->
   <div class="box-body">
-      <table class="table table-bordered">
+      <table id="Visitas" class="table table-bordered">
         <thead>
             <tr>
                 <th>Paciente</th>
@@ -81,3 +81,27 @@
        
  
     {% endblock %}
+{% block javascripts -%}
+  {{ parent() }}
+         {% javascripts
+            'bundles/hchc/js/basics.js'
+            %}
+            <script type="text/javascript" src="{{ asset_url }}"></script>
+
+          
+
+
+         {% endjavascripts %}
+
+
+  <script>
+ 
+
+    $(document).ready(function(){
+
+         $("#Visitas").dataTable(DataLanguage);
+
+        
+     });
+  </script>
+{% endblock %}
