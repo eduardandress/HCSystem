@@ -44,6 +44,10 @@ class PhcicondicionController extends Controller
             $em->persist($entity);
             $em->flush();
 
+             $this->get('session')->getFlashBag()->add(
+                    'mensaje',
+                    'Se ha agregado una nueva condición  exitosamente'
+            );
             return $this->redirect($this->getRequest()->headers->get('referer'));
         }
 
@@ -172,6 +176,11 @@ class PhcicondicionController extends Controller
         if ($editForm->isValid()) {
             $em->flush();
 
+             $this->get('session')->getFlashBag()->add(
+                    'mensaje',
+                    'Se ha modificado la condición  exitosamente'
+            );
+
             return $this->redirect($this->generateUrl('phcicondicion_edit', array('id' => $id)));
         }
 
@@ -200,6 +209,12 @@ class PhcicondicionController extends Controller
 
             $em->remove($entity);
             $em->flush();
+
+            $this->get('session')->getFlashBag()->add(
+                    'mensaje',
+                    'Se ha eliminado la condición  exitosamente'
+            );
+
         }
 
        return $this->redirect($this->getRequest()->headers->get('referer'));

@@ -44,6 +44,10 @@ class PhcialergiaController extends Controller
             $em->persist($entity);
             $em->flush();
 
+            $this->get('session')->getFlashBag()->add(
+                    'mensaje',
+                    'Se ha agregado la alergia  exitosamente'
+            );
             return $this->redirect($this->getRequest()->headers->get('referer'));
         }
 
@@ -172,6 +176,10 @@ class PhcialergiaController extends Controller
         if ($editForm->isValid()) {
             $em->flush();
 
+            $this->get('session')->getFlashBag()->add(
+                    'mensaje',
+                    'Se  modificó la alergia  exitosamente'
+            );
             return $this->redirect($this->generateUrl('phcialergia_edit', array('id' => $id)));
         }
 
@@ -200,6 +208,11 @@ class PhcialergiaController extends Controller
 
             $em->remove($entity);
             $em->flush();
+
+            $this->get('session')->getFlashBag()->add(
+                    'mensaje',
+                    'Se ha eliminó la alergia  exitosamente'
+            );
         }
 
             return $this->redirect($this->getRequest()->headers->get('referer'));

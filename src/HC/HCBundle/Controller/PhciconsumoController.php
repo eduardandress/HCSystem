@@ -171,6 +171,11 @@ class PhciconsumoController extends Controller
 
         if ($editForm->isValid()) {
             $em->flush();
+
+             $this->get('session')->getFlashBag()->add(
+                    'mensaje',
+                    'Se ha modificado el consumo  exitosamente'
+            );
        return $this->redirect($this->getRequest()->headers->get('referer'));
                 
             // return $this->redirect($this->generateUrl('phciconsumo_edit', array('id' => $id)));
