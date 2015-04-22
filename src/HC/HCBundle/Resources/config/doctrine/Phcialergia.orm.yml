@@ -24,7 +24,7 @@ HC\HCBundle\Entity\Phcialergia:
             comment: ''
         fechaactualizacion:
             type: datetime
-            nullable: false
+            nullable: true
             comment: ''
             column: fechaActualizacion
     manyToOne:

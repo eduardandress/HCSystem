@@ -27,7 +27,7 @@ HC\HCBundle\Entity\Visita:
     fields:
         fecha:
             type: datetime
-            nullable: false
+            nullable: true
             comment: ''
             default: CURRENT_TIMESTAMP
     oneToOne:

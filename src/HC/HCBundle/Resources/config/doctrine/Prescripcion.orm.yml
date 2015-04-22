@@ -21,7 +21,7 @@ HC\HCBundle\Entity\Prescripcion:
     fields:
         fecha:
             type: datetime
-            nullable: false
+            nullable: true
             comment: ''
         nombre:
             type: string

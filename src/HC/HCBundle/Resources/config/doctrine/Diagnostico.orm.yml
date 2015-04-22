@@ -21,7 +21,7 @@ HC\HCBundle\Entity\Diagnostico:
     fields:
         fecha:
             type: datetime
-            nullable: false
+            nullable: true
             comment: ''
         descripcion:
             type: text

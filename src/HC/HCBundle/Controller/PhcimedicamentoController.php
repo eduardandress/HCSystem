@@ -46,7 +46,7 @@ class PhcimedicamentoController extends Controller
 
              $this->get('session')->getFlashBag()->add(
                     'mensaje',
-                    'Se ha agregó el medicamento  exitosamente'
+                    'Se ha agregado el medicamento  exitosamente'
             );
             return $this->redirect($this->getRequest()->headers->get('referer'));
         }
@@ -179,7 +179,7 @@ class PhcimedicamentoController extends Controller
 
              $this->get('session')->getFlashBag()->add(
                     'mensaje',
-                    'Se ha agregado el medicamento  exitosamente'
+                    'Se ha modificado el medicamento  exitosamente'
             );
             return $this->redirect($this->generateUrl('phcimedicamento_edit', array('id' => $id)));
         }
@@ -209,7 +209,7 @@ class PhcimedicamentoController extends Controller
 
             $em->remove($entity);
             $em->flush();
-            
+
              $this->get('session')->getFlashBag()->add(
                     'mensaje',
                     'Se ha eliminado el medicamento  exitosamente'

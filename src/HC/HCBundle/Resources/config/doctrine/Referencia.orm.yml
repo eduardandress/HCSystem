@@ -34,7 +34,7 @@ HC\HCBundle\Entity\Referencia:
             comment: ''
         fecha:
             type: datetime
-            nullable: false
+            nullable: true
             comment: ''
     manyToOne:    
         idnotacita:
