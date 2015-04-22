@@ -33,7 +33,7 @@
  <div class="col-md-6 ">
         <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Información Básica del Paciente <a class="ModificarPacBtn btn btn-success btn-xs">Editar</a> {% if entity.historiamedica %}<a href="{{path('hci_show', {'id': entity.historiamedica.idhci })}}"class="verHCI btn btn-success btn-xs">Historia Médica</a> {% endif %}</h3>
+              <h3 class="box-title">Información Básica del Paciente <a class="ModificarPacBtn btn btn-success btn-xs">Editar</a> {% if entity.historiamedica and ( is_granted('ROLE_Admin-Medico') or is_granted('ROLE_Medico') or is_granted('ROLE_Enfermera'))%}<a href="{{path('hci_show', {'id': entity.historiamedica.idhci })}}"class="verHCI btn btn-success btn-xs">Historia Médica</a> {% endif %}</h3>
           </div><!-- /.box-header -->
           <div class="box-body">
 
