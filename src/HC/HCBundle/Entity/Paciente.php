@@ -59,6 +59,10 @@ class Paciente
      * @var \HC\HCBundle\Entity\Usuario
      */
     private $idmedicopref;
+    /**
+     * @var \HC\HCBundle\Entity\Hci
+     */
+    private $historiamedica;
 
     /**
      * Constructor
@@ -322,7 +326,42 @@ class Paciente
         }
     }
   
+    public function getId(){
+        return $this->idpaciente;
+    }
 
+    /**
+     * Add historiamedica
+     *
+     * @param \HC\HCBundle\Entity\Hci $historiamedica
+     * @return Paciente
+     */
+    public function addHistoriamedica(\HC\HCBundle\Entity\Hci $historiamedica)
+    {
+        $this->historiamedica[] = $historiamedica;
+
+        return $this;
+    }
+
+    /**
+     * Remove historiamedica
+     *
+     * @param \HC\HCBundle\Entity\Hci $historiamedica
+     */
+    public function removeHistoriamedica(\HC\HCBundle\Entity\Hci $historiamedica)
+    {
+        $this->historiamedica->removeElement($historiamedica);
+    }
+
+    /**
+     * Get historiamedica
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getHistoriamedica()
+    {
+        return $this->historiamedica;
+    }
 
     /**
      * Add telefonosPersonales
@@ -368,8 +407,5 @@ class Paciente
     public function removeTelefonosEmergencium(\HC\HCBundle\Entity\Pacnumcontacto $telefonosEmergencia)
     {
         $this->telefonosEmergencia->removeElement($telefonosEmergencia);
-    }
-    public function getId(){
-        return $this->idpaciente;
     }
 }

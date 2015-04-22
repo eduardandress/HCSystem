@@ -59,6 +59,10 @@ class Paciente
      * @var \HC\HCBundle\Entity\Usuario
      */
     private $idmedicopref;
+    /**
+     * @var \HC\HCBundle\Entity\Hci
+     */
+    private $historiamedica;
 
     /**
      * Constructor
@@ -322,54 +326,40 @@ class Paciente
         }
     }
   
-
-
-    /**
-     * Add telefonosPersonales
-     *
-     * @param \HC\HCBundle\Entity\Pactelf $telefonosPersonales
-     * @return Paciente
-     */
-    public function addTelefonosPersonale(\HC\HCBundle\Entity\Pactelf $telefonosPersonales)
-    {
-        $this->telefonosPersonales[] = $telefonosPersonales;
-
-        return $this;
-    }
-
-    /**
-     * Remove telefonosPersonales
-     *
-     * @param \HC\HCBundle\Entity\Pactelf $telefonosPersonales
-     */
-    public function removeTelefonosPersonale(\HC\HCBundle\Entity\Pactelf $telefonosPersonales)
-    {
-        $this->telefonosPersonales->removeElement($telefonosPersonales);
-    }
-
-    /**
-     * Add telefonosEmergencia
-     *
-     * @param \HC\HCBundle\Entity\Pacnumcontacto $telefonosEmergencia
-     * @return Paciente
-     */
-    public function addTelefonosEmergencium(\HC\HCBundle\Entity\Pacnumcontacto $telefonosEmergencia)
-    {
-        $this->telefonosEmergencia[] = $telefonosEmergencia;
-
-        return $this;
-    }
-
-    /**
-     * Remove telefonosEmergencia
-     *
-     * @param \HC\HCBundle\Entity\Pacnumcontacto $telefonosEmergencia
-     */
-    public function removeTelefonosEmergencium(\HC\HCBundle\Entity\Pacnumcontacto $telefonosEmergencia)
-    {
-        $this->telefonosEmergencia->removeElement($telefonosEmergencia);
-    }
     public function getId(){
         return $this->idpaciente;
+    }
+
+    /**
+     * Add historiamedica
+     *
+     * @param \HC\HCBundle\Entity\Hci $historiamedica
+     * @return Paciente
+     */
+    public function addHistoriamedica(\HC\HCBundle\Entity\Hci $historiamedica)
+    {
+        $this->historiamedica[] = $historiamedica;
+
+        return $this;
+    }
+
+    /**
+     * Remove historiamedica
+     *
+     * @param \HC\HCBundle\Entity\Hci $historiamedica
+     */
+    public function removeHistoriamedica(\HC\HCBundle\Entity\Hci $historiamedica)
+    {
+        $this->historiamedica->removeElement($historiamedica);
+    }
+
+    /**
+     * Get historiamedica
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getHistoriamedica()
+    {
+        return $this->historiamedica;
     }
 }
