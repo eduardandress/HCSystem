@@ -39,7 +39,9 @@ class Prescripcion
      */
     private $idusuario;
 
-
+    public function getIdhci(){
+        return $this->idnotacita->getIdhci();
+    }
     /**
      * Get idprescripcion
      *
@@ -166,5 +168,9 @@ class Prescripcion
     }
     public function getId(){
         return $this->idprescripcion;
+    }
+
+    public function getAttrsBusqueda(){
+        return array("fecha","nombre","instrucciones");
     }
 }

@@ -14,6 +14,10 @@ hci_create:
     path:     /create
     defaults: { _controller: "HCHCBundle:Hci:create" }
     requirements: { _method: post }
+hci_buscar:
+    path:     /buscar
+    defaults: { _controller: "HCHCBundle:Hci:Buscar" }
+    requirements: { _method: post|get }
 
 hci_edit:
     path:     /{id}/edit

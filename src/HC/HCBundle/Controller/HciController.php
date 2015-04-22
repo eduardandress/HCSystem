@@ -29,15 +29,15 @@ use HC\HCBundle\Entity\Diagnostico;
 use HC\HCBundle\Entity\Referencia;
 
 
-
-
-
 /**
  * Hci controller.
  *
  */
 class HciController extends Controller
 {
+    //atributo usado para buquedas
+    private $listaClases;
+
 
     /**
      * Lists all Hci entities.
@@ -45,14 +45,107 @@ class HciController extends Controller
      */
     public function indexAction()
     {
+
         $em = $this->getDoctrine()->getManager();
+
+        $formBusqueda= $this->CrearFormularioBusqueda();
 
         $entities = $em->getRepository('HCHCBundle:Hci')->findAll();
        
         return $this->render('HCHCBundle:Hci:index.html.twig', array(
             'entities' => $entities,
-            
+            "formBusqueda"=> $formBusqueda->createView(),
+            "busq"=>false,
         ));
+    }
+    private function CrearFormularioBusqueda(){
+
+        $this->listaClases= array(
+                "Alergia"=>new Phcialergia(), 
+                "Condición" =>new Phcicondicion(),
+                "Medicamento" =>new Phcimedicamento(),
+                "Prescripción" =>new Prescripcion(),
+                "Diagnóstico" =>new Diagnostico(),
+                "Referencia" =>new Referencia(),
+                "Nota de cita"=>new Notacita(),
+        );
+        $form = $this->createFormBuilder()->setAction($this->generateUrl('hci_buscar'))
+            ->setMethod('POST')
+            ->getForm();
+
+        $form->add('busquedaInput', 'text', array("required"=>true,'label' => false ));
+        $form->add('tipoBusq', 'hidden', array("required"=>false,'label' => false ));
+        $form->add('submit', 'submit', array('label' => 'Buscar'));
+
+        return $form;
+
+    }
+
+    public function BuscarAction(Request $request){
+        $entity= new hci();
+        $em = $this->getDoctrine()->getManager();
+        $formBusqueda= $this->CrearFormularioBusqueda();
+
+        $formBusqueda->handleRequest($request);
+        $whereCl=" where ";
+        if($formBusqueda->isValid()){
+           $campo=array("nombre"=>null, "valor"=>null);
+           //Se obtiene el campo de busqueda
+           $formaDeBusqueda= $formBusqueda["tipoBusq"]->getData();
+
+           if($formaDeBusqueda!=""){
+                $campo["nombre"]= $formaDeBusqueda;
+                $campo["valor"]= $formBusqueda["busquedaInput"]->getData();
+           }
+
+           // se arma la consulta;
+           $rs="";
+           $query='SELECT p   FROM ';
+           $entidadABuscar= "HCHCBundle:";
+           if( $campo["nombre"] !="" ){
+
+                $ent= $this->listaClases[ $campo["nombre"] ];
+                
+                if($ent){
+                    //buscar por clases
+                    $entidadABuscar.= $this->obtenerNombreClase($ent);
+
+                    $query.= $entidadABuscar." p ";                   
+                    $claseAtributos= $ent->getAttrsBusqueda();
+                    $whereCl.= $this->ObtenerCondicionSql($claseAtributos, $campo["valor"]);
+                    $query.=$whereCl;
+                    $rs= $result= $em->createQuery($query)->getResult();     
+                }
+           }
+
+            $HistoriasClinicasRs=  null;
+            foreach ($rs as  $row) {
+                 $HistoriasClinicasRs[] = $row->getIdhci();
+            }
+            $formBusqueda= $this->CrearFormularioBusqueda();
+                return $this->render('HCHCBundle:Hci:index.html.twig', array(
+                    "entities"=> $HistoriasClinicasRs,
+                    "formBusqueda"=> $formBusqueda->createView(),
+                    "busq"=>true,
+                ));
+        }
+        return $this->redirect($this->generateUrl('hci'));
+
+    }
+    private function obtenerNombreClase($entidad){
+        $nombreEntidad= get_class($entidad);
+        $string="HC\\HCBundle\\Entity\\";
+        $nombreEntidad=str_replace($string,"",$nombreEntidad);
+
+        return $nombreEntidad;
+    }
+    private function ObtenerCondicionSql($atributos, $valorBusqueda){
+        $condicion="";
+        foreach ($atributos as $atributo ) {
+            $condicion.= "p.".$atributo." like  '%". $valorBusqueda ."%' OR ";    
+        }
+        $condicion = substr($condicion, 0, strlen( $condicion)-3 );
+        return $condicion; 
     }
  
     /**

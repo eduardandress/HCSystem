@@ -31,8 +31,8 @@
     }
 </style>
 <div class="opciones">
-    <a href="#" class="btn btn-success">
-        <i class="fa fa-search"></i>
+    <a  class="buscar btn btn-success">
+        <i class=" fa fa-search"></i>
          Buscar
     </a>
     <a href="{{ path('hci_new') }}" class="btn btn-success">
@@ -40,6 +40,63 @@
          Nueva historia clínica
     </a>
 </div>
+
+<style>
+
+  .etiq{
+    cursor: pointer;
+    padding: 8px;
+    font-size: 11px;
+  }
+</style>
+
+{% if busq %}
+<div class="callout callout-success">
+  <h4>Resultado de la busqueda</h4>
+  <p> Se encontraron {{ entities|length }} resultados </p>
+</div>
+{% endif %}
+    <div class="buscarWrapper" style="display:none">
+      
+   
+          <div actual-p="0"  sig-p="1" class="page page_0">
+
+             <h4>Eliga una forma de busqueda</h4>
+             <br>
+             <span id="Alergia_etiq" class="etiq label label-default">Alergia</span>
+             <span id="Condicion_etiq" class="etiq label label-default">Condición</span>
+             <span id="Medicamento_etiq" class="etiq label label-default">Medicamento</span>
+             <span id="Prescripcion_etiq" class="etiq label label-default">Prescripción</span>
+             <span id="Diagnostico_etiq" class="etiq label label-default">Diagnóstico</span>
+             <span id="Referencia_etiq" class="etiq label label-default">Referencia</span>
+             <span id="NotaDeCita_etiq" class="etiq label label-default">Nota de cita</span>
+            
+          </div>
+          <div actual-p="1"   class="page page_1" style="display:none">
+
+                {{form_start(formBusqueda)}}
+                {{form_row(formBusqueda._token)}}
+                {{form_row(formBusqueda.busquedaInput, {"attr": {"placeHolder":"Introduzca un valor","class":"inputB form-control"}})}}
+
+                {{form_row(formBusqueda.tipoBusq,{"attr": {"class":"formaB form-control"}})}}
+                  <br>
+                  <center> 
+
+                      <button type="submit" class="btn btn-success">Buscar</button>
+                      <button type="button" class="back btn btn-default">Atras</button>
+
+                  </center>
+          </div>
+     </div>   
+          
+    
+  
+
+
+   
+             
+            
+            
 <div class="box">
         
     <div class="box-header">
@@ -76,3 +133,92 @@
    </div>
 </div>
     {% endblock %}
+{% macro modal(id) %}
+
+    <div id="{{id}}" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"> &times; </button>
+                    <h3 class="modal-title">
+                      
+                     
+                    </h3>
+                </div>
+                <div class="modal-body">
+               
+                </div>
+                <div class="modal-footer">
+                
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="confirm btn btn-primary">Si</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+{% endmacro %}
+{% block javascripts %}
+{{ parent() }}
+  <script>
+      var nombre;
+      function CrearModal(datos){
+
+        if( $("#"+datos.IdModal).length<=0 ){
+     
+          var Modal= "{{ _self.modal('IdModal')|e('js') }} ";
+          Modal= Modal.replace("IdModal",datos.IdModal);
+
+          $("body").append(Modal);
+        }
+        $("#"+datos.IdModal).find(".modal-title").html(datos.ModalHeader)
+        $("#"+datos.IdModal).find(".modal-body").html(datos.ModalBody)
+        //si se quiere usar los botones de cancelar y confirm.
+        if(datos.ModalFooter){
+
+            $("#"+datos.IdModal).find(".modal-footer").prepend('');
+            $("#"+ datos.IdModal+" .confirm").on("click", function(){
+              datos.AccionModal();
+            })
+
+        }else{
+            $("#"+datos.IdModal).find(".modal-footer").empty();
+        }
+        $("#"+datos.IdModal).modal("show");
+    }
+
+$(function () {
+      $(".buscar").on('click', function (e) {
+            e.preventDefault();
+            var datosModal={
+             "IdModal": "modal",
+             "ModalHeader": "Buscar historia clínica",
+             "ModalBody": $(".buscarWrapper").html(),
+             "ModalFooter": false,
+             
+            }
+            CrearModal(datosModal);
+      });
+      $("body").on('click','.etiq', function () {
+
+          
+          nombre= $(this).attr("id").replace("_etiq","");
+          $(".page_0").hide()
+          $(".page_1").fadeIn();
+          var formaB= $(this).text();
+          $(".formaB").val(formaB);
+
+      })
+      $("body").on('click',".back", function () {
+            $(".page_1").find("."+nombre+"Field").val('');
+            $(".page_1").find("."+nombre+"Field").hide();
+            $(".page_0").fadeIn()
+            $(".page_1").hide();
+      });
+  
+});
+
+  </script>
+{% endblock %}
+
