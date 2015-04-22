@@ -23,7 +23,7 @@ class BitacoraController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('HCHCBundle:Bitacora')->findAll();
+        $entities = $em->getRepository('HCHCBundle:Bitacora')->findAll(array('fecha' => 'ASC'));
 
         return $this->render('HCHCBundle:Bitacora:index.html.twig', array(
             'entities' => $entities,

@@ -1,3 +1,13 @@
+$(function () {
+
+  setTimeout(function(){
+  
+    $(".alert").fadeOut();
+    
+  }, 3000)
+
+});
+  
 
 //variables Globales
 var DataLanguage={

@@ -45,6 +45,10 @@ class VisitaController extends Controller
             $em->persist($entity);
             $em->flush();
 
+            $this->get('session')->getFlashBag()->add(
+                    'mensaje',
+                    'Se ha agregado la visita  exitosamente'
+            );
             return $this->redirect($this->generateUrl('gestionarvisitas_show', array('id' => $entity->getIdvisita())));
         }
 
@@ -191,6 +195,10 @@ class VisitaController extends Controller
         if ($editForm->isValid()) {
             $em->flush();
 
+            $this->get('session')->getFlashBag()->add(
+                    'mensaje',
+                    'Se ha modificado la visita  exitosamente'
+            );
             return $this->redirect($this->generateUrl('gestionarvisitas_edit', array('id' => $id)));
         }
 
@@ -220,7 +228,10 @@ class VisitaController extends Controller
             $em->remove($entity);
             $em->flush();
         }
-
+        $this->get('session')->getFlashBag()->add(
+                    'mensaje',
+                    'Se ha eliminado la visita  exitosamente'
+        );
         return $this->redirect($this->generateUrl('gestionarvisitas'));
     }
 

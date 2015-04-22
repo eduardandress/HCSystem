@@ -45,6 +45,10 @@ class PacnumcontactoController extends Controller
             $em->flush();
 
             //return $this->redirect($this->generateUrl('pacnumcontacto_show', array('id' => $entity->getIdpacnumcontacto())));
+            $this->get('session')->getFlashBag()->add(
+                    'mensaje',
+                    'Se ha agregado el nuevo contácto de emergencia exitosamente'
+            );
              return $this->redirect($this->getRequest()->headers->get('referer'));
             
 
@@ -175,6 +179,11 @@ class PacnumcontactoController extends Controller
         if ($editForm->isValid()) {
             $em->flush();
 
+
+            $this->get('session')->getFlashBag()->add(
+                    'mensaje',
+                    'Se ha modificado el contácto de emergencia exitosamente'
+            );
    
             return $this->redirect($this->getRequest()->headers->get('referer'));
             
@@ -205,9 +214,16 @@ class PacnumcontactoController extends Controller
 
             $em->remove($entity);
             $em->flush();
+
+             $this->get('session')->getFlashBag()->add(
+                    'mensaje',
+                    'Se ha eliminado el contácto de emergencia exitosamente'
+            );
         }
 
         //return $this->redirect($this->generateUrl('pacnumcontacto'));
+
+
        return $this->redirect($this->getRequest()->headers->get('referer'));
         
     }

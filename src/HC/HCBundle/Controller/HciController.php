@@ -191,6 +191,11 @@ class HciController extends Controller
             $em->persist($entity);
             $em->flush();
 
+            $this->get('session')->getFlashBag()->add(
+                    'mensaje',
+                    'Se ha agregado la historia clínica  exitosamente'
+            );
+
             return $this->redirect($this->generateUrl('hci_show', array('id' => $entity->getIdhci())));
         }
 
@@ -426,6 +431,10 @@ class HciController extends Controller
         if ($editForm->isValid()) {
             $em->flush();
 
+            $this->get('session')->getFlashBag()->add(
+                    'mensaje',
+                    'Se ha modificado la historia clínica  exitosamente'
+            );
             return $this->redirect($this->generateUrl('hci_edit', array('id' => $id)));
         }
 
@@ -454,6 +463,11 @@ class HciController extends Controller
 
             $em->remove($entity);
             $em->flush();
+
+            $this->get('session')->getFlashBag()->add(
+                    'mensaje',
+                    'Se ha eliminado la historia clínica  exitosamente'
+            );
         }
 
         return $this->redirect($this->generateUrl('hci'));

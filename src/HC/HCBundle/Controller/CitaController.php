@@ -55,6 +55,10 @@ class CitaController extends Controller
             $em->persist($entity);
             $em->flush();
 
+            $this->get('session')->getFlashBag()->add(
+                    'mensaje',
+                    'Se ha agregado la cita  exitosamente'
+            );
             return $this->redirect($this->generateUrl('gestionarcitas_show', array('id' => $entity->getIdcita())));
         }
 
@@ -195,6 +199,10 @@ class CitaController extends Controller
             $entity->setIdpaciente($pacienteConCedula);
             $em->flush();
 
+            $this->get('session')->getFlashBag()->add(
+                    'mensaje',
+                    'Se ha modificado la cita  exitosamente'
+            );
             return $this->redirect($this->generateUrl('gestionarcitas_edit', array('id' => $id)));
         }
 
@@ -223,6 +231,11 @@ class CitaController extends Controller
 
             $em->remove($entity);
             $em->flush();
+
+            $this->get('session')->getFlashBag()->add(
+                    'mensaje',
+                    'Se ha eliminado la cita  exitosamente'
+            );
         }
 
         return $this->redirect($this->generateUrl('gestionarcitas'));

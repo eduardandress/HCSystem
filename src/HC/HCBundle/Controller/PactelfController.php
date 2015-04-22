@@ -47,6 +47,11 @@ class PactelfController extends Controller
             $em->flush();
 
             //return $this->redirect($this->generateUrl('pactelf_show', array('id' => $entity->getIdpactelf())));
+
+            $this->get('session')->getFlashBag()->add(
+                    'mensaje',
+                    'Se ha agregado el nuevo teléfono personal exitosamente'
+            );
             return $this->redirect($this->getRequest()->headers->get('referer'));
         }
 
@@ -129,6 +134,7 @@ class PactelfController extends Controller
         $editForm = $this->createEditForm($entity);
         $deleteForm = $this->createDeleteForm($id);
 
+
         return $this->render('HCHCBundle:Pactelf:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
@@ -176,7 +182,10 @@ class PactelfController extends Controller
             $em->flush();
 
             //return $this->redirect($this->generateUrl('pactelf_edit', array('id' => $id)));
-        
+            $this->get('session')->getFlashBag()->add(
+                    'mensaje',
+                    'Se ha modificado el teléfono personal exitosamente'
+            );
             return $this->redirect($this->getRequest()->headers->get('referer'));
         }
 
@@ -205,6 +214,11 @@ class PactelfController extends Controller
 
             $em->remove($entity);
             $em->flush();
+
+             $this->get('session')->getFlashBag()->add(
+                    'mensaje',
+                    'Se ha eliminado el  teléfono personal exitosamente'
+            );
         }
 
        return $this->redirect($this->getRequest()->headers->get('referer'));

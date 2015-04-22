@@ -50,8 +50,10 @@ class EntityListener
 
         foreach ($this->ModificacionesEntidad as $atributo => $valor) {
            $valorAnt=$valor[0];
-           if(get_class($valorAnt)=="DateTime"){
-                $valorAnt=$valorAnt->format('Y-m-d');
+           if(!is_string($valorAnt)){
+               if(get_class($valorAnt)=="DateTime"){
+                    $valorAnt=$valorAnt->format('Y-m-d');
+               }
            }
            $descripcionMod.=  $atributo. ": ( Valor anterior: ".$valorAnt." ), ";
         }
