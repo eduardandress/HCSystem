@@ -173,4 +173,11 @@ class Prescripcion
     public function getAttrsBusqueda(){
         return array("fecha","nombre","instrucciones");
     }
+    public function ObtenerReporteInsercion(){
+        $pacienteNombre=$this->getIdnotacita()->getIdhci()->getIdpaciente()->getNombre();
+        $pacienteApellido=$this->getIdnotacita()->getIdhci()->getIdpaciente()->getApellido();
+        $cita=$this->getIdnotacita()->getIdcita()->getFechaprogramada()->format('Y-m-d');
+        $descripcion=" una prescripción para el paciente ".$pacienteNombre." ".$pacienteApellido." a su cita programada para el dia: ".$cita ;
+         return $descripcion;
+    }
 }

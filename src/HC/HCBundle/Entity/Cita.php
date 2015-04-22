@@ -225,4 +225,9 @@ class Cita
     {
         return $this->visita;
     }
+    public function ObtenerReporteInsercion(){
+         $fecha = $this->getFechaprogramada()->format('Y-m-d');
+         $descripcion=" una cita al paciente ".$this->getIdpaciente()->getNombre()." ".$this->getIdpaciente()->getApellido()." para el dia ". $fecha;
+         return $descripcion;
+    }
 }

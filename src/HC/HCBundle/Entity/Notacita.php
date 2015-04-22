@@ -405,4 +405,12 @@ class Notacita
     public function getAttrsBusqueda(){
         return array("presionarterial","alturapaciente","pesopaciente","frecuenciacardiaca","temperatura");
     }
+    public function ObtenerReporteInsercion(){
+        $pacienteNombre=$this->getIdhci()->getIdpaciente()->getNombre();
+        $pacienteApellido=$this->getIdhci()->getIdpaciente()->getApellido();
+         $cita=$this->getIdcita()->getFechaprogramada()->format('Y-m-d');
+         $descripcion=" una Nota de cita para el paciente ".$pacienteNombre." ".$pacienteApellido." a su cita programada para el dia: ".$cita ;
+
+         return $descripcion;
+    }
 }

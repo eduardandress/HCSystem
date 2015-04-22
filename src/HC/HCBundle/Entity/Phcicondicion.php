@@ -114,4 +114,12 @@ class Phcicondicion
     public function getAttrsBusqueda(){
         return array("descripcion","fechaactualizacion");
     }
+
+    public function ObtenerReporteInsercion(){
+        $pacienteNombre=$this->getIdhci()->getIdpaciente()->getNombre();
+        $pacienteApellido=$this->getIdhci()->getIdpaciente()->getApellido();
+         $descripcion=" una condición del paciente ".$pacienteNombre." ".$pacienteApellido;
+
+         return $descripcion;
+    }
 }

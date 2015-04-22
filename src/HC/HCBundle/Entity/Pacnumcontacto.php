@@ -195,4 +195,8 @@ class Pacnumcontacto
     public function getId(){
         return $this->idpacnumcontacto;
     }
+    public function ObtenerReporteInsercion(){
+         $descripcion=" un contácto de emergencia  para el paciente ".$this->getIdpaciente()->getNombre()." ".$this->getIdpaciente()->getApellido().". Contacto:  ".$this->getNombrecontacto()." ".$this->getApellidocontacto()." . Número: ".$this->getNumero();
+         return $descripcion;
+    }
 }

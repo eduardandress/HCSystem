@@ -115,4 +115,11 @@ class Phcimedicamento
     public function getAttrsBusqueda(){
         return array("descripcion","fechaactualizacion");
     }
+    public function ObtenerReporteInsercion(){
+        $pacienteNombre=$this->getIdhci()->getIdpaciente()->getNombre();
+        $pacienteApellido=$this->getIdhci()->getIdpaciente()->getApellido();
+         $descripcion=" un medicamento del paciente ".$pacienteNombre." ".$pacienteApellido;
+
+         return $descripcion;
+    }
 }

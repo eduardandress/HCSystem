@@ -144,4 +144,12 @@ class Diagnostico
     public function getAttrsBusqueda(){
         return array("fecha","descripcion");
     }
+    public function ObtenerReporteInsercion(){
+         $pacienteNombre=$this->getIdnotacita()->getIdhci()->getIdpaciente()->getNombre();
+     $pacienteApellido=$this->getIdnotacita()->getIdhci()->getIdpaciente()->getApellido();
+        $cita=$this->getIdnotacita()->getIdcita()->getFechaprogramada()->format('Y-m-d');
+
+           $descripcion=" un diagnóstico para el paciente ".$pacienteNombre." ".$pacienteApellido." a su cita programada para el dia: ".$cita ;
+         return $descripcion;
+    }
 }

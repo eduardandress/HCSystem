@@ -142,4 +142,11 @@ class Phciconsumo
     public function getId(){
         return $this->idphciconsumo;
     }
+    public function ObtenerReporteInsercion(){
+        $pacienteNombre=$this->getIdhci()->getIdpaciente()->getNombre();
+        $pacienteApellido=$this->getIdhci()->getIdpaciente()->getApellido();
+         $descripcion="un consumo del paciente ".$pacienteNombre." ".$pacienteApellido;
+
+         return $descripcion;
+    }
 }

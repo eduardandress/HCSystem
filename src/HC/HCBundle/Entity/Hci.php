@@ -351,4 +351,11 @@ class Hci
     {
         $this->notacita->removeElement($notacita);
     }
+    public function ObtenerReporteInsercion(){
+        $pacienteNombre=$this->getIdpaciente()->getNombre();
+            $pacienteApellido=$this->getIdpaciente()->getApellido();
+             $descripcion="La Historia Clinica Inical del paciente ".$pacienteNombre." ".$pacienteApellido;
+
+         return $descripcion;
+    }
 }

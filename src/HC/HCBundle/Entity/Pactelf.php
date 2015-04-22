@@ -112,5 +112,8 @@ class Pactelf
     public function getId(){
         return $this->idpactelf;
     }
-    
+    public function ObtenerReporteInsercion(){
+          $descripcion=" un nuevo número personal para el paciente ".$this->getIdpaciente()->getNombre()." ".$this->getIdpaciente()->getApellido().". Número: ".$this->getNumero();
+         return $descripcion;
+    }
 }

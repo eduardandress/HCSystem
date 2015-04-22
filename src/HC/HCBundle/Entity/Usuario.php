@@ -346,4 +346,9 @@ class Usuario implements UserInterface, \Serializable
     public function getId(){
         return $this->idusuario;
     }
+
+    public function ObtenerReporteInsercion(){
+         $descripcion=" un usuario. Nombre de usuario ".$this->getUsuario()." Nombre: ".$this->getNombre()." con rol de ".$this->getIdrol()->getNombre();
+         return $descripcion;
+    }
 }

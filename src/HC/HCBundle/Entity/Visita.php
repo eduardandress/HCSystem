@@ -167,4 +167,8 @@ class Visita
     public function getId(){
         return $this->idvisita;
     }
+    public function ObtenerReporteInsercion(){
+        $descripcion=" una visita para el paciente ".$this->getIdpaciente()->getNombre()." ".$this->getIdpaciente()->getApellido();
+         return $descripcion;
+    }
 }

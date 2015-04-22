@@ -421,4 +421,8 @@ class Paciente
 
         return $this;
     }
+    public function ObtenerReporteInsercion(){
+         $descripcion=" un paciente . Cédula: ".$this->getCedula()."  ".$this->getNombre()." ".$this->getApellido();
+         return $descripcion;
+    }
 }
