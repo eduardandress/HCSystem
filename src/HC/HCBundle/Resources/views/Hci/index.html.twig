@@ -73,7 +73,7 @@
             
           </div>
           <div actual-p="1"   class="page page_1" style="display:none">
-
+                <label class="formblabel"></label>
                 {{form_start(formBusqueda)}}
                 {{form_row(formBusqueda._token)}}
                 {{form_row(formBusqueda.busquedaInput, {"attr": {"placeHolder":"Introduzca un valor","class":"inputB form-control"}})}}
@@ -207,6 +207,7 @@ $(function () {
           $(".page_0").hide()
           $(".page_1").fadeIn();
           var formaB= $(this).text();
+          $(".formblabel").html("Busqueda por " +formaB);
           $(".formaB").val(formaB);
 
       })
