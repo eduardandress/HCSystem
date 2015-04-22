@@ -408,4 +408,17 @@ class Paciente
     {
         $this->telefonosEmergencia->removeElement($telefonosEmergencia);
     }
+
+    /**
+     * Set historiamedica
+     *
+     * @param \HC\HCBundle\Entity\Hci $historiamedica
+     * @return Paciente
+     */
+    public function setHistoriamedica(\HC\HCBundle\Entity\Hci $historiamedica = null)
+    {
+        $this->historiamedica = $historiamedica;
+
+        return $this;
+    }
 }

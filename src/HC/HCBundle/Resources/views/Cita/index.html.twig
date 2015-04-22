@@ -67,6 +67,7 @@
                               </tr>
                              
                         </tfoot>
+
                           <tbody> 
                             {% for entity in entities %}
                                 <tr>
@@ -78,7 +79,7 @@
                                     <td>{{ entity.motivo }}</td>
                                     <td>
 
-                                            <a href="{{ path('gestionarvisitas_new', { 'idcita': entity.idcita }) }}"  class="btn btn-app  small-btn gVisitaBoton"><i class="fa  fa-book"></i>Registar Visita</a>
+                                            <a {% if not entity.visita %} href="{{ path('gestionarvisitas_new', { 'idcita': entity.idcita }) }}" {% else %}  disabled="disabled" {% endif %} class="btn btn-app  small-btn gVisitaBoton"><i class="fa  fa-book"></i>Registar Visita</a>
                                     
                                             <a href="{{ path('gestionarcitas_show', { 'id': entity.idcita }) }}"class="btn btn-app small-btn"><i class="fa fa-eye"></i>Ver</a>
                                         
@@ -101,7 +102,6 @@
                       </ul>
                     </div>
              </div>
-      
 
     
           

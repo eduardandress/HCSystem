@@ -1,0 +1,51 @@
+HC\HCBundle\Entity\Usuario:
+    properties:
+        usuario:
+            - NotBlank: { message: "Por favor rellena este campo." }
+            - Type: 
+                type: string
+                message: Inválido. Debe ingresar un alfanumérico.
+        clave:
+            - NotBlank: { message: "Por favor rellena este campo." }
+        nombre:
+            - NotBlank: { message: "Por favor rellena este campo." }
+            - Type: 
+                type: string
+                message: Inválido. Debe ingresar un alfanumérico.
+        fechanac:
+            - NotBlank: { message: "Por favor rellena este campo." }
+        numss:
+            - NotBlank: { message: "Por favor rellena este campo." }
+        direccion:
+            - NotBlank: { message: "Por favor rellena este campo." }
+        telefono:
+            - NotBlank: { message: "Por favor rellena este campo." }
+        fechainicio:
+            - NotBlank: { message: "Por favor rellena este campo." }
+HC\HCBundle\Entity\Notacita:
+    properties:
+       presionarterial:
+            - NotBlank: { message:"Por favor rellena este campo."}
+            - Type:
+                type: float
+                message: Inválido. Debe Ingresar un décimal.
+       alturapaciente:
+            - NotBlank: { message:"Por favor rellena este campo."}
+            - Type:
+                type: float
+                message: Inválido. Debe Ingresar un décimal.
+       pesopaciente:
+            - NotBlank: { message:"Por favor rellena este campo."}
+            - Type:
+                type: float
+                message: Inválido. Debe Ingresar un décimal.
+       frecuenciacardiaca:
+            - NotBlank: { message:"Por favor rellena este campo."}
+            - Type:
+                type: float
+                message: Inválido. Debe Ingresar un décimal.
+       temperatura:
+            - NotBlank: { message:"Por favor rellena este campo."}
+            - Type:
+                type: float
+                message: Inválido. Debe Ingresar un décimal.  

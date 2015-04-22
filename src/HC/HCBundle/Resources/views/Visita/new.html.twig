@@ -28,15 +28,26 @@
                         <div class="box-body no-padding">
                           <table class="table table-condensed">
                             <tbody>
-                        {% if  citaEmergencia %}
+                        
+                        
+                            {% if  citaEmergencia %}
+                              <tr>
+                               <th class="cedularow">{{ form_row(form.idpaciente,{'attr': {'class': 'form-control inputcedula', 'onchange':'validarCedulaPaciente(this.value)'}}     ) }}
+                               </th>
+                              </tr>
+                            {% else %} 
+                              <tr>
+                                <th class="cedularow">{{ form_row(form.idpaciente,{label:false, 'attr': {'class': 'hidden form-control inputcedula', 'onchange':'validarCedulaPaciente(this.value)'}}     ) }}
+                               </th>
+                              </tr>
+                            {% endif %}
+                            
+                        
+                    
                         <tr>
-                            <th class="cedularow">{{ form_row(form.idpaciente,{'attr': {'class': 'form-control inputcedula', 'onchange':'validarCedulaPaciente(this.value)'}}) }}</th>
-                        </tr>
-                         {% endif %}
-                      <!--   <tr>
-                            <th>{{ form_row(form.idcita,{'attr': {'class': 'form-control'}}) }}</th>
+                            <th>{{ form_row(form.idcita)}}</th>
 
-                        </tr>  -->
+                        </tr>  
                         <tr>
                               <th>{{ form_row(form.idmedico,{'attr': {'class': 'form-control'}}) }}</th>
                         </tr>

@@ -39,7 +39,9 @@ class Referencia
      */
     private $idusuario;
 
-
+    public function getIdhci(){
+        return $this->idnotacita->getIdhci();
+    }
     /**
      * Get idreferencia
      *
@@ -166,5 +168,8 @@ class Referencia
     }
     public function getId(){
         return $this->idreferencia;
+    }
+    public function getAttrsBusqueda(){
+        return array("fecha","nombredoctor","descripcion");
     }
 }

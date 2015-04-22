@@ -28,3 +28,8 @@ bitacora_delete:
     path:     /{id}/delete
     defaults: { _controller: "HCHCBundle:Bitacora:delete" }
     requirements: { _method: post|delete }
+
+bitacora_vaciar:
+    path:     /vaciarBitacora
+    defaults: { _controller: "HCHCBundle:Bitacora:vaciar" }
+

@@ -68,7 +68,7 @@ HC\HCBundle\Entity\Paciente:
                 idmedicoPref:
                     referencedColumnName: idUsuario
             orphanRemoval: false
-    oneToMany: 
+    oneToMany:
         telefonosPersonales:
             targetEntity: Pactelf
             cascade: ["persist", "remove"]
@@ -77,7 +77,7 @@ HC\HCBundle\Entity\Paciente:
             targetEntity: Pacnumcontacto
             cascade: ["persist", "remove"]
             mappedBy: idpaciente  
-    oneToOne:
+    oneToOne:  
         historiamedica:
             targetEntity: Hci
             cascade: ["persist", "remove"]

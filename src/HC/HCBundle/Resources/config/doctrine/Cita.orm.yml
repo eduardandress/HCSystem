@@ -62,4 +62,9 @@ HC\HCBundle\Entity\Cita:
                 idUsuario:
                     referencedColumnName: idUsuario
             orphanRemoval: false
+    oneToOne:
+        visita:
+            targetEntity: Visita
+            cascade: ["persist", "remove"]
+            mappedBy: idcita 
     lifecycleCallbacks: {  }

@@ -33,7 +33,8 @@ class UsuarioType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'HC\HCBundle\Entity\Usuario'
+            'data_class' => 'HC\HCBundle\Entity\Usuario',
+            // 'attr'=>array('novalidate'=>'novalidate')
         ));
     }
 

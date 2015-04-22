@@ -111,4 +111,8 @@ class Phcialergia
     public function getId(){
         return $this->idphcialergia;
     }
+
+    public function getAttrsBusqueda(){
+        return array("descripcion","fechaactualizacion");
+    }
 }

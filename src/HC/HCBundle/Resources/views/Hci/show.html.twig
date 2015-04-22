@@ -788,6 +788,18 @@
             e.preventDefault();
             addNotaCitaItem(ListaDeReferencia);
          })
+          $(".Rellenar").on("click", function(e){
+                e.preventDefault();
+                
+                var ruta= "{{ path('paciente_edit', { 'id': entity.idpaciente }) }}";
+                datosModal.ModalHeader="Modificar datos del Paciente";
+                datosAjax.url= ruta;
+                datosAjax.accionSuccess= function(data){
+                      datosModal.ModalBody=data;
+                      CrearModal(datosModal);
+                }
+                CargarDatosAjax(datosAjax);
+            })
     });
 
 </script>

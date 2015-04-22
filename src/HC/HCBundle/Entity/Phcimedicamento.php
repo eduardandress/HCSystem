@@ -111,4 +111,8 @@ class Phcimedicamento
     public function getId(){
         return $this->idphcimedicamento;
     }
+
+    public function getAttrsBusqueda(){
+        return array("descripcion","fechaactualizacion");
+    }
 }

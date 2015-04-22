@@ -52,6 +52,11 @@ class BitacoraController extends Controller
             'form'   => $form->createView(),
         ));
     }
+    public function vaciarAction(){
+            $em=$this->getDoctrine()->getManager();
+            $em->createQuery("DELETE FROM HCHCBundle:Bitacora")->getResult();
+            return $this->redirect($this->generateUrl('bitacora'));
+    }
 
     /**
      * Creates a form to create a Bitacora entity.

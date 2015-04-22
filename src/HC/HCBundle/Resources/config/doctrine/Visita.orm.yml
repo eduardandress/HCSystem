@@ -30,6 +30,15 @@ HC\HCBundle\Entity\Visita:
             nullable: false
             comment: ''
             default: CURRENT_TIMESTAMP
+    oneToOne:
+        idcita:
+            targetEntity: Cita
+            cascade: {  }
+            mappedBy: null
+            inversedBy: visita
+            joinColumns:
+                idCita:
+                    referencedColumnName: idCita
     manyToOne:
         idpaciente:
             targetEntity: Paciente
@@ -40,14 +49,6 @@ HC\HCBundle\Entity\Visita:
                 idPaciente:
                     referencedColumnName: idPaciente
             orphanRemoval: false
-        idcita:
-            targetEntity: Cita
-            cascade: {  }
-            mappedBy: null
-            inversedBy: null
-            joinColumns:
-                idCita:
-                    referencedColumnName: idCita
             orphanRemoval: false
         idmedico:
             targetEntity: Usuario

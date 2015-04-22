@@ -62,11 +62,11 @@ class NotacitaController extends Controller
                         $em = $this->getDoctrine()->getManager();
                         $em->persist($entity);
                         $em->flush();
-                        //return $this->redirect($this->generateUrl('notacita_show', array('id' => $entity->getId())));
-                        return $this->redirect($this->getRequest()->headers->get('referer'));
+                       
+ return $this->redirect($this->generateUrl('hci_show', array('id' => $entity->getIdhci()->getIdhci())));
+                      
                     }
                 }
-
         return $this->render('HCHCBundle:Notacita:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),

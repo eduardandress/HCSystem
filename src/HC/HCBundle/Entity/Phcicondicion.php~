@@ -111,4 +111,7 @@ class Phcicondicion
     public function getId(){
         return $this->idphcicondicion;
     }
+    public function getAttrsBusqueda(){
+        return array("descripcion","fechaactualizacion");
+    }
 }

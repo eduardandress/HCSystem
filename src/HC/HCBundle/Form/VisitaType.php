@@ -17,7 +17,7 @@ class VisitaType extends AbstractType
         $builder
             ->add('fecha',null,array('label'=>false,'attr'=>array('class'=>'hidden')))
             ->add('idpaciente',null,array('label'=>'Paciente'))
-            ->add('idcita',null,array('label'=>'Cita'))
+            ->add('idcita',null,array('label'=>false, 'attr'=>array('class'=>'hidden')))
             ->add('idmedico', 'entity',
                     array(
                         'class'=>'HCHCBundle:Usuario',

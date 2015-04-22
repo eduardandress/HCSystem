@@ -4,8 +4,8 @@
 {% block content_header %}
   <section class="content-header">
     <h1>
-      Page Header
-      <small>Optional description</small>
+      Dashboard 
+      <small>Información General</small>
     </h1>
     <ol class="breadcrumb">
       <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
@@ -18,6 +18,285 @@
 
 
 {% block content %}
-<p>Bienvenido al dashboard</p>
+<h3>Bienvenido {{app.user.nombre}}</h3>
+<div class="row">
 
+
+<div class="col-lg-4 col-xs-6">
+  <div class="small-box bg-yellow">
+    <div class="inner">
+      <h3>{{ citasParahoy|length }}</h3>
+      <p>Citas para hoy</p>
+    </div>
+    <div class="icon">
+      <i class="fa fa-calendar"></i>
+    </div>
+    <a href="#" class="small-box-footer verCitasHoy">Ver las citas <i class="fa fa-arrow-circle-right"></i></a>
+  </div>
+</div>
+
+<div class="col-lg-4 col-xs-6">
+  <div class="small-box bg-green">
+    <div class="inner">
+      <h3>{{ citas7dias|length }}</h3>
+      <p>Citas para los próximos 7 dias</p>
+    </div>
+    <div class="icon">
+      <i class="fa fa-calendar"></i>
+    </div>
+    <a href="#" class="small-box-footer verCitas7">Ver las citas <i class="fa fa-arrow-circle-right"></i></a>
+  </div>
+</div>
+  <div class="col-lg-4 col-xs-6">
+    <div class="small-box bg-red">
+      <div class="inner">
+        <h3>{{ citasEsteMes|length }}</h3>
+        <p>Citas para este mes</p>
+      </div>
+      <div class="icon">
+        <i class="fa fa-calendar"></i>
+      </div>
+      <a href="#" class="small-box-footer verCitasMes">Ver las citas <i class="fa fa-arrow-circle-right"></i></a>
+    </div>
+  </div>
+</div>
+{# Comienza citas para hoy #}
+<div class=" CitasHoy box box-warning" style="display:none">
+ <div class="box-header">
+  <h3 class="box-title">Citas para hoy</h3>
+  <div class="box-tools pull-right">
+                  <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+    </div>
+</div><!-- /.box-header -->
+<div class="box-body"> 
+        <table id="CitasHoy" class="CitasResultado table table-striped table-bordered" cellspacing="0" width="100%">
+         <thead>
+          <tr>
+           <th>Nombre del paciente</th>
+           <th>Cédula del paciente</th>
+           <th>Fecha Programada</th>
+           <th>Hora Programada</th>
+           <!-- <th>Fecha Creacion</th> -->
+           <th style="width: 60px">Motivo</th>
+           <th style="width:28%; text-align:center">Acciones</th>
+         </tr>
+       </thead>
+       <tfoot>
+        <tr>
+         <th>Nombre del paciente</th>
+         <th>Cédula del paciente</th>
+         <th>Fecha Programada</th>
+         <th>Hora Programada</th>
+         <!-- <th>Fecha Creacion</th> -->
+         <th style="width: 60px">Motivo</th>
+         <th style="width:28%; text-align:center">Acciones</th>
+       </tr>
+
+      </tfoot>
+      <tbody> 
+        {% for entity in citasParahoy %}
+          <tr>
+           <td>{{entity.idpaciente.nombre}} {{entity.idpaciente.apellido}} </td>
+           <td>{{entity.idpaciente.cedula}}</td>
+           <td>{% if entity.fechaprogramada %}{{ entity.fechaprogramada|date('Y-m-d') }}{% endif %}</td>
+           <td>{{ entity.horaprogramada }}</td>
+           <!-- <td>{% if entity.fechacreacion %}{{ entity.fechacreacion|date('Y-m-d H:i:s') }}{% endif %}</td> -->
+           <td>{{ entity.motivo }}</td>
+           <td>
+
+
+            <a href="{{ path('gestionarcitas_show', { 'id': entity.idcita }) }}"class="btn btn-app small-btn"><i class="fa fa-eye"></i>Ver</a>
+
+            <a href="{{ path('gestionarcitas_edit', { 'id': entity.idcita }) }}" class="btn btn-app small-btn"><i class="fa fa-edit"></i>Editar</a>
+
+
+          </td>
+        </tr>
+      {% endfor %}
+      </tbody>
+      </table>
+</div><!-- /.box-body -->
+<div class="box-footer clearfix">
+  <ul class="pagination pagination-sm no-margin pull-right">
+    <li><a href="#">«</a></li>
+    <li><a href="#">1</a></li>
+    <li><a href="#">2</a></li>
+    <li><a href="#">3</a></li>
+    <li><a href="#">»</a></li>
+  </ul>
+</div>
+</div>
+{# Termina citas para hoy #}
+
+{# Comienza citas 7 dias #}
+<div class=" Citas7 box box-success" style="display:none">
+
+ <div class="box-header">
+  <h3 class="box-title">Citas para los 7 próximos días</h3>
+  <div class="box-tools pull-right">
+                  <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+    </div>
+</div><!-- /.box-header -->
+<div class="box-body"> 
+        <table id="Citas7" class="CitasResultado table table-striped table-bordered" cellspacing="0" width="100%">
+         <thead>
+          <tr>
+           <th>Nombre del paciente</th>
+           <th>Cédula del paciente</th>
+           <th>Fecha Programada</th>
+           <th>Hora Programada</th>
+           <!-- <th>Fecha Creacion</th> -->
+           <th style="width: 60px">Motivo</th>
+           <th style="width:28%; text-align:center">Acciones</th>
+         </tr>
+       </thead>
+       <tfoot>
+        <tr>
+         <th>Nombre del paciente</th>
+         <th>Cédula del paciente</th>
+         <th>Fecha Programada</th>
+         <th>Hora Programada</th>
+         <!-- <th>Fecha Creacion</th> -->
+         <th style="width: 60px">Motivo</th>
+         <th style="width:28%; text-align:center">Acciones</th>
+       </tr>
+
+      </tfoot>
+      <tbody> 
+        {% for entity in citas7dias %}
+          <tr>
+           <td>{{entity.idpaciente.nombre}} {{entity.idpaciente.apellido}} </td>
+           <td>{{entity.idpaciente.cedula}}</td>
+           <td>{% if entity.fechaprogramada %}{{ entity.fechaprogramada|date('Y-m-d') }}{% endif %}</td>
+           <td>{{ entity.horaprogramada }}</td>
+           <!-- <td>{% if entity.fechacreacion %}{{ entity.fechacreacion|date('Y-m-d H:i:s') }}{% endif %}</td> -->
+           <td>{{ entity.motivo }}</td>
+           <td>
+
+
+            <a href="{{ path('gestionarcitas_show', { 'id': entity.idcita }) }}"class="btn btn-app small-btn"><i class="fa fa-eye"></i>Ver</a>
+
+            <a href="{{ path('gestionarcitas_edit', { 'id': entity.idcita }) }}" class="btn btn-app small-btn"><i class="fa fa-edit"></i>Editar</a>
+
+
+          </td>
+        </tr>
+      {% endfor %}
+      </tbody>
+      </table>
+</div><!-- /.box-body -->
+<div class="box-footer clearfix">
+  <ul class="pagination pagination-sm no-margin pull-right">
+    <li><a href="#">«</a></li>
+    <li><a href="#">1</a></li>
+    <li><a href="#">2</a></li>
+    <li><a href="#">3</a></li>
+    <li><a href="#">»</a></li>
+  </ul>
+</div>
+</div>
+{# Termina citas 7 dias #}
+
+{# Comienza citas mes #}
+<div class="CitasMes  box box-danger" style="display:none">
+
+ <div class="box-header">
+  <h3 class="box-title">Citas de este mes</h3>
+<div class="box-tools pull-right">
+                  <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+    </div>
+</div><!-- /.box-header -->
+<div class="box-body"> 
+  <table id="CitasMes" class="CitasResultado table table-striped table-bordered" cellspacing="0" width="100%">
+   <thead>
+    <tr>
+     <th>Nombre del paciente</th>
+     <th>Cédula del paciente</th>
+     <th>Fecha Programada</th>
+     <th>Hora Programada</th>
+     <!-- <th>Fecha Creacion</th> -->
+     <th style="width: 60px">Motivo</th>
+     <th style="width:28%; text-align:center">Acciones</th>
+   </tr>
+ </thead>
+ <tfoot>
+  <tr>
+   <th>Nombre del paciente</th>
+   <th>Cédula del paciente</th>
+   <th>Fecha Programada</th>
+   <th>Hora Programada</th>
+   <!-- <th>Fecha Creacion</th> -->
+   <th style="width: 60px">Motivo</th>
+   <th style="width:28%; text-align:center">Acciones</th>
+ </tr>
+
+</tfoot>
+<tbody> 
+  {% for entity in citasEsteMes %}
+    <tr>
+     <td>{{entity.idpaciente.nombre}} {{entity.idpaciente.apellido}} </td>
+     <td>{{entity.idpaciente.cedula}}</td>
+     <td>{% if entity.fechaprogramada %}{{ entity.fechaprogramada|date('Y-m-d') }}{% endif %}</td>
+     <td>{{ entity.horaprogramada }}</td>
+     <!-- <td>{% if entity.fechacreacion %}{{ entity.fechacreacion|date('Y-m-d H:i:s') }}{% endif %}</td> -->
+     <td>{{ entity.motivo }}</td>
+     <td>
+
+
+      <a href="{{ path('gestionarcitas_show', { 'id': entity.idcita }) }}"class="btn btn-app small-btn"><i class="fa fa-eye"></i>Ver</a>
+
+      <a href="{{ path('gestionarcitas_edit', { 'id': entity.idcita }) }}" class="btn btn-app small-btn"><i class="fa fa-edit"></i>Editar</a>
+
+
+    </td>
+  </tr>
+{% endfor %}
+</tbody>
+</table>
+</div><!-- /.box-body -->
+<div class="box-footer clearfix">
+  <ul class="pagination pagination-sm no-margin pull-right">
+    <li><a href="#">«</a></li>
+    <li><a href="#">1</a></li>
+    <li><a href="#">2</a></li>
+    <li><a href="#">3</a></li>
+    <li><a href="#">»</a></li>
+  </ul>
+</div>
+</div>
+{# Termina citas mes #}
+
+{% endblock %}
+{% block javascripts -%}
+  {{ parent() }}
+         {% javascripts
+            'bundles/hchc/js/basics.js'
+            %}
+            <script type="text/javascript" src="{{ asset_url }}"></script>
+
+          
+
+
+         {% endjavascripts %}
+
+
+  <script>
+ 
+
+    $(document).ready(function(){
+
+         $(".CitasResultado").dataTable(DataLanguage);
+
+         $('.verCitasHoy').on('click', function () {
+           $('.CitasHoy').fadeToggle();
+         });
+          $('.verCitas7').on('click', function () {
+           $('.Citas7').fadeToggle();
+         });
+          $('.verCitasMes').on('click', function () {
+           $('.CitasMes').fadeToggle();
+         });
+
+     });
+  </script>
 {% endblock %}

@@ -44,6 +44,8 @@ class Cita
      */
     private $idusuario;
 
+    private $visita;
+
     public function __toString(){
         return $this->motivo;
     }

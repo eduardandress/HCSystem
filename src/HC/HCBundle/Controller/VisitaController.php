@@ -39,6 +39,7 @@ class VisitaController extends Controller
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
 
+
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
@@ -88,7 +89,9 @@ class VisitaController extends Controller
             //Se obtiene la cita 
             $em=$this->getDoctrine()->getManager();
             $cita=$em->getRepository('HCHCBundle:Cita')->findOneByIdcita($idcita);
+
             if($cita){
+                
                 $paciente=$cita->getIdpaciente();
                 $form->get('idcita')->setData($cita);
                 $form->get('idpaciente')->setData($paciente);

@@ -256,8 +256,9 @@ class PacienteController extends Controller
 
         if ($editForm->isValid()) {
             $em->flush();
+            return $this->redirect($this->getRequest()->headers->get('referer'));
 
-            return $this->redirect($this->generateUrl('paciente_edit', array('id' => $id)));
+            // return $this->redirect($this->generateUrl('paciente_edit', array('id' => $id)));
         }
 
         return $this->render('HCHCBundle:Paciente:edit.html.twig', array(
@@ -286,6 +287,7 @@ class PacienteController extends Controller
             $em->remove($entity);
             $em->flush();
         }
+           
 
         return $this->redirect($this->generateUrl('paciente'));
     }

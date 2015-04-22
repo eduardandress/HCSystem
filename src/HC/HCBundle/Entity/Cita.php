@@ -44,6 +44,8 @@ class Cita
      */
     private $idusuario;
 
+    private $visita;
+
     public function __toString(){
         return $this->motivo;
     }
@@ -199,5 +201,28 @@ class Cita
     }
     public function _toString(){
         return $this->motivo;
+    }
+
+    /**
+     * Set visita
+     *
+     * @param \HC\HCBundle\Entity\Visita $visita
+     * @return Cita
+     */
+    public function setVisita(\HC\HCBundle\Entity\Visita $visita = null)
+    {
+        $this->visita = $visita;
+
+        return $this;
+    }
+
+    /**
+     * Get visita
+     *
+     * @return \HC\HCBundle\Entity\Visita 
+     */
+    public function getVisita()
+    {
+        return $this->visita;
     }
 }

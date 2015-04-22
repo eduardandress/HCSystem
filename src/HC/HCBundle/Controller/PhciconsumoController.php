@@ -171,8 +171,10 @@ class PhciconsumoController extends Controller
 
         if ($editForm->isValid()) {
             $em->flush();
+       return $this->redirect($this->getRequest()->headers->get('referer'));
+                
+            // return $this->redirect($this->generateUrl('phciconsumo_edit', array('id' => $id)));
 
-            return $this->redirect($this->generateUrl('phciconsumo_edit', array('id' => $id)));
         }
 
         return $this->render('HCHCBundle:Phciconsumo:edit.html.twig', array(

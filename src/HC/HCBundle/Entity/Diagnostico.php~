@@ -34,7 +34,9 @@ class Diagnostico
      */
     private $idusuario;
 
-
+    public function getIdhci(){
+        return $this->idnotacita->getIdhci();
+    }
     /**
      * Get iddiagnostico
      *
@@ -138,5 +140,8 @@ class Diagnostico
     }
     public function getId(){
         return $this->iddiagnostico;
+    }
+    public function getAttrsBusqueda(){
+        return array("fecha","descripcion");
     }
 }

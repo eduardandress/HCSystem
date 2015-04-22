@@ -346,14 +346,15 @@
         $("#"+datos.IdModal).find(".modal-body").html(datos.ModalBody)
         //si se quiere usar los botones de cancelar y confirm.
         if(datos.ModalFooter){
-
+         
+            $("#"+datos.IdModal).find(".modal-footer").show();
             $("#"+datos.IdModal).find(".modal-footer").prepend('');
             $("#"+ datos.IdModal+" .confirm").on("click", function(){
               datos.AccionModal();
             })
 
         }else{
-            $("#"+datos.IdModal).find(".modal-footer").empty();
+            $("#"+datos.IdModal).find(".modal-footer").hide();
         }
         $("#"+datos.IdModal).modal("show");
     }
@@ -372,6 +373,7 @@
                 e.preventDefault();
                 datosModal.ModalHeader="Nuevo Teléfono Personal";
                 datosModal.ModalBody=$(".nuevosTPForm").html(),
+                 datosModal.ModalFooter=false;
                 CrearModal(datosModal);
                
             })
@@ -380,6 +382,7 @@
                 e.preventDefault();
                 datosModal.ModalHeader="Nuevo Contácto de Emergencia";
                 datosModal.ModalBody=$(".nuevosTEForm").html();
+                datosModal.ModalFooter=false;
                 CrearModal(datosModal);
             })
             $(".eliminarTP").on("click", function(e){
@@ -402,7 +405,7 @@
                 idtel= idtel.replace("te_","");
                 datosModal.ModalHeader="Eliminar Contácto de emergencia";
                 datosModal.ModalBody="¿ Esta seguro de eliminar el contácto ?";
-                datosModal.ModalFooter=true;
+                datosModal["ModalFooter"]=true;
                 datosModal.AccionModal= function(){
                      EliminarTelefonoEmergencia(idtel);
                 }
@@ -417,6 +420,7 @@
                
                 var ruta= getRutaModTelPersonal(idtel)
                 datosModal.ModalHeader="Modificar Teléfono Personal";
+                datosModal.ModalFooter=false;
                 datosAjax.url= ruta;
                 datosAjax.accionSuccess= function(data){
                       datosModal.ModalBody=data;
@@ -433,6 +437,7 @@
                
                 var ruta= getRutaModContactoEmergencia(idtel)
                 datosModal.ModalHeader="Modificar Teléfono Emergencia";
+                datosModal.ModalFooter=false;
                 datosAjax.url= ruta;
                 datosAjax.accionSuccess= function(data){
                       datosModal.ModalBody=data;
@@ -446,6 +451,7 @@
                 
                 var ruta= "{{ path('paciente_edit', { 'id': entity.idpaciente }) }}";
                 datosModal.ModalHeader="Modificar datos del Paciente";
+                datosModal.ModalFooter=false;
                 datosAjax.url= ruta;
                 datosAjax.accionSuccess= function(data){
                       datosModal.ModalBody=data;

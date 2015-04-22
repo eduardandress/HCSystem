@@ -399,4 +399,10 @@ class Notacita
     public function getId(){
         return $this->idnotacita;
     }
+
+
+
+    public function getAttrsBusqueda(){
+        return array("presionarterial","alturapaciente","pesopaciente","frecuenciacardiaca","temperatura");
+    }
 }
