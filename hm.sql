@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 06-04-2015 a las 02:21:30
+-- Tiempo de generación: 22-04-2015 a las 23:56:58
 -- Versión del servidor: 5.6.21
 -- Versión de PHP: 5.6.3
 
@@ -28,13 +28,68 @@ SET time_zone = "+00:00";
 
 CREATE TABLE IF NOT EXISTS `bitacora` (
 `idBitacora` int(11) NOT NULL,
-  `idUsuario` int(11) NOT NULL,
-  `idTipoAccion` int(11) NOT NULL,
-  `tabla` int(11) NOT NULL,
+  `idUsuario` int(11) DEFAULT NULL,
+  `idTipoAccion` int(11) DEFAULT NULL,
+  `tabla` varchar(50) NOT NULL,
   `idTupla` int(11) NOT NULL,
-  `descripcion` int(11) NOT NULL,
-  `fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `descripcion` text,
+  `fecha` datetime DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=231 DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `bitacora`
+--
+
+INSERT INTO `bitacora` (`idBitacora`, `idUsuario`, `idTipoAccion`, `tabla`, `idTupla`, `descripcion`, `fecha`) VALUES
+(182, 7, 1, 'Paciente', 38, 'ecarvallo agregó  un paciente . Cédula: 65455  dfshg jh', NULL),
+(183, 7, 1, 'Pactelf', 59, 'ecarvallo agregó  un nuevo número personal para el paciente dfshg jh. Número: (5555)-5555555', NULL),
+(184, 7, 1, 'Pacnumcontacto', 39, 'ecarvallo agregó  un contácto de emergencia  para el paciente dfshg jh. Contacto:  sdfdsf sdfsdf . Número: (5555)-5555555', NULL),
+(185, 7, 3, 'Pactelf', 53, 'ecarvallo eliminó en Pactelf 53', NULL),
+(186, 7, 3, 'Pactelf', 54, 'ecarvallo eliminó en Pactelf 54', NULL),
+(187, 7, 3, 'Pactelf', 55, 'ecarvallo eliminó en Pactelf 55', NULL),
+(188, 7, 3, 'Pacnumcontacto', 34, 'ecarvallo eliminó en Pacnumcontacto 34', NULL),
+(189, 7, 3, 'Pacnumcontacto', 35, 'ecarvallo eliminó en Pacnumcontacto 35', NULL),
+(190, 7, 3, 'Paciente', 36, 'ecarvallo eliminó en Paciente 36', NULL),
+(191, 7, 3, 'Pactelf', 59, 'ecarvallo eliminó en Pactelf 59', NULL),
+(192, 7, 2, 'Pacnumcontacto', 39, 'ecarvallo actualizó Pacnumcontacto.    Modificaciones en: numero: ( Valor anterior: (5555)-5555555 ), ', NULL),
+(193, 7, 3, 'Phciconsumo', 3, 'ecarvallo eliminó en Phciconsumo 3', NULL),
+(194, 7, 3, 'Phciconsumo', 4, 'ecarvallo eliminó en Phciconsumo 4', NULL),
+(195, 7, 3, 'Phcimedicamento', 2, 'ecarvallo eliminó en Phcimedicamento 2', NULL),
+(196, 7, 3, 'Hci', 8, 'ecarvallo eliminó en Hci 8', NULL),
+(197, 7, 3, 'Pactelf', 34, 'ecarvallo eliminó en Pactelf 34', NULL),
+(198, 7, 3, 'Pactelf', 35, 'ecarvallo eliminó en Pactelf 35', NULL),
+(199, 7, 1, 'Hci', 15, 'ecarvallo agregó La Historia Clinica Inical del paciente Glenda BlancoB', NULL),
+(200, 7, 3, 'Pactelf', 36, 'ecarvallo eliminó en Pactelf 36', NULL),
+(201, 7, 3, 'Pactelf', 39, 'ecarvallo eliminó en Pactelf 39', NULL),
+(202, 7, 3, 'Pactelf', 41, 'ecarvallo eliminó en Pactelf 41', NULL),
+(203, 7, 3, 'Pactelf', 43, 'ecarvallo eliminó en Pactelf 43', NULL),
+(204, 7, 3, 'Pactelf', 44, 'ecarvallo eliminó en Pactelf 44', NULL),
+(205, 7, 3, 'Pactelf', 45, 'ecarvallo eliminó en Pactelf 45', NULL),
+(206, 7, 3, 'Paciente', 33, 'ecarvallo eliminó en Paciente 33', NULL),
+(207, 7, 3, 'Pactelf', 57, 'ecarvallo eliminó en Pactelf 57', NULL),
+(208, 7, 3, 'Pactelf', 58, 'ecarvallo eliminó en Pactelf 58', NULL),
+(209, 7, 3, 'Pacnumcontacto', 37, 'ecarvallo eliminó en Pacnumcontacto 37', NULL),
+(210, 7, 3, 'Pacnumcontacto', 38, 'ecarvallo eliminó en Pacnumcontacto 38', NULL),
+(211, 7, 3, 'Paciente', 37, 'ecarvallo eliminó en Paciente 37', NULL),
+(212, 7, 1, 'Paciente', 39, 'ecarvallo agregó  un paciente . Cédula: 5  s asdadadsad', NULL),
+(213, 7, 1, 'Pactelf', 60, 'ecarvallo agregó  un nuevo número personal para el paciente s asdadadsad. Número: (5555)-5555555', NULL),
+(214, 7, 1, 'Pacnumcontacto', 40, 'ecarvallo agregó  un contácto de emergencia  para el paciente s asdadadsad. Contacto:  gh fgfdg . Número: (5555)-5555555', NULL),
+(215, 7, 1, 'Pactelf', 61, 'ecarvallo agregó  un nuevo número personal para el paciente s asdadadsad. Número: (5555)-5555555', NULL),
+(216, 7, 1, 'Cita', 38, 'ecarvallo agregó  una cita al paciente s asdadadsad para el dia 2015-04-22', NULL),
+(217, 7, 1, 'Hci', 16, 'ecarvallo agregó La Historia Clinica Inical del paciente s asdadadsad', NULL),
+(218, 7, 1, 'Phciconsumo', 11, 'ecarvallo agregó un consumo del paciente s asdadadsad', NULL),
+(219, 7, 1, 'Phciconsumo', 12, 'ecarvallo agregó un consumo del paciente s asdadadsad', NULL),
+(220, 7, 1, 'Notacita', 8, 'ecarvallo agregó  una Nota de cita para el paciente s asdadadsad a su cita programada para el dia: 2015-04-22', NULL),
+(221, 7, 1, 'Prescripcion', 8, 'ecarvallo agregó  una prescripción para el paciente s asdadadsad a su cita programada para el dia: 2015-04-22', NULL),
+(222, 7, 3, 'Prescripcion', 8, 'ecarvallo eliminó en Prescripcion 8', NULL),
+(223, 7, 1, 'Prescripcion', 9, 'ecarvallo agregó  una prescripción para el paciente s asdadadsad a su cita programada para el dia: 2015-04-22', NULL),
+(224, 7, 1, 'Referencia', 2, 'ecarvallo agregó  una referencia para el paciente s asdadadsad a su cita programada para el dia: 2015-04-22', NULL),
+(225, 7, 3, 'Prescripcion', 9, 'ecarvallo eliminó en Prescripcion 9', NULL),
+(226, 7, 3, 'Referencia', 2, 'ecarvallo eliminó en Referencia 2', NULL),
+(227, 7, 3, 'Notacita', 8, 'ecarvallo eliminó en Notacita 8', NULL),
+(228, 7, 1, 'Notacita', 9, 'ecarvallo agregó  una Nota de cita para el paciente s asdadadsad a su cita programada para el dia: 2015-04-22', NULL),
+(229, 7, 3, 'Notacita', 9, 'ecarvallo eliminó en Notacita 9', NULL),
+(230, 7, 1, 'Usuario', 18, 'ecarvallo agregó  un usuario. Nombre de usuario admin Nombre: admin con rol de Admin-Medico', NULL);
 
 -- --------------------------------------------------------
 
@@ -44,20 +99,20 @@ CREATE TABLE IF NOT EXISTS `bitacora` (
 
 CREATE TABLE IF NOT EXISTS `cita` (
 `idCita` int(11) NOT NULL,
-  `idUsuario` int(11) NOT NULL,
-  `idPaciente` int(11) NOT NULL,
-  `fechaCreacion` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `idUsuario` int(11) DEFAULT NULL,
+  `idPaciente` int(11) DEFAULT NULL,
+  `fechaCreacion` datetime DEFAULT NULL,
   `fechaProgramada` date NOT NULL,
   `horaProgramada` varchar(20) NOT NULL,
   `motivo` text NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `cita`
 --
 
 INSERT INTO `cita` (`idCita`, `idUsuario`, `idPaciente`, `fechaCreacion`, `fechaProgramada`, `horaProgramada`, `motivo`) VALUES
-(1, 7, 22, '2015-04-06 00:20:07', '2015-03-22', '08:15 AM', 'nose');
+(38, 7, 39, NULL, '2015-04-22', '05:15 PM', 'rqwer');
 
 -- --------------------------------------------------------
 
@@ -67,21 +122,10 @@ INSERT INTO `cita` (`idCita`, `idUsuario`, `idPaciente`, `fechaCreacion`, `fecha
 
 CREATE TABLE IF NOT EXISTS `diagnostico` (
 `idDiagnostico` int(11) NOT NULL,
-  `fecha` date NOT NULL,
+  `idUsuario` int(11) DEFAULT NULL,
+  `fecha` datetime DEFAULT NULL,
   `descripcion` text NOT NULL,
-  `idNotaCita` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `diagnosticoMedico`
---
-
-CREATE TABLE IF NOT EXISTS `diagnosticoMedico` (
-`idDiagnosticoMed` int(11) NOT NULL,
-  `idDiagnostico` int(11) NOT NULL,
-  `idMedico` int(11) NOT NULL
+  `idNotaCita` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -92,19 +136,16 @@ CREATE TABLE IF NOT EXISTS `diagnosticoMedico` (
 
 CREATE TABLE IF NOT EXISTS `hci` (
 `idHci` int(11) NOT NULL,
-  `fechaCreacion` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `idPaciente` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+  `fechaCreacion` datetime DEFAULT NULL,
+  `idPaciente` int(11) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `hci`
 --
 
 INSERT INTO `hci` (`idHci`, `fechaCreacion`, `idPaciente`) VALUES
-(11, '2015-04-05 17:36:20', 21),
-(12, '2015-04-05 20:07:37', 21),
-(13, '2015-04-05 20:38:28', 21),
-(14, '2015-04-05 20:49:00', 21);
+(16, NULL, 39);
 
 -- --------------------------------------------------------
 
@@ -114,36 +155,14 @@ INSERT INTO `hci` (`idHci`, `fechaCreacion`, `idPaciente`) VALUES
 
 CREATE TABLE IF NOT EXISTS `notaCita` (
 `idNotaCita` int(11) NOT NULL,
+  `idCita` int(11) DEFAULT NULL,
+  `idHci` int(11) DEFAULT NULL,
   `presionArterial` float NOT NULL,
   `alturaPaciente` float NOT NULL,
   `pesoPaciente` float NOT NULL,
   `frecuenciaCardiaca` float NOT NULL,
   `temperatura` float NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `notasCitaGenerada`
---
-
-CREATE TABLE IF NOT EXISTS `notasCitaGenerada` (
-`idNotaCitaGen` int(11) NOT NULL,
-  `idNotaCita` int(11) NOT NULL,
-  `idCita` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `notasCitaHci`
---
-
-CREATE TABLE IF NOT EXISTS `notasCitaHci` (
-`idNotasCHci` int(11) NOT NULL,
-  `idNotaCita` int(11) NOT NULL,
-  `idHci` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -159,18 +178,15 @@ CREATE TABLE IF NOT EXISTS `paciente` (
   `direccion` text NOT NULL,
   `fechaNac` varchar(50) NOT NULL,
   `numSS` varchar(50) NOT NULL,
-  `medicoPref` varchar(150) NOT NULL,
-  `telfmedico` varchar(20) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=latin1;
+  `idmedicoPref` int(11) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `paciente`
 --
 
-INSERT INTO `paciente` (`idPaciente`, `cedula`, `nombre`, `apellido`, `direccion`, `fechaNac`, `numSS`, `medicoPref`, `telfmedico`) VALUES
-(21, '24571582', 'Javier Alejandro', 'Carvallo', 'asd', 'asdf', 'asfd', 'af', 'asdf33'),
-(22, 'asdffff', 'df', 'af', 'sdf', 'sdf', 'sdf', 'sd', 'sdf'),
-(23, 'jhu', 'yyh', 'g', 'fghgh', 'thjjh', 'fgghg', 'fgh', 'fggh');
+INSERT INTO `paciente` (`idPaciente`, `cedula`, `nombre`, `apellido`, `direccion`, `fechaNac`, `numSS`, `idmedicoPref`) VALUES
+(39, '5', 's', 'asdadadsad', 'asasda', '2055-05-05', '5g', 7);
 
 -- --------------------------------------------------------
 
@@ -180,22 +196,20 @@ INSERT INTO `paciente` (`idPaciente`, `cedula`, `nombre`, `apellido`, `direccion
 
 CREATE TABLE IF NOT EXISTS `pacNumContacto` (
 `idPacNumContacto` int(11) NOT NULL,
-  `idPaciente` int(11) NOT NULL,
+  `idPaciente` int(11) DEFAULT NULL,
   `nombreContacto` varchar(100) NOT NULL,
   `apellidoContacto` varchar(100) NOT NULL,
   `numero` varchar(20) NOT NULL,
   `relacion` varchar(50) NOT NULL,
-  `fechaAgregado` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
+  `fechaAgregado` datetime DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `pacNumContacto`
 --
 
 INSERT INTO `pacNumContacto` (`idPacNumContacto`, `idPaciente`, `nombreContacto`, `apellidoContacto`, `numero`, `relacion`, `fechaAgregado`) VALUES
-(14, 21, 'asd', 'asd', 'asd', 'asd', '2015-03-30 15:03:52'),
-(15, 22, 'sdf', 'sdf', 'af', 's', '2015-04-04 23:50:04'),
-(16, 23, 'jkhg', 'gf', 'yg', 'ug', '2015-04-05 00:07:25');
+(40, 39, 'gh', 'fgfdg', '(5555)-5555555', '55hretgret', NULL);
 
 -- --------------------------------------------------------
 
@@ -205,19 +219,18 @@ INSERT INTO `pacNumContacto` (`idPacNumContacto`, `idPaciente`, `nombreContacto`
 
 CREATE TABLE IF NOT EXISTS `pacTelf` (
 `idPacTelf` int(11) NOT NULL,
-  `idPaciente` int(11) NOT NULL,
-  `idTipoTel` int(11) NOT NULL,
+  `idPaciente` int(11) DEFAULT NULL,
+  `idTipoTel` int(11) DEFAULT NULL,
   `numero` varchar(50) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=62 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `pacTelf`
 --
 
 INSERT INTO `pacTelf` (`idPacTelf`, `idPaciente`, `idTipoTel`, `numero`) VALUES
-(8, 22, 1, 'sdf'),
-(9, 22, 1, 'sdfsdf'),
-(10, 23, 1, 'hjg');
+(60, 39, 2, '(5555)-5555555'),
+(61, 39, 1, '(5555)-5555555');
 
 -- --------------------------------------------------------
 
@@ -227,10 +240,10 @@ INSERT INTO `pacTelf` (`idPacTelf`, `idPaciente`, `idTipoTel`, `numero`) VALUES
 
 CREATE TABLE IF NOT EXISTS `phciAlergia` (
 `idPhciAlergia` int(11) NOT NULL,
-  `idHci` int(11) NOT NULL,
+  `idHci` int(11) DEFAULT NULL,
   `descripcion` text NOT NULL,
-  `fechaActualizacion` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+  `fechaActualizacion` datetime DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -240,10 +253,10 @@ CREATE TABLE IF NOT EXISTS `phciAlergia` (
 
 CREATE TABLE IF NOT EXISTS `phciCondicion` (
 `idPhciCondicion` int(11) NOT NULL,
-  `idHci` int(11) NOT NULL,
+  `idHci` int(11) DEFAULT NULL,
   `descripcion` text NOT NULL,
-  `fechaActualizacion` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+  `fechaActualizacion` datetime DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -253,11 +266,19 @@ CREATE TABLE IF NOT EXISTS `phciCondicion` (
 
 CREATE TABLE IF NOT EXISTS `phciConsumo` (
 `idPhciConsumo` int(11) NOT NULL,
-  `idHci` int(11) NOT NULL,
-  `idTipoConsumo` int(11) NOT NULL,
-  `fechaActualizacion` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
-  `idTipoEstado` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+  `idHci` int(11) DEFAULT NULL,
+  `idTipoConsumo` int(11) DEFAULT NULL,
+  `fechaActualizacion` datetime DEFAULT NULL,
+  `idTipoEstado` int(11) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `phciConsumo`
+--
+
+INSERT INTO `phciConsumo` (`idPhciConsumo`, `idHci`, `idTipoConsumo`, `fechaActualizacion`, `idTipoEstado`) VALUES
+(11, 16, 1, NULL, 3),
+(12, 16, 2, NULL, 4);
 
 -- --------------------------------------------------------
 
@@ -267,9 +288,9 @@ CREATE TABLE IF NOT EXISTS `phciConsumo` (
 
 CREATE TABLE IF NOT EXISTS `phciMedicamento` (
 `idPhciMedicamento` int(11) NOT NULL,
-  `idHci` int(11) NOT NULL,
+  `idHci` int(11) DEFAULT NULL,
   `descripcion` text NOT NULL,
-  `fechaActualizacion` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP
+  `fechaActualizacion` datetime DEFAULT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -280,23 +301,12 @@ CREATE TABLE IF NOT EXISTS `phciMedicamento` (
 
 CREATE TABLE IF NOT EXISTS `prescripcion` (
 `idPrescripcion` int(11) NOT NULL,
-  `fecha` date NOT NULL,
+  `idUsuario` int(11) DEFAULT NULL,
+  `fecha` datetime DEFAULT NULL,
   `nombre` varchar(50) NOT NULL,
   `instrucciones` text NOT NULL,
-  `idNotaCita` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `prescripcionMedico`
---
-
-CREATE TABLE IF NOT EXISTS `prescripcionMedico` (
-`idPresMedico` int(11) NOT NULL,
-  `idPrescripcion` int(11) NOT NULL,
-  `idMedico` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `idNotaCita` int(11) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -317,22 +327,12 @@ CREATE TABLE IF NOT EXISTS `privilegio` (
 
 CREATE TABLE IF NOT EXISTS `referencia` (
 `idReferencia` int(11) NOT NULL,
+  `idUsuario` int(11) DEFAULT NULL,
   `nombreDoctor` varchar(150) NOT NULL,
   `descripcion` text NOT NULL,
-  `fecha` date NOT NULL,
-  `idNotaCita` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `referenciaMedico`
---
-
-CREATE TABLE IF NOT EXISTS `referenciaMedico` (
-`idRefMedico` int(11) NOT NULL,
-  `idMedico` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `fecha` datetime DEFAULT NULL,
+  `idNotaCita` int(11) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -363,8 +363,8 @@ INSERT INTO `rol` (`idRol`, `nombre`) VALUES
 
 CREATE TABLE IF NOT EXISTS `rolPrivilegio` (
 `idRolPrivilegio` int(11) NOT NULL,
-  `idRol` int(11) NOT NULL,
-  `idPrivilegio` int(11) NOT NULL
+  `idRol` int(11) DEFAULT NULL,
+  `idPrivilegio` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -376,7 +376,16 @@ CREATE TABLE IF NOT EXISTS `rolPrivilegio` (
 CREATE TABLE IF NOT EXISTS `tipoAccion` (
 `idTipoAccion` int(11) NOT NULL,
   `nombre` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `tipoAccion`
+--
+
+INSERT INTO `tipoAccion` (`idTipoAccion`, `nombre`) VALUES
+(1, 'Insertar'),
+(2, 'Ediitar'),
+(3, 'Eliminar');
 
 -- --------------------------------------------------------
 
@@ -451,18 +460,22 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `direccion` text NOT NULL,
   `telefono` varchar(50) NOT NULL,
   `fechaInicio` date NOT NULL,
-  `idRol` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+  `idRol` int(11) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `usuario`
 --
 
 INSERT INTO `usuario` (`idUsuario`, `usuario`, `clave`, `nombre`, `fechaNac`, `numSS`, `direccion`, `telefono`, `fechaInicio`, `idRol`) VALUES
-(4, 'JavierAlej', '24571582', 'Javier', '2010-01-01', '518418', 'asfdhsh', '414-4980383', '2010-01-01', 1),
-(5, 'f', 'asf', 'afs', '2010-04-01', 'asd', 'asf', 'asf', '2010-01-01', 2),
-(6, 'asd', 'sdg', 'sdg', '2010-09-01', 'wg', 'sdg', 'sdag', '2010-09-01', 1),
-(7, 'ecarvallo', 'eduardandress', 'Eduardo Carvallo', '1994-01-15', '24571581rtg', 'Urb Malave Villalba', '04144963763', '2015-04-01', 2);
+(4, 'javieralej', '24571582', 'Javier Carvallo', '2000-02-22', '518418', 'urbanizacion malave villalba', '(5555)-5555555', '2010-01-02', 4),
+(7, 'ecarvallo', 'eduardandress', 'Eduardo Carvallo', '1994-01-15', '24571581rtg', 'Urb Malave Villalba', '(0414)-4963763', '2015-04-01', 1),
+(8, 'esanchez', '1234', 'Edilianny Sánchez', '1991-11-11', 'jbjhgbghvfvv', 'San Diego', '(0412)-5555555', '2001-11-11', 3),
+(9, 'amota4', '1234', 'Allinson Mota', '1990-03-10', '54545485485', 'Puerto Cabello- Urbanizacion Cumboto II', '(0414)-5555555', '2015-01-11', 2),
+(10, 'agarcia', '1234', 'Argenis Garcia', '2015-02-22', '6262', 'dssdfsdf', '(0000)-0000000', '2038-01-13', 1),
+(14, 'lperez', '1234', 'Luis Pérez', '2022-02-22', '2s22222222', '2daffffffff', '(3333)-3333333', '2033-03-03', 4),
+(16, 'dsg', 'sdg', 'sdfg', '2046-03-05', 'sdfsdf', 'sdfsdf', '(3254)-236436_', '2035-03-04', 2),
+(18, 'admin', 'admin', 'admin', '2022-02-22', '222222222', '2222222', '(2222)-2222222', '2022-02-22', 1);
 
 -- --------------------------------------------------------
 
@@ -472,20 +485,12 @@ INSERT INTO `usuario` (`idUsuario`, `usuario`, `clave`, `nombre`, `fechaNac`, `n
 
 CREATE TABLE IF NOT EXISTS `visita` (
 `idVisita` int(11) NOT NULL,
-  `fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `visitaPaciente`
---
-
-CREATE TABLE IF NOT EXISTS `visitaPaciente` (
-`idVisitaPaciente` int(11) NOT NULL,
-  `idPaciente` int(11) NOT NULL,
-  `idCita` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `idPaciente` int(11) DEFAULT NULL,
+  `idCita` int(11) DEFAULT NULL,
+  `idMedico` int(11) DEFAULT NULL,
+  `idEnfermera` int(11) DEFAULT NULL,
+  `fecha` datetime DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 --
 -- Índices para tablas volcadas
@@ -507,43 +512,25 @@ ALTER TABLE `cita`
 -- Indices de la tabla `diagnostico`
 --
 ALTER TABLE `diagnostico`
- ADD PRIMARY KEY (`idDiagnostico`), ADD KEY `idNotaCita` (`idNotaCita`);
-
---
--- Indices de la tabla `diagnosticoMedico`
---
-ALTER TABLE `diagnosticoMedico`
- ADD PRIMARY KEY (`idDiagnosticoMed`), ADD KEY `idMedico` (`idMedico`);
+ ADD PRIMARY KEY (`idDiagnostico`), ADD UNIQUE KEY `UNIQ_9B91D44832DCDBAF` (`idUsuario`), ADD KEY `idNotaCita` (`idNotaCita`);
 
 --
 -- Indices de la tabla `hci`
 --
 ALTER TABLE `hci`
- ADD PRIMARY KEY (`idHci`), ADD KEY `idPaciente` (`idPaciente`);
+ ADD PRIMARY KEY (`idHci`), ADD UNIQUE KEY `UNIQ_C33BA21295688305` (`idPaciente`);
 
 --
 -- Indices de la tabla `notaCita`
 --
 ALTER TABLE `notaCita`
- ADD PRIMARY KEY (`idNotaCita`);
-
---
--- Indices de la tabla `notasCitaGenerada`
---
-ALTER TABLE `notasCitaGenerada`
- ADD PRIMARY KEY (`idNotaCitaGen`), ADD KEY `idCita` (`idCita`);
-
---
--- Indices de la tabla `notasCitaHci`
---
-ALTER TABLE `notasCitaHci`
- ADD PRIMARY KEY (`idNotasCHci`), ADD KEY `idNotaCita` (`idNotaCita`), ADD KEY `idHci` (`idHci`);
+ ADD PRIMARY KEY (`idNotaCita`), ADD UNIQUE KEY `UNIQ_561DAA864DCAC4FC` (`idCita`), ADD KEY `idHci` (`idHci`);
 
 --
 -- Indices de la tabla `paciente`
 --
 ALTER TABLE `paciente`
- ADD PRIMARY KEY (`idPaciente`), ADD UNIQUE KEY `cedula` (`cedula`);
+ ADD PRIMARY KEY (`idPaciente`), ADD UNIQUE KEY `cedula` (`cedula`), ADD KEY `idmedicoPref` (`idmedicoPref`);
 
 --
 -- Indices de la tabla `pacNumContacto`
@@ -585,13 +572,7 @@ ALTER TABLE `phciMedicamento`
 -- Indices de la tabla `prescripcion`
 --
 ALTER TABLE `prescripcion`
- ADD PRIMARY KEY (`idPrescripcion`), ADD KEY `idNotaCita` (`idNotaCita`);
-
---
--- Indices de la tabla `prescripcionMedico`
---
-ALTER TABLE `prescripcionMedico`
- ADD PRIMARY KEY (`idPresMedico`), ADD KEY `idMedico` (`idMedico`);
+ ADD PRIMARY KEY (`idPrescripcion`), ADD UNIQUE KEY `UNIQ_D271D7FF32DCDBAF` (`idUsuario`), ADD KEY `idNotaCita` (`idNotaCita`);
 
 --
 -- Indices de la tabla `privilegio`
@@ -603,13 +584,7 @@ ALTER TABLE `privilegio`
 -- Indices de la tabla `referencia`
 --
 ALTER TABLE `referencia`
- ADD PRIMARY KEY (`idReferencia`), ADD KEY `idNotaCita` (`idNotaCita`);
-
---
--- Indices de la tabla `referenciaMedico`
---
-ALTER TABLE `referenciaMedico`
- ADD PRIMARY KEY (`idRefMedico`), ADD KEY `idMedico` (`idMedico`);
+ ADD PRIMARY KEY (`idReferencia`), ADD UNIQUE KEY `UNIQ_C01213D832DCDBAF` (`idUsuario`), ADD KEY `idNotaCita` (`idNotaCita`);
 
 --
 -- Indices de la tabla `rol`
@@ -657,13 +632,7 @@ ALTER TABLE `usuario`
 -- Indices de la tabla `visita`
 --
 ALTER TABLE `visita`
- ADD PRIMARY KEY (`idVisita`);
-
---
--- Indices de la tabla `visitaPaciente`
---
-ALTER TABLE `visitaPaciente`
- ADD PRIMARY KEY (`idVisitaPaciente`), ADD KEY `idCita` (`idCita`), ADD KEY `idPaciente` (`idPaciente`);
+ ADD PRIMARY KEY (`idVisita`), ADD UNIQUE KEY `UNIQ_B7F148A24DCAC4FC` (`idCita`), ADD KEY `idPaciente` (`idPaciente`), ADD KEY `idMedico` (`idMedico`), ADD KEY `idEnfermera` (`idEnfermera`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -673,72 +642,57 @@ ALTER TABLE `visitaPaciente`
 -- AUTO_INCREMENT de la tabla `bitacora`
 --
 ALTER TABLE `bitacora`
-MODIFY `idBitacora` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `idBitacora` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=231;
 --
 -- AUTO_INCREMENT de la tabla `cita`
 --
 ALTER TABLE `cita`
-MODIFY `idCita` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+MODIFY `idCita` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=39;
 --
 -- AUTO_INCREMENT de la tabla `diagnostico`
 --
 ALTER TABLE `diagnostico`
 MODIFY `idDiagnostico` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT de la tabla `diagnosticoMedico`
---
-ALTER TABLE `diagnosticoMedico`
-MODIFY `idDiagnosticoMed` int(11) NOT NULL AUTO_INCREMENT;
---
 -- AUTO_INCREMENT de la tabla `hci`
 --
 ALTER TABLE `hci`
-MODIFY `idHci` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15;
+MODIFY `idHci` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT de la tabla `notaCita`
 --
 ALTER TABLE `notaCita`
-MODIFY `idNotaCita` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT de la tabla `notasCitaGenerada`
---
-ALTER TABLE `notasCitaGenerada`
-MODIFY `idNotaCitaGen` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT de la tabla `notasCitaHci`
---
-ALTER TABLE `notasCitaHci`
-MODIFY `idNotasCHci` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `idNotaCita` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT de la tabla `paciente`
 --
 ALTER TABLE `paciente`
-MODIFY `idPaciente` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=24;
+MODIFY `idPaciente` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=40;
 --
 -- AUTO_INCREMENT de la tabla `pacNumContacto`
 --
 ALTER TABLE `pacNumContacto`
-MODIFY `idPacNumContacto` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=17;
+MODIFY `idPacNumContacto` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=41;
 --
 -- AUTO_INCREMENT de la tabla `pacTelf`
 --
 ALTER TABLE `pacTelf`
-MODIFY `idPacTelf` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
+MODIFY `idPacTelf` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=62;
 --
 -- AUTO_INCREMENT de la tabla `phciAlergia`
 --
 ALTER TABLE `phciAlergia`
-MODIFY `idPhciAlergia` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+MODIFY `idPhciAlergia` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT de la tabla `phciCondicion`
 --
 ALTER TABLE `phciCondicion`
-MODIFY `idPhciCondicion` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+MODIFY `idPhciCondicion` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT de la tabla `phciConsumo`
 --
 ALTER TABLE `phciConsumo`
-MODIFY `idPhciConsumo` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+MODIFY `idPhciConsumo` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT de la tabla `phciMedicamento`
 --
@@ -748,12 +702,7 @@ MODIFY `idPhciMedicamento` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 -- AUTO_INCREMENT de la tabla `prescripcion`
 --
 ALTER TABLE `prescripcion`
-MODIFY `idPrescripcion` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT de la tabla `prescripcionMedico`
---
-ALTER TABLE `prescripcionMedico`
-MODIFY `idPresMedico` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `idPrescripcion` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT de la tabla `privilegio`
 --
@@ -763,12 +712,7 @@ MODIFY `idPrivilegio` int(11) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT de la tabla `referencia`
 --
 ALTER TABLE `referencia`
-MODIFY `idReferencia` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT de la tabla `referenciaMedico`
---
-ALTER TABLE `referenciaMedico`
-MODIFY `idRefMedico` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `idReferencia` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `rol`
 --
@@ -783,7 +727,7 @@ MODIFY `idRolPrivilegio` int(11) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT de la tabla `tipoAccion`
 --
 ALTER TABLE `tipoAccion`
-MODIFY `idTipoAccion` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `idTipoAccion` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `tipoConsumo`
 --
@@ -803,17 +747,12 @@ MODIFY `idTipoTel` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=19;
 --
 -- AUTO_INCREMENT de la tabla `visita`
 --
 ALTER TABLE `visita`
-MODIFY `idVisita` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT de la tabla `visitaPaciente`
---
-ALTER TABLE `visitaPaciente`
-MODIFY `idVisitaPaciente` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `idVisita` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
 -- Restricciones para tablas volcadas
 --
@@ -822,77 +761,72 @@ MODIFY `idVisitaPaciente` int(11) NOT NULL AUTO_INCREMENT;
 -- Filtros para la tabla `bitacora`
 --
 ALTER TABLE `bitacora`
-ADD CONSTRAINT `bitacora_ibfk_1` FOREIGN KEY (`idUsuario`) REFERENCES `usuario` (`idUsuario`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-ADD CONSTRAINT `bitacora_ibfk_2` FOREIGN KEY (`idTipoAccion`) REFERENCES `tipoAccion` (`idTipoAccion`) ON UPDATE CASCADE;
+ADD CONSTRAINT `FK_9087FEF983DE8E3C` FOREIGN KEY (`idTipoAccion`) REFERENCES `tipoAccion` (`idTipoAccion`),
+ADD CONSTRAINT `bitacora_ibfk_1` FOREIGN KEY (`idUsuario`) REFERENCES `usuario` (`idUsuario`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `cita`
 --
 ALTER TABLE `cita`
-ADD CONSTRAINT `cita_ibfk_1` FOREIGN KEY (`idUsuario`) REFERENCES `usuario` (`idUsuario`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-ADD CONSTRAINT `cita_ibfk_2` FOREIGN KEY (`idPaciente`) REFERENCES `paciente` (`idPaciente`) ON DELETE CASCADE ON UPDATE CASCADE;
+ADD CONSTRAINT `FK_3E379A6295688305` FOREIGN KEY (`idPaciente`) REFERENCES `paciente` (`idPaciente`),
+ADD CONSTRAINT `cita_ibfk_1` FOREIGN KEY (`idUsuario`) REFERENCES `usuario` (`idUsuario`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `diagnostico`
 --
 ALTER TABLE `diagnostico`
-ADD CONSTRAINT `diagnostico_ibfk_1` FOREIGN KEY (`idNotaCita`) REFERENCES `notaCita` (`idNotaCita`);
-
---
--- Filtros para la tabla `diagnosticoMedico`
---
-ALTER TABLE `diagnosticoMedico`
-ADD CONSTRAINT `diagnosticoMedico_ibfk_1` FOREIGN KEY (`idMedico`) REFERENCES `usuario` (`idUsuario`);
+ADD CONSTRAINT `FK_9B91D44832DCDBAF` FOREIGN KEY (`idUsuario`) REFERENCES `usuario` (`idUsuario`),
+ADD CONSTRAINT `FK_9B91D4485BE80DD` FOREIGN KEY (`idNotaCita`) REFERENCES `notaCita` (`idNotaCita`);
 
 --
 -- Filtros para la tabla `hci`
 --
 ALTER TABLE `hci`
-ADD CONSTRAINT `hci_ibfk_1` FOREIGN KEY (`idPaciente`) REFERENCES `paciente` (`idPaciente`) ON DELETE CASCADE ON UPDATE CASCADE;
+ADD CONSTRAINT `FK_C33BA21295688305` FOREIGN KEY (`idPaciente`) REFERENCES `paciente` (`idPaciente`);
 
 --
--- Filtros para la tabla `notasCitaGenerada`
+-- Filtros para la tabla `notaCita`
 --
-ALTER TABLE `notasCitaGenerada`
-ADD CONSTRAINT `notasCitaGenerada_ibfk_1` FOREIGN KEY (`idCita`) REFERENCES `cita` (`idCita`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `notaCita`
+ADD CONSTRAINT `FK_561DAA864DCAC4FC` FOREIGN KEY (`idCita`) REFERENCES `cita` (`idCita`),
+ADD CONSTRAINT `FK_561DAA86E273BF95` FOREIGN KEY (`idHci`) REFERENCES `hci` (`idHci`);
 
 --
--- Filtros para la tabla `notasCitaHci`
+-- Filtros para la tabla `paciente`
 --
-ALTER TABLE `notasCitaHci`
-ADD CONSTRAINT `notasCitaHci_ibfk_1` FOREIGN KEY (`idNotaCita`) REFERENCES `notaCita` (`idNotaCita`) ON DELETE CASCADE ON UPDATE CASCADE,
-ADD CONSTRAINT `notasCitaHci_ibfk_2` FOREIGN KEY (`idHci`) REFERENCES `hci` (`idHci`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `paciente`
+ADD CONSTRAINT `paciente_ibfk_1` FOREIGN KEY (`idmedicoPref`) REFERENCES `usuario` (`idUsuario`);
 
 --
 -- Filtros para la tabla `pacNumContacto`
 --
 ALTER TABLE `pacNumContacto`
-ADD CONSTRAINT `pacNumContacto_ibfk_1` FOREIGN KEY (`idPaciente`) REFERENCES `paciente` (`idPaciente`) ON DELETE CASCADE ON UPDATE CASCADE;
+ADD CONSTRAINT `FK_351A996495688305` FOREIGN KEY (`idPaciente`) REFERENCES `paciente` (`idPaciente`);
 
 --
 -- Filtros para la tabla `pacTelf`
 --
 ALTER TABLE `pacTelf`
-ADD CONSTRAINT `pacTelf_ibfk_1` FOREIGN KEY (`idPaciente`) REFERENCES `paciente` (`idPaciente`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `FK_BD4AFCF95688305` FOREIGN KEY (`idPaciente`) REFERENCES `paciente` (`idPaciente`),
 ADD CONSTRAINT `pacTelf_ibfk_2` FOREIGN KEY (`idTipoTel`) REFERENCES `tipoTel` (`idTipoTel`);
 
 --
 -- Filtros para la tabla `phciAlergia`
 --
 ALTER TABLE `phciAlergia`
-ADD CONSTRAINT `phciAlergia_ibfk_1` FOREIGN KEY (`idHci`) REFERENCES `hci` (`idHci`) ON DELETE CASCADE ON UPDATE CASCADE;
+ADD CONSTRAINT `FK_3363DC29E273BF95` FOREIGN KEY (`idHci`) REFERENCES `hci` (`idHci`);
 
 --
 -- Filtros para la tabla `phciCondicion`
 --
 ALTER TABLE `phciCondicion`
-ADD CONSTRAINT `phciCondicion_ibfk_1` FOREIGN KEY (`idHci`) REFERENCES `hci` (`idHci`) ON DELETE CASCADE ON UPDATE CASCADE;
+ADD CONSTRAINT `FK_6BFA8E1BE273BF95` FOREIGN KEY (`idHci`) REFERENCES `hci` (`idHci`);
 
 --
 -- Filtros para la tabla `phciConsumo`
 --
 ALTER TABLE `phciConsumo`
-ADD CONSTRAINT `phciConsumo_ibfk_1` FOREIGN KEY (`idHci`) REFERENCES `hci` (`idHci`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `FK_717276C7E273BF95` FOREIGN KEY (`idHci`) REFERENCES `hci` (`idHci`),
 ADD CONSTRAINT `phciConsumo_ibfk_2` FOREIGN KEY (`idTipoConsumo`) REFERENCES `tipoConsumo` (`idTipoConsumo`),
 ADD CONSTRAINT `phciConsumo_ibfk_3` FOREIGN KEY (`idTipoEstado`) REFERENCES `tipoEstado` (`idTipoEstado`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
@@ -900,31 +834,21 @@ ADD CONSTRAINT `phciConsumo_ibfk_3` FOREIGN KEY (`idTipoEstado`) REFERENCES `tip
 -- Filtros para la tabla `phciMedicamento`
 --
 ALTER TABLE `phciMedicamento`
-ADD CONSTRAINT `phciMedicamento_ibfk_1` FOREIGN KEY (`idHci`) REFERENCES `hci` (`idHci`) ON DELETE CASCADE ON UPDATE CASCADE;
+ADD CONSTRAINT `FK_4C4B40E2E273BF95` FOREIGN KEY (`idHci`) REFERENCES `hci` (`idHci`);
 
 --
 -- Filtros para la tabla `prescripcion`
 --
 ALTER TABLE `prescripcion`
-ADD CONSTRAINT `prescripcion_ibfk_1` FOREIGN KEY (`idNotaCita`) REFERENCES `notaCita` (`idNotaCita`);
-
---
--- Filtros para la tabla `prescripcionMedico`
---
-ALTER TABLE `prescripcionMedico`
-ADD CONSTRAINT `prescripcionMedico_ibfk_1` FOREIGN KEY (`idMedico`) REFERENCES `usuario` (`idUsuario`);
+ADD CONSTRAINT `FK_D271D7FF32DCDBAF` FOREIGN KEY (`idUsuario`) REFERENCES `usuario` (`idUsuario`),
+ADD CONSTRAINT `FK_D271D7FF5BE80DD` FOREIGN KEY (`idNotaCita`) REFERENCES `notaCita` (`idNotaCita`);
 
 --
 -- Filtros para la tabla `referencia`
 --
 ALTER TABLE `referencia`
-ADD CONSTRAINT `referencia_ibfk_1` FOREIGN KEY (`idNotaCita`) REFERENCES `notaCita` (`idNotaCita`);
-
---
--- Filtros para la tabla `referenciaMedico`
---
-ALTER TABLE `referenciaMedico`
-ADD CONSTRAINT `referenciaMedico_ibfk_1` FOREIGN KEY (`idMedico`) REFERENCES `usuario` (`idUsuario`);
+ADD CONSTRAINT `FK_C01213D832DCDBAF` FOREIGN KEY (`idUsuario`) REFERENCES `usuario` (`idUsuario`),
+ADD CONSTRAINT `FK_C01213D85BE80DD` FOREIGN KEY (`idNotaCita`) REFERENCES `notaCita` (`idNotaCita`);
 
 --
 -- Filtros para la tabla `rolPrivilegio`
@@ -940,11 +864,13 @@ ALTER TABLE `usuario`
 ADD CONSTRAINT `usuario_ibfk_1` FOREIGN KEY (`idRol`) REFERENCES `rol` (`idRol`);
 
 --
--- Filtros para la tabla `visitaPaciente`
+-- Filtros para la tabla `visita`
 --
-ALTER TABLE `visitaPaciente`
-ADD CONSTRAINT `visitaPaciente_ibfk_2` FOREIGN KEY (`idCita`) REFERENCES `cita` (`idCita`) ON DELETE CASCADE ON UPDATE CASCADE,
-ADD CONSTRAINT `visitaPaciente_ibfk_3` FOREIGN KEY (`idPaciente`) REFERENCES `paciente` (`idPaciente`);
+ALTER TABLE `visita`
+ADD CONSTRAINT `FK_B7F148A24DCAC4FC` FOREIGN KEY (`idCita`) REFERENCES `cita` (`idCita`),
+ADD CONSTRAINT `FK_B7F148A257F439D6` FOREIGN KEY (`idMedico`) REFERENCES `usuario` (`idUsuario`),
+ADD CONSTRAINT `FK_B7F148A25AD771AC` FOREIGN KEY (`idEnfermera`) REFERENCES `usuario` (`idUsuario`),
+ADD CONSTRAINT `FK_B7F148A295688305` FOREIGN KEY (`idPaciente`) REFERENCES `paciente` (`idPaciente`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

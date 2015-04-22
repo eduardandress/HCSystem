@@ -18,7 +18,7 @@ HC\HCBundle\Entity\Hci:
     fields:
         fechacreacion:
             type: datetime
-            nullable: false
+            nullable: true
             comment: ''
             default: CURRENT_TIMESTAMP
             column: fechaCreacion

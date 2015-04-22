@@ -299,8 +299,9 @@ class NotacitaController extends Controller
             $em->remove($entity);
             $em->flush();
         }
-
-            return $this->redirect($this->getRequest()->headers->get('referer'));
+ return $this->redirect($this->generateUrl('hci_show', array('id' => $entity->getIdhci()->getIdhci())));
+            
+            // return $this->redirect($this->getRequest()->headers->get('referer'));
     }
 
     /**
